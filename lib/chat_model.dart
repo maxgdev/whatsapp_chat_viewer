@@ -7,9 +7,9 @@ class ChatModel {
     this.fileAttached,
   });
 
-  int date;
-  int time;
+  String date; // from text file, do we need to store in DateTime object??
+  String time; // from text file, do we need to store in DateTime object??
   String name;
   String message;
-  String fileAttached;
+  String fileAttached; // string or boolean??
 }
