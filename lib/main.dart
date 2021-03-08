@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'WhatsApp Chat Viewer',
-      theme: ThemeData(
-        primarySwatch: Colors.green
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.green
+      // ),
       home: MyHomePage(title: 'WhatsApp Chat Viewer'),
     );
   }

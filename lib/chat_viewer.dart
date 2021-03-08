@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'chats.dart';
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -10,11 +10,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      //
     });
   }
 
@@ -23,27 +23,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-
+        backgroundColor: Color(0xFF25d366),
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      body: Chats(),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        tooltip: 'Add Chat',
+        backgroundColor: Color(0xFF25d366),
+        child: Icon(Icons.message),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
