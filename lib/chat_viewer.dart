@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'chats.dart';
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+import './chat_colors.dart';
+class ChatHomePage extends StatefulWidget {
+  ChatHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ChatHomePageState createState() => _ChatHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
+class _ChatHomePageState extends State<ChatHomePage> {
+  
 
-  void _incrementCounter() {
+  void _addChatFile() {
     setState(() {
-      //
+      // open file/path manager
+      // select file - text ONLY
+      // check file format and parse
+      // add file contents as new chat stream
     });
   }
 
@@ -23,14 +27,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(14, 102, 85, 0.8),
+        backgroundColor: ChatColors.whatsAppGreen,
         title: Text(widget.title),
       ),
       body: Chats(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _addChatFile,
         tooltip: 'Add Chat',
-        backgroundColor: Color.fromRGBO(14, 102, 85, 0.8),
+        backgroundColor: ChatColors.whatsAppGreen,
         child: Icon(Icons.message),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

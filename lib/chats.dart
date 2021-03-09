@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import './chat_colors.dart';
 
 class Chats extends StatefulWidget {
   ChatsState createState() => ChatsState();
 }
 
 class ChatsState extends State<Chats> {
-  Color _whatsAppColor = Color.fromRGBO(14, 102, 85, 0.8);
-
+  
   List<String> names = [
     'Malcolm',
     'Shaka',
@@ -33,7 +33,7 @@ class ChatsState extends State<Chats> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          backgroundColor: _whatsAppColor,
+          backgroundColor: ChatColors.whatsAppGreen,
           child: Center(
             child: Icon(Icons.message),
           ),
@@ -47,8 +47,7 @@ class ChatsState extends State<Chats> {
                   ListTile(
                     leading: CircleAvatar(
                       // backgroundImage: AssetImage('assets/images.contact.png'),
-                      // backgroundColor: Color(0xFF25d366),
-                      backgroundColor: _whatsAppColor,
+                      backgroundColor: ChatColors.whatsAppGreen,
                       // foregroundColor: Colors.white,
                     ),
                     title: Text(names[index]),
