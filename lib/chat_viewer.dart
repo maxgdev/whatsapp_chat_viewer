@@ -5,6 +5,7 @@ import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
+
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
 
@@ -20,7 +21,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   String dirPath;
   FileTileSelectMode filePickerSelectMode = FileTileSelectMode.wholeTile;
 
-    void initState() {
+  void initState() {
     super.initState();
 
     _prepareStorage();
@@ -36,9 +37,11 @@ class _ChatHomePageState extends State<ChatHomePage> {
     }
 
     // Create sample file if not exists
-    File sampleFile = File('${sampleFolder.path}/Sample.txt');
+    File sampleFile = File('${sampleFolder.path}/WhatsAppExport.txt');
     if (!sampleFile.existsSync()) {
-      sampleFile.writeAsStringSync('FileSystem Picker sample file.');
+      sampleFile.writeAsStringSync("12/11/2014, 12:22 PM - John: Hi Stacy");
+      sampleFile
+          .writeAsStringSync("13/11/2014, 8:10 AM - Stacy: yeah I am good");
     }
 
     setState(() {});
@@ -52,7 +55,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
       fsType: FilesystemType.file,
       folderIconColor: Colors.teal,
       allowedExtensions: ['.txt'],
-      fileTileSelectMode: filePickerSelectMode,
+      // fileTileSelectMode: filePickerSelectMode,
+      fileTileSelectMode: FileTileSelectMode.wholeTile,
       requestPermission: () async =>
           await Permission.storage.request().isGranted,
     );
@@ -60,19 +64,23 @@ class _ChatHomePageState extends State<ChatHomePage> {
     if (path != null) {
       File file = File('$path');
       String contents = await file.readAsString();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(contents)));  
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+            content: Text(contents),
+            duration: Duration(seconds: 3),
+            )
+            
+          );
     }
     print("Open file_picker to import text file");
+    
     setState(() {
       filePath = path;
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ChatColors.whatsAppGreen,
