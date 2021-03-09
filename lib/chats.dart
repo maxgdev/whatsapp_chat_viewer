@@ -92,7 +92,7 @@ class ChatsState extends State<Chats> {
     Chat(
       date: "1/24/21",
       time: "02:15 PM",
-      name: "Belson",
+      name: "Nelson",
       message: "Fusce magna massa, auctor vitae ipsum in",
       fileAttached: ""
     ),
@@ -115,12 +115,12 @@ class ChatsState extends State<Chats> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: ChatColors.whatsAppGreen,
-          child: Center(
-            child: Icon(Icons.message),
-          ),
-          onPressed: null),
+      // floatingActionButton: FloatingActionButton(
+      //     backgroundColor: ChatColors.whatsAppGreen,
+      //     child: Center(
+      //       child: Icon(Icons.message),
+      //     ),
+      //     onPressed: null),
       body: Container(
         child: ListView.builder(
           itemCount: chatsList.length,
@@ -132,6 +132,7 @@ class ChatsState extends State<Chats> {
                   leading: CircleAvatar(
                     backgroundColor: ChatColors.whatsAppGreen,
                     // foregroundColor: Colors.white,
+                    child: Text(chatsList[index].name[0]),
                   ),
                   title: Text(chatsList[index].name),
                   subtitle: Text(chatsList[index].message),
