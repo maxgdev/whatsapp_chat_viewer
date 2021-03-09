@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'chats.dart';
-import './chat_colors.dart';
+import 'package:whatsapp_chat_viewer/chats.dart';
+import 'package:whatsapp_chat_viewer/chat_colors.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
