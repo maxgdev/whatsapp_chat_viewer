@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'chats.dart';
 import './chat_colors.dart';
-// import './chats_test.dart';
+import 'package:filesystem_picker/filesystem_picker.dart';
+
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
 
@@ -15,6 +16,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   
 
   void _addChatFile() {
+    print("Open file manager to import text file");
     setState(() {
       // open file/path manager
       // select file - text ONLY
