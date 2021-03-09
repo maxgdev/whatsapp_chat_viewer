@@ -1,5 +1,5 @@
-class ChatModel {
-  ChatModel({
+class Chat {
+  Chat({
     this.date,
     this.time,
     this.name,
