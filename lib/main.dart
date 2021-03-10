@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/chat_viewer.dart';
-import 'bubble.dart';
 
-// import 'file_picker.dart';
 void main() {
   runApp(MyApp());
 }
