@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
-      // home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
-      home: MyHomePage(title: 'WhatsApp Chat Viewer'),
+      home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
+      // home: MyHomePage(title: 'WhatsApp Chat Viewer'),
       // home: MyFileApp(),
     );
   }
