@@ -53,7 +53,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       context: context,
       rootDirectory: rootPath,
       fsType: FilesystemType.file,
-      folderIconColor: Colors.teal,
+      // folderIconColor: Colors.teal,
       allowedExtensions: ['.txt'],
       // fileTileSelectMode: filePickerSelectMode,
       fileTileSelectMode: FileTileSelectMode.wholeTile,
@@ -68,6 +68,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
           .showSnackBar(SnackBar(
             content: Text(contents),
             duration: Duration(seconds: 3),
+            // backgroundColor: ChatColors.whatsAppGreen,
             )
             
           );

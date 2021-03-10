@@ -13,3 +13,5 @@ Flutter WhatsApp Chat Viewer
 
 - https://pub.dev/packages/filesystem_picker
 - https://pub.dev/packages/permission_handler
+- https://pub.dev/packages/bubble
+- https://pub.dev/packages/url_launcher
