@@ -25,6 +25,18 @@ class ChatDetailScreen extends StatelessWidget {
     margin: BubbleEdges.only(top: 8, left: 50),
     alignment: Alignment.topRight,
   );
+
+  parseLine(String txtLine, int index) {
+    var dateToken, restToken, nameToken, textToken;
+    var tokenList;
+    dateToken = txtLine.split("-")[0];
+    restToken = txtLine.split("-")[1];
+    nameToken = restToken.split(":")[0];
+    textToken = restToken.split(":")[1];
+    tokenList = [dateToken, nameToken, textToken];
+    return tokenList[index];
+  }
+
   @override
   Widget build(BuildContext context) {
     //
@@ -100,16 +112,19 @@ class ChatDetailScreen extends StatelessWidget {
               child: const Text('dsfdfdfg'),
             ),
             Divider(),
-            Column(children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text("This is a single line from the imported text file:"),
                 Text("13/11/2014, 8:10 AM - Stacy: yeah I am good"),
                 Divider(),
                 Text("This is the format: <time stamp> – <name>: <text> "),
                 Divider(),
-                Text("This <time stamp> : REGEX "),
-                Text("This <name>: REGEX "),
-                Text("This <text>: REGEX "),
-               ],
+                Text(
+                    "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
+                Text("This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
+                Text("This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
+              ],
             ),
           ],
         ),
