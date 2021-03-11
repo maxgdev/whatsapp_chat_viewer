@@ -46,65 +46,72 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Container(
           // color: Colors.yellow.withAlpha(64),
-          child: ListView(
-            padding: const EdgeInsets.all(8),
+          child: Column(
             children: [
-              Bubble(
-                alignment: Alignment.center,
-                color: const Color.fromARGB(255, 212, 234, 244),
-                borderColor: Colors.black,
-                borderWidth: 2,
-                margin: const BubbleEdges.only(top: 8),
-                child: const Text(
-                  'TODAY',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-              Bubble(
-                style: styleSomebody,
+              ListView(
+                padding: const EdgeInsets.all(8),
+                children: [
+                  Bubble(
+                    alignment: Alignment.center,
+                    color: const Color.fromARGB(255, 212, 234, 244),
+                    borderColor: Colors.black,
+                    borderWidth: 2,
+                    margin: const BubbleEdges.only(top: 8),
+                    child: const Text(
+                      'TODAY',
+                      style: TextStyle(fontSize: 10),
+                    ),
+                  ),
+                  Bubble(
+                    style: styleSomebody,
 
-                child: const Text(
-                    'Hi Jason. Sorry to bother you. I have a queston for you.'),
-              ),
-              Bubble(
-                style: styleMe,
-                child: const Text("Whats'up?"),
-              ),
-              Bubble(
-                style: styleSomebody,
-                child:
-                    const Text("I've been having a problem with my computer."),
-              ),
-              Bubble(
-                style: styleSomebody,
-                margin: const BubbleEdges.only(top: 4),
-                showNip: false,
-                child: const Text('Can you help me?'),
-              ),
-              Bubble(
-                style: styleMe,
-                child: const Text('Ok'),
-              ),
-              Bubble(
-                style: styleMe,
-                showNip: false,
-                margin: const BubbleEdges.only(top: 4),
-                child: const Text("What's the problem?"),
-              ),
+                    child: const Text(
+                        'Hi Jason. Sorry to bother you. I have a queston for you.'),
+                  ),
+                  Bubble(
+                    style: styleMe,
+                    child: const Text("Whats'up?"),
+                  ),
+                  Bubble(
+                    style: styleSomebody,
+                    child:
+                        const Text("I've been having a problem with my computer."),
+                  ),
+                  Bubble(
+                    style: styleSomebody,
+                    margin: const BubbleEdges.only(top: 4),
+                    showNip: false,
+                    child: const Text('Can you help me?'),
+                  ),
+                  Bubble(
+                    style: styleMe,
+                    child: const Text('Ok'),
+                  ),
+                  Bubble(
+                    style: styleMe,
+                    showNip: false,
+                    margin: const BubbleEdges.only(top: 4),
+                    child: const Text("What's the problem?"),
+                  ),
     
-              const Divider(), 
+                  const Divider(), 
    
-              Bubble(
-                margin: const BubbleEdges.only(top: 5),
-                elevation: 10,
-                shadowColor: Colors.red[900],
-                alignment: Alignment.topRight,
-                nip: BubbleNip.rightBottom,
-                color: Colors.green,
-                child: const Text('dsfdfdfg'),
-              )
+                  Bubble(
+                    margin: const BubbleEdges.only(top: 5),
+                    elevation: 10,
+                    shadowColor: Colors.red[900],
+                    alignment: Alignment.topRight,
+                    nip: BubbleNip.rightBottom,
+                    color: Colors.green,
+                    child: const Text('dsfdfdfg'),
+                  ),
+                  Divider(),
+                ],
+              ),
+
             ],
           ),
+          
         ),
       );
 }
