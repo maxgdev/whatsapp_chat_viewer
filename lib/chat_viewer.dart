@@ -20,6 +20,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   String filePath;
   String dirPath;
   FileTileSelectMode filePickerSelectMode = FileTileSelectMode.wholeTile;
+  File importedFile;
 
   void initState() {
     super.initState();
@@ -36,13 +37,30 @@ class _ChatHomePageState extends State<ChatHomePage> {
       sampleFolder.createSync();
     }
 
+    // // Create sample file if not exists
+    // File sampleFile = File('${sampleFolder.path}/WhatsAppExport.txt');
+    // if (!sampleFile.existsSync()) {
+    //   sampleFile.writeAsStringSync("12/11/2014, 12:22 PM - John: Hi Stacy");
+    //   sampleFile
+    //       .writeAsStringSync("13/11/2014, 8:10 AM - Stacy: yeah I am good");
+    // }
     // Create sample file if not exists
-    File sampleFile = File('${sampleFolder.path}/WhatsAppExport.txt');
+    File sampleFile = File('${sampleFolder.path}/Avengers.txt');
     if (!sampleFile.existsSync()) {
-      sampleFile.writeAsStringSync("12/11/2014, 12:22 PM - John: Hi Stacy");
+      sampleFile.writeAsStringSync("25/09/16, 21:50 - Nick Fury created group 'Avengers'");
       sampleFile
-          .writeAsStringSync("13/11/2014, 8:10 AM - Stacy: yeah I am good");
+        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added you");
+      sampleFile
+        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Hulk");
+        sampleFile
+        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Thor");
+        sampleFile
+        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Tony Stark");
+        sampleFile
+        .writeAsStringSync("18/06/17, 22:47 - Thor: Stop pressing every button in there");
+
     }
+
 
     setState(() {});
   }
@@ -64,22 +82,36 @@ class _ChatHomePageState extends State<ChatHomePage> {
     if (path != null) {
       File file = File('$path');
       String contents = await file.readAsString();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(
-            content: Text(contents),
-            duration: Duration(seconds: 3),
-            // backgroundColor: ChatColors.whatsAppGreen,
-            )
-            
-          );
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(contents),
+        duration: Duration(seconds: 3),
+        // backgroundColor: ChatColors.whatsAppGreen,
+      ));
+      importedFile = file;
+      // print("$file");
     }
     print("Open file_picker to import text file");
-    
+    // print(importedFile);
+    // process lines of file
+    importedFile.readAsLines().then(processLines).catchError((err) => handleError(err));
+
     setState(() {
       filePath = path;
     });
   }
 
+  processLines(List<String> lines) {
+    // process lines:
+    for (var line in lines) {
+    print(line);
+  }
+  }
+
+  handleError(e) {
+    print("An error...: $e");
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

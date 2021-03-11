@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 class ChatDetailScreen extends StatelessWidget {
   static const styleSomebody = BubbleStyle(
@@ -35,6 +38,13 @@ class ChatDetailScreen extends StatelessWidget {
     textToken = restToken.split(":")[1];
     tokenList = [dateToken, nameToken, textToken];
     return tokenList[index];
+  }
+
+  // String fileText = await rootBundle.loadString('assets/avengers.txt');
+  Future<String> getFile() async {
+    String importTxt = await rootBundle.loadString('assets/avengers.txt');
+    print(importTxt);
+    return importTxt;
   }
 
   @override
@@ -122,9 +132,17 @@ class ChatDetailScreen extends StatelessWidget {
                 Divider(),
                 Text(
                     "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
-                Text("This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
-                Text("This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
+                Text(
+                    "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
+                Text(
+                    "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
               ],
+            ),
+            Bubble(
+              style: styleMe,
+              showNip: false,
+              margin: const BubbleEdges.only(top: 4),
+              child: Text("${getFile().toString()}"),
             ),
           ],
         ),
