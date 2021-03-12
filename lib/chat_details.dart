@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 
 class ChatDetailScreen extends StatelessWidget {
+  // var myText;
+
   static const styleSomebody = BubbleStyle(
     // nip: BubbleNip.leftCenter,
     nip: BubbleNip.leftBottom,
@@ -29,7 +29,7 @@ class ChatDetailScreen extends StatelessWidget {
     alignment: Alignment.topRight,
   );
 
-  parseLine(String txtLine, int index) {
+   parseLine(String txtLine, int index) {
     var dateToken, restToken, nameToken, textToken;
     var tokenList;
     dateToken = txtLine.split("-")[0];
@@ -56,70 +56,60 @@ class ChatDetailScreen extends StatelessWidget {
         title: Text(chat.name),
         backgroundColor: ChatColors.whatsAppGreen,
       ),
-      // body: Padding(
-      //   padding: EdgeInsets.all(16.0),
-      //   child: Container(
-      //     child: ListTile(
-      //       title: Text(chat.name),
-      //       subtitle: Text(chat.message),
-      //       trailing: Text(chat.time),
-      //     ),
-      //   ),
-      // ),
       body: Container(
         // color: Colors.yellow.withAlpha(64),
         child: ListView(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(8),
           children: [
             Bubble(
               alignment: Alignment.center,
-              color: const Color.fromARGB(255, 212, 234, 244),
+              color: Color.fromARGB(255, 212, 234, 244),
               borderColor: Colors.black,
               borderWidth: 2,
-              margin: const BubbleEdges.only(top: 8),
-              child: const Text(
+              margin: BubbleEdges.only(top: 8),
+              child: Text(
                 'TODAY',
                 style: TextStyle(fontSize: 10),
               ),
             ),
             Bubble(
               style: styleSomebody,
-              child: const Text(
+              child: Text(
                   'Hi Jason. Sorry to bother you. I have a queston for you.'),
             ),
             Bubble(
               style: styleMe,
-              child: const Text("Whats'up?"),
+              child: Text("Whats'up?"),
             ),
             Bubble(
               style: styleSomebody,
-              child: const Text("I've been having a problem with my computer."),
+              child: Text("I've been having a problem with my computer."),
             ),
             Bubble(
               style: styleSomebody,
-              margin: const BubbleEdges.only(top: 4),
+              margin: BubbleEdges.only(top: 4),
               showNip: false,
-              child: const Text('Can you help me?'),
+              child: Text('Can you help me?'),
             ),
             Bubble(
               style: styleMe,
-              child: const Text('Ok'),
+              child: Text('Ok'),
             ),
             Bubble(
               style: styleMe,
               showNip: false,
-              margin: const BubbleEdges.only(top: 4),
-              child: const Text("What's the problem?"),
+              margin: BubbleEdges.only(top: 4),
+              child: Text("What's the problem?"),
             ),
-            const Divider(),
+            Divider(),
             Bubble(
-              margin: const BubbleEdges.only(top: 5),
+              margin: BubbleEdges.only(top: 5),
               elevation: 10,
               shadowColor: Colors.red[900],
               alignment: Alignment.topRight,
               nip: BubbleNip.rightBottom,
               color: Colors.green,
-              child: const Text('dsfdfdfg'),
+              child: Text('dsfdfdfg'),
             ),
             Divider(),
             Column(
@@ -141,8 +131,8 @@ class ChatDetailScreen extends StatelessWidget {
             Bubble(
               style: styleMe,
               showNip: false,
-              margin: const BubbleEdges.only(top: 4),
-              child: Text("${getFile().toString()}"),
+              margin: BubbleEdges.only(top: 4),
+              child: Text("text"),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_chat_viewer/chat_viewer.dart';
+// import 'package:whatsapp_chat_viewer/chat_viewer.dart';
+import './file_services.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
-      home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
+      home: FlutterDemo(storage: CounterStorage()),
+      // home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
+
       // home: MyHomePage(title: 'WhatsApp Chat Viewer'),
       // home: MyFileApp(),
     );
