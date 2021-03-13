@@ -15,3 +15,4 @@ Flutter WhatsApp Chat Viewer
 - https://pub.dev/packages/permission_handler
 - https://pub.dev/packages/bubble
 - https://pub.dev/packages/url_launcher
+- https://stackoverflow.com/questions/60239587/how-can-i-read-text-from-files-and-display-them-as-list-using-widget-s-in-flutte

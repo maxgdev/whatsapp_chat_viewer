@@ -4,10 +4,45 @@ import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'open_file.dart';
-class ChatDetailScreen extends StatelessWidget {
-  // var myText;
+import 'dart:async';
+import 'dart:convert';
 
-  static const styleSomebody = BubbleStyle(
+class ChatDetailsScreen2 extends StatefulWidget {
+  @override
+  _ChatDetailsScreen2State createState() => _ChatDetailsScreen2State();
+}
+
+class _ChatDetailsScreen2State extends State<ChatDetailsScreen2> {
+  // _chatConversation scoped to function
+  List<String> _chatConversation = [];
+
+    Future<List<String>> _loadChatConversation() async {
+      // chatConversation scoped to inner function
+      List<String> chatConversation = [];
+      await rootBundle.loadString('assets/avengers.txt').then((q) {
+        for (String i in LineSplitter().convert(q)) {
+          chatConversation.add(i);
+        }
+      });
+      return chatConversation;
+    }
+
+    @override
+    void initState() {
+      _setup();
+      super.initState();
+    }
+
+    _setup() async {
+      // Retrieve the questions (Processed in the background)
+      List<String> chatConversation = await _loadChatConversation();
+
+      // Notify the UI and display the questions
+      setState(() {
+        _chatConversation = chatConversation;
+      });
+    }
+    static const styleSomebody = BubbleStyle(
     // nip: BubbleNip.leftCenter,
     nip: BubbleNip.leftBottom,
     color: Colors.white,
@@ -39,14 +74,7 @@ class ChatDetailScreen extends StatelessWidget {
     tokenList = [dateToken, nameToken, textToken];
     return tokenList[index];
   }
-
-  // String fileText = await rootBundle.loadString('assets/avengers.txt');
-  Future<String> getFile() async {
-    String importTxt = await rootBundle.loadString('assets/avengers.txt');
-    print(importTxt);
-    return importTxt;
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     //
@@ -125,8 +153,14 @@ class ChatDetailScreen extends StatelessWidget {
               ],
             ),
             Container(
-              height: 200,
-              child: LoadConversation()),
+              height: 300,
+              child: ListView.builder(
+                itemCount: _chatConversation.length,
+                itemBuilder: (context, index) {
+                  return Text(_chatConversation[index]);
+                },
+              ),
+            ),
           ],
         ),
       ),
