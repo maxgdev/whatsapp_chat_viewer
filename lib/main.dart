@@ -18,9 +18,6 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
-      
-      // home: LoadConversation(),
-      // home: FlutterDemo(storage: CounterStorage()),
       home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
       // home: MyHomePage(title: 'WhatsApp Chat Viewer'),
       // home: MyFileApp(),

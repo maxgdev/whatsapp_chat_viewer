@@ -157,14 +157,26 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 itemCount: _chatConversation.length,
                 itemBuilder: (context, index) {
                   // return Text(_chatConversation[index]);
-                  return  Bubble(
-                    style: styleSomebody,
-                    margin: BubbleEdges.only(top: 4),
-                    showNip: true,
-                    child: Text(_chatConversation[index]
-                      // "${parseLine(_chatConversation[index], 0)}" 
-                      // "${parseLine(_chatConversation[index], 2)}"
+                  return  Row(
+                    
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: ChatColors.whatsAppGreen,
+                        // foregroundColor: Colors.white,
+                        child: Text(_chatConversation[index][0]),
                       ),
+                      Expanded(
+                        child: Bubble(
+                          style: styleSomebody,
+                          margin: BubbleEdges.only(top: 4),
+                          showNip: true,
+                          child: Text(_chatConversation[index]
+                            // "${parseLine(_chatConversation[index], 0)}" 
+                            // "${parseLine(_chatConversation[index], 2)}"
+                            ),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
