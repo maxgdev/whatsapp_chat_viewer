@@ -16,33 +16,34 @@ class _ChatDetailsScreen2State extends State<ChatDetailsScreen2> {
   // _chatConversation scoped to function
   List<String> _chatConversation = [];
 
-    Future<List<String>> _loadChatConversation() async {
-      // chatConversation scoped to inner function
-      List<String> chatConversation = [];
-      await rootBundle.loadString('assets/avengers.txt').then((q) {
-        for (String i in LineSplitter().convert(q)) {
-          chatConversation.add(i);
-        }
-      });
-      return chatConversation;
-    }
+  Future<List<String>> _loadChatConversation() async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+    await rootBundle.loadString('assets/avengers.txt').then((q) {
+      for (String i in LineSplitter().convert(q)) {
+        chatConversation.add(i);
+      }
+    });
+    return chatConversation;
+  }
 
-    @override
-    void initState() {
-      _setup();
-      super.initState();
-    }
+  @override
+  void initState() {
+    _setup();
+    super.initState();
+  }
 
-    _setup() async {
-      // Retrieve the questions (Processed in the background)
-      List<String> chatConversation = await _loadChatConversation();
+  _setup() async {
+    // Retrieve the questions (Processed in the background)
+    List<String> chatConversation = await _loadChatConversation();
 
-      // Notify the UI and display the questions
-      setState(() {
-        _chatConversation = chatConversation;
-      });
-    }
-    static const styleSomebody = BubbleStyle(
+    // Notify the UI and display the questions
+    setState(() {
+      _chatConversation = chatConversation;
+    });
+  }
+
+  static const styleSomebody = BubbleStyle(
     // nip: BubbleNip.leftCenter,
     nip: BubbleNip.leftBottom,
     color: Colors.white,
@@ -64,7 +65,7 @@ class _ChatDetailsScreen2State extends State<ChatDetailsScreen2> {
     alignment: Alignment.topRight,
   );
 
-   parseLine(String txtLine, int index) {
+  parseLine(String txtLine, int index) {
     var dateToken, restToken, nameToken, textToken;
     var tokenList;
     dateToken = txtLine.split("-")[0];
@@ -74,7 +75,7 @@ class _ChatDetailsScreen2State extends State<ChatDetailsScreen2> {
     tokenList = [dateToken, nameToken, textToken];
     return tokenList[index];
   }
-  
+
   @override
   Widget build(BuildContext context) {
     //
@@ -140,24 +141,32 @@ class _ChatDetailsScreen2State extends State<ChatDetailsScreen2> {
               child: Text('dsfdfdfg'),
             ),
             Divider(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-          
-                Text(
-                    "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
-                Text(
-                    "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
-                Text(
-                    "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
-              ],
-            ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Text(
+            //         "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
+            //     Text(
+            //         "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
+            //     Text(
+            //         "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
+            //   ],
+            // ),
             Container(
-              height: 300,
+              height: 600,
               child: ListView.builder(
                 itemCount: _chatConversation.length,
                 itemBuilder: (context, index) {
-                  return Text(_chatConversation[index]);
+                  // return Text(_chatConversation[index]);
+                  return  Bubble(
+                    style: styleSomebody,
+                    margin: BubbleEdges.only(top: 4),
+                    showNip: true,
+                    child: Text(_chatConversation[index]
+                      // "${parseLine(_chatConversation[index], 0)}" 
+                      // "${parseLine(_chatConversation[index], 2)}"
+                      ),
+                  );
                 },
               ),
             ),
