@@ -14,7 +14,7 @@ class ChatsState extends State<Chats> {
       date: "1/24/21",
       time: "11:27 AM",
       name: "Gates",
-      message: "I am a meglomaniacal, genocidal racist billiaare twat",
+      message: "I am a meglomaniacal, genocidal racist billionare twat",
       fileAttached: ""
     ),
     Chat(

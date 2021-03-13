@@ -65,17 +65,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     alignment: Alignment.topRight,
   );
 
-  // parseLine(String txtLine, int index) {
-  //   var dateToken, restToken, nameToken, textToken;
-  //   var tokenList;
-  //   dateToken = txtLine.split("-")[0];
-  //   restToken = txtLine.split("-")[1];
-  //   nameToken = restToken.split(":")[0];
-  //   textToken = restToken.split(":")[1];
-  //   tokenList = [dateToken, nameToken, textToken];
-  //   return tokenList[index];
-  // }
-
   @override
   Widget build(BuildContext context) {
     //
@@ -158,24 +147,40 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 itemCount: _chatConversation.length,
                 itemBuilder: (context, index) {
                   // return Text(_chatConversation[index]);
-                  return  Row(
+                  return Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       CircleAvatar(
                         backgroundColor: ChatColors.whatsAppGreen,
                         // foregroundColor: Colors.white,
                         // child: Text(_chatConversation[index][0]),
-                        child: Text("${parseLine(_chatConversation[index], 1)[1]}"),
+                        child: Text("${parseLine(_chatConversation[index], 2)[1]}"),
                       ),
                       Expanded(
                         child: Bubble(
                           style: styleSomebody,
                           margin: BubbleEdges.only(top: 4),
                           showNip: true,
-                          child: Text(_chatConversation[index]
-                            // "${parseLine(_chatConversation[index], 0)}" 
-                            // "${parseLine(_chatConversation[index], 2)}"
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("${parseLine(_chatConversation[index], 2)}",
+                              style: TextStyle(fontWeight: FontWeight.w800, color: ChatColors.whatsAppGreen),
+                              ),
+                              Text("${parseLine(_chatConversation[index], 3)}"
+                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(child: Text("${parseLine(_chatConversation[index], 0)}",
+                                  style: TextStyle(fontSize: 9))),
+                                  Text("${parseLine(_chatConversation[index], 1)}",
+                                  style: TextStyle(fontSize: 9)
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
