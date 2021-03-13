@@ -9,37 +9,7 @@ class Chats extends StatefulWidget {
 }
 
 class ChatsState extends State<Chats> {
-  // List<String> names = [
-  //   'Malcolm',
-  //   'Shaka',
-  //   'Diop',
-  //   'Patrice',
-  //   'Garvey',
-  //   'Steve',
-  //   'Anthony',
-  //   'Nelson',
-  // ];
 
-  // List<String> text = [
-  //   'Tellus ac semper cursus',
-  //   'Lacus felis ullamcorper eros',
-  //   'Nullam leo metus',
-  //   'Donec ac ligula convallis',
-  //   'Vivamus id arcu sed?',
-  //   'Curabitur nec commodo',
-  //   'Mauris sollicitudin porttitor',
-  //   'Morbi ac velit metus',
-  // ];
-
-  // Generate List of 10 Chat Objects in chatsList
-  // final chatsList = List<Chat>.generate(
-  //     10,
-  //     (index) => Chat(
-  //         date: "1/24/21",
-  //         time: "11:27 AM",
-  //         name: "Malcolm",
-  //         message: "Praesent ut malesuada nulla. Nunc a sapien vitae sem",
-  //         fileAttached: ""));
   final List<Chat>chatsList = [
     Chat(
       date: "1/24/21",
@@ -78,13 +48,6 @@ class ChatsState extends State<Chats> {
     ),
     Chat(
       date: "1/24/21",
-      time: "01:07 PM",
-      name: "Garvey",
-      message: "Morbi dictum nulla id turpis lacinia eleifend",
-      fileAttached: "Budget2021.xls"
-    ),
-    Chat(
-      date: "1/24/21",
       time: "01:27 PM",
       name: "Anthony",
       message: "Aenean auctor fermentum dolor, sed hendrerit augue cursus eget",
@@ -116,12 +79,7 @@ class ChatsState extends State<Chats> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //     backgroundColor: ChatColors.whatsAppGreen,
-      //     child: Center(
-      //       child: Icon(Icons.message),
-      //     ),
-      //     onPressed: null),
+
       body: Container(
         child: ListView.builder(
           itemCount: chatsList.length,

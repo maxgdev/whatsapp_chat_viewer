@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'open_file.dart';
+import './parse_line.dart';
+
 class ChatDetailScreen extends StatelessWidget {
   // var myText;
 
@@ -29,23 +31,23 @@ class ChatDetailScreen extends StatelessWidget {
     alignment: Alignment.topRight,
   );
 
-   parseLine(String txtLine, int index) {
-    var dateToken, restToken, nameToken, textToken;
-    var tokenList;
-    dateToken = txtLine.split("-")[0];
-    restToken = txtLine.split("-")[1];
-    nameToken = restToken.split(":")[0];
-    textToken = restToken.split(":")[1];
-    tokenList = [dateToken, nameToken, textToken];
-    return tokenList[index];
-  }
+  //  parseLine(String txtLine, int index) {
+  //   var dateToken, restToken, nameToken, textToken;
+  //   var tokenList;
+  //   dateToken = txtLine.split("-")[0];
+  //   restToken = txtLine.split("-")[1];
+  //   nameToken = restToken.split(":")[0];
+  //   textToken = restToken.split(":")[1];
+  //   tokenList = [dateToken, nameToken, textToken];
+  //   return tokenList[index];
+  // }
 
   // String fileText = await rootBundle.loadString('assets/avengers.txt');
-  Future<String> getFile() async {
-    String importTxt = await rootBundle.loadString('assets/avengers.txt');
-    print(importTxt);
-    return importTxt;
-  }
+  // Future<String> getFile() async {
+  //   String importTxt = await rootBundle.loadString('assets/avengers.txt');
+  //   print(importTxt);
+  //   return importTxt;
+  // }
 
   @override
   Widget build(BuildContext context) {
