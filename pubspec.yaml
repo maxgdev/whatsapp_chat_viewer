@@ -53,6 +53,7 @@ flutter:
   assets:
     - assets/images/
     - assets/avengers.txt
+    - assets/chatsample.txt
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

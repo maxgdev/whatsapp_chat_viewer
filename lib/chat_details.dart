@@ -5,6 +5,7 @@ import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'dart:async';
 import 'dart:convert';
+import './parse_line.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   Future<List<String>> _loadChatConversation() async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
-    await rootBundle.loadString('assets/avengers.txt').then((q) {
+    await rootBundle.loadString('assets/chatsample.txt').then((q) {
       for (String i in LineSplitter().convert(q)) {
         chatConversation.add(i);
       }
@@ -64,16 +65,16 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     alignment: Alignment.topRight,
   );
 
-  parseLine(String txtLine, int index) {
-    var dateToken, restToken, nameToken, textToken;
-    var tokenList;
-    dateToken = txtLine.split("-")[0];
-    restToken = txtLine.split("-")[1];
-    nameToken = restToken.split(":")[0];
-    textToken = restToken.split(":")[1];
-    tokenList = [dateToken, nameToken, textToken];
-    return tokenList[index];
-  }
+  // parseLine(String txtLine, int index) {
+  //   var dateToken, restToken, nameToken, textToken;
+  //   var tokenList;
+  //   dateToken = txtLine.split("-")[0];
+  //   restToken = txtLine.split("-")[1];
+  //   nameToken = restToken.split(":")[0];
+  //   textToken = restToken.split(":")[1];
+  //   tokenList = [dateToken, nameToken, textToken];
+  //   return tokenList[index];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +164,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                       CircleAvatar(
                         backgroundColor: ChatColors.whatsAppGreen,
                         // foregroundColor: Colors.white,
-                        child: Text(_chatConversation[index][0]),
+                        // child: Text(_chatConversation[index][0]),
+                        child: Text("${parseLine(_chatConversation[index], 1)[1]}"),
                       ),
                       Expanded(
                         child: Bubble(
