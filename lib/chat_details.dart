@@ -75,6 +75,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         backgroundColor: ChatColors.whatsAppGreen,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/images/whatsapp_wallpaper.png"),
+          fit: BoxFit.cover
+          ),
+        ),
         // color: Colors.yellow.withAlpha(64),
         child: ListView(
           padding: EdgeInsets.all(8),
@@ -119,28 +124,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
               margin: BubbleEdges.only(top: 4),
               child: Text("What's the problem?"),
             ),
+  
             Divider(),
-            Bubble(
-              margin: BubbleEdges.only(top: 5),
-              elevation: 10,
-              shadowColor: Colors.red[900],
-              alignment: Alignment.topRight,
-              nip: BubbleNip.rightBottom,
-              color: Colors.green,
-              child: Text('dsfdfdfg'),
-            ),
-            Divider(),
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     Text(
-            //         "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
-            //     Text(
-            //         "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
-            //     Text(
-            //         "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
-            //   ],
-            // ),
+    
             Container(
               height: 600,
               child: ListView.builder(

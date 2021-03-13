@@ -80,6 +80,11 @@ class ChatsState extends State<Chats> {
     return Scaffold(
 
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/images/whatsapp_wallpaper.png"),
+          fit: BoxFit.cover
+          ),
+        ),
         child: ListView.builder(
           itemCount: chatsList.length,
           itemBuilder: (context, index) {
