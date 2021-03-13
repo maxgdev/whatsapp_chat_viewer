@@ -1,13 +1,46 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
-import 'open_file.dart';
-import './parse_line.dart';
+import 'dart:async';
+import 'dart:convert';
 
-class ChatDetailScreen extends StatelessWidget {
-  // var myText;
+class ChatDetailsScreen extends StatefulWidget {
+  @override
+  _ChatDetailsScreenState createState() => _ChatDetailsScreenState();
+}
+
+class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
+  // _chatConversation scoped to function
+  List<String> _chatConversation = [];
+
+  Future<List<String>> _loadChatConversation() async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+    await rootBundle.loadString('assets/avengers.txt').then((q) {
+      for (String i in LineSplitter().convert(q)) {
+        chatConversation.add(i);
+      }
+    });
+    return chatConversation;
+  }
+
+  @override
+  void initState() {
+    _setup();
+    super.initState();
+  }
+
+  _setup() async {
+    // Retrieve the questions (Processed in the background)
+    List<String> chatConversation = await _loadChatConversation();
+
+    // Notify the UI and display the questions
+    setState(() {
+      _chatConversation = chatConversation;
+    });
+  }
 
   static const styleSomebody = BubbleStyle(
     // nip: BubbleNip.leftCenter,
@@ -31,23 +64,16 @@ class ChatDetailScreen extends StatelessWidget {
     alignment: Alignment.topRight,
   );
 
-  //  parseLine(String txtLine, int index) {
-  //   var dateToken, restToken, nameToken, textToken;
-  //   var tokenList;
-  //   dateToken = txtLine.split("-")[0];
-  //   restToken = txtLine.split("-")[1];
-  //   nameToken = restToken.split(":")[0];
-  //   textToken = restToken.split(":")[1];
-  //   tokenList = [dateToken, nameToken, textToken];
-  //   return tokenList[index];
-  // }
-
-  // String fileText = await rootBundle.loadString('assets/avengers.txt');
-  // Future<String> getFile() async {
-  //   String importTxt = await rootBundle.loadString('assets/avengers.txt');
-  //   print(importTxt);
-  //   return importTxt;
-  // }
+  parseLine(String txtLine, int index) {
+    var dateToken, restToken, nameToken, textToken;
+    var tokenList;
+    dateToken = txtLine.split("-")[0];
+    restToken = txtLine.split("-")[1];
+    nameToken = restToken.split(":")[0];
+    textToken = restToken.split(":")[1];
+    tokenList = [dateToken, nameToken, textToken];
+    return tokenList[index];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,21 +140,35 @@ class ChatDetailScreen extends StatelessWidget {
               child: Text('dsfdfdfg'),
             ),
             Divider(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-          
-                Text(
-                    "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
-                Text(
-                    "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
-                Text(
-                    "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
-              ],
-            ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Text(
+            //         "This <time stamp> : ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 0)}"),
+            //     Text(
+            //         "This <name>: ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 1)} "),
+            //     Text(
+            //         "This <text>:  ${parseLine('13/11/2014, 8:10 AM - Stacy: yeah I am good', 2)}"),
+            //   ],
+            // ),
             Container(
-              height: 200,
-              child: LoadConversation()),
+              height: 600,
+              child: ListView.builder(
+                itemCount: _chatConversation.length,
+                itemBuilder: (context, index) {
+                  // return Text(_chatConversation[index]);
+                  return  Bubble(
+                    style: styleSomebody,
+                    margin: BubbleEdges.only(top: 4),
+                    showNip: true,
+                    child: Text(_chatConversation[index]
+                      // "${parseLine(_chatConversation[index], 0)}" 
+                      // "${parseLine(_chatConversation[index], 2)}"
+                      ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

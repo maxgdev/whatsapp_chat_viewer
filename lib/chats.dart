@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import './chat_colors.dart';
 import 'chat_model.dart';
-// import './chat_details.dart';
-import './chat_details2.dart';
+import './chat_details.dart';
 
 class Chats extends StatefulWidget {
   ChatsState createState() => ChatsState();
@@ -101,8 +100,7 @@ class ChatsState extends State<Chats> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                            // ChatDetailScreen(),
-                            ChatDetailsScreen2(),
+                            ChatDetailsScreen(),
                           settings: RouteSettings(
                             arguments: chatsList[index]
                           ),
