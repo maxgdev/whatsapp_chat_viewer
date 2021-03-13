@@ -159,7 +159,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 itemBuilder: (context, index) {
                   // return Text(_chatConversation[index]);
                   return  Row(
-                    
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       CircleAvatar(
                         backgroundColor: ChatColors.whatsAppGreen,
