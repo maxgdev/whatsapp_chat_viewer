@@ -133,44 +133,47 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 itemCount: _chatConversation.length,
                 itemBuilder: (context, index) {
                   // return Text(_chatConversation[index]);
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: ChatColors.whatsAppGreen,
-                        child: Text("${parseLine(_chatConversation[index], 2)[1]}"),
-                      ),
-                      Expanded(
-                        child: Bubble(
-                          style: 
-                            parseLine(_chatConversation[index], 2) == " John" 
-                              ? styleMe 
-                              : styleSomebody, 
-                          margin: BubbleEdges.only(top: 4),
-                          showNip: true,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${parseLine(_chatConversation[index], 2)}",
-                              style: TextStyle(fontWeight: FontWeight.w800, color: ChatColors.whatsAppGreen),
-                              ),
-                              Text("${parseLine(_chatConversation[index], 3)}"
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        // CircleAvatar(
+                        //   backgroundColor: ChatColors.whatsAppGreen,
+                        //   child: Text("${parseLine(_chatConversation[index], 2)[1]}"),
+                        // ),
+                        Expanded(
+                          child: Bubble(
+                            style: 
+                              parseLine(_chatConversation[index], 2) == " John" 
+                                ? styleMe 
+                                : styleSomebody, 
+                            margin: BubbleEdges.only(top: 4),
+                            showNip: true,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${parseLine(_chatConversation[index], 2)}",
+                                style: TextStyle(fontWeight: FontWeight.w800, color: ChatColors.whatsAppGreen),
                                 ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(child: Text("${parseLine(_chatConversation[index], 0)}",
-                                  style: TextStyle(fontSize: 9))),
-                                  Text("${parseLine(_chatConversation[index], 1)}",
-                                  style: TextStyle(fontSize: 9)
+                                Text("${parseLine(_chatConversation[index], 3)}"
                                   ),
-                                ],
-                              ),
-                            ],
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Expanded(child: Text("${parseLine(_chatConversation[index], 0)}",
+                                    style: TextStyle(fontSize: 9))),
+                                    Text("${parseLine(_chatConversation[index], 1)}",
+                                    style: TextStyle(fontSize: 9)
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),
