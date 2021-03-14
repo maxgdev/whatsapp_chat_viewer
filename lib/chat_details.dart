@@ -138,13 +138,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                     children: [
                       CircleAvatar(
                         backgroundColor: ChatColors.whatsAppGreen,
-                        // foregroundColor: Colors.white,
-                        // child: Text(_chatConversation[index][0]),
                         child: Text("${parseLine(_chatConversation[index], 2)[1]}"),
                       ),
                       Expanded(
                         child: Bubble(
-                          style: styleSomebody,
+                          style: 
+                            parseLine(_chatConversation[index], 2) == " John" 
+                              ? styleMe 
+                              : styleSomebody, 
                           margin: BubbleEdges.only(top: 4),
                           showNip: true,
                           child: Column(

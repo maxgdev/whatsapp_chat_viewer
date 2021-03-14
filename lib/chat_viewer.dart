@@ -37,13 +37,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
       sampleFolder.createSync();
     }
 
-    // // Create sample file if not exists
-    // File sampleFile = File('${sampleFolder.path}/WhatsAppExport.txt');
-    // if (!sampleFile.existsSync()) {
-    //   sampleFile.writeAsStringSync("12/11/2014, 12:22 PM - John: Hi Stacy");
-    //   sampleFile
-    //       .writeAsStringSync("13/11/2014, 8:10 AM - Stacy: yeah I am good");
-    // }
     // Create sample file if not exists
     File sampleFile = File('${sampleFolder.path}/Avengers.txt');
     if (!sampleFile.existsSync()) {
