@@ -16,9 +16,15 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // _chatConversation scoped to function
   List<String> _chatConversation = [];
 
+  // Store name of self for right-side chat
+  // Pending function to select or identy "self" in chat conversation
+  String _selfName = 'John'; 
+  
   Future<List<String>> _loadChatConversation() async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
+    // Loading sample chat for development ONLY
+    // production is selected from device/SD card
     await rootBundle.loadString('assets/chatsample.txt').then((q) {
       for (String i in LineSplitter().convert(q)) {
         chatConversation.add(i);
@@ -145,7 +151,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         Expanded(
                           child: Bubble(
                             style: 
-                              parseLine(_chatConversation[index], 2) == " John" 
+                              parseLine(_chatConversation[index], 2).trim() ==  _selfName 
                                 ? styleMe 
                                 : styleSomebody, 
                             margin: BubbleEdges.only(top: 4),
