@@ -33,27 +33,25 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
     // Create sample directory if not exists
     Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
+    print(rootPath);
+    print(rootPath.path);
     if (!sampleFolder.existsSync()) {
       sampleFolder.createSync();
     }
 
     // Create sample file if not exists
-    File sampleFile = File('${sampleFolder.path}/Avengers.txt');
-    if (!sampleFile.existsSync()) {
-      sampleFile.writeAsStringSync("25/09/16, 21:50 - Nick Fury created group 'Avengers'");
-      sampleFile
-        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added you");
-      sampleFile
-        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Hulk");
-        sampleFile
-        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Thor");
-        sampleFile
-        .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Tony Stark");
-        sampleFile
-        .writeAsStringSync("18/06/17, 22:47 - Thor: Stop pressing every button in there");
-
-    }
-
+    // File sampleFile = File('${sampleFolder.path}/Avengers.txt');
+    // if (!sampleFile.existsSync()) {
+    //   sampleFile.writeAsStringSync(
+    //       "25/09/16, 21:50 - Nick Fury created group 'Avengers'");
+    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added you");
+    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added Hulk");
+    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added Thor");
+    //   sampleFile
+    //       .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Tony Stark");
+    //   sampleFile.writeAsStringSync(
+    //       "18/06/17, 22:47 - Thor: Stop pressing every button in there");
+    // }
 
     setState(() {});
   }
@@ -87,7 +85,10 @@ class _ChatHomePageState extends State<ChatHomePage> {
     print("Open file_picker to import text file");
     // print(importedFile);
     // process lines of file
-    importedFile.readAsLines().then(processLines).catchError((err) => handleError(err));
+    importedFile
+        .readAsLines()
+        .then(processLines)
+        .catchError((err) => handleError(err));
 
     setState(() {
       filePath = path;
@@ -97,14 +98,14 @@ class _ChatHomePageState extends State<ChatHomePage> {
   processLines(List<String> lines) {
     // process lines:
     for (var line in lines) {
-    print(line);
-  }
+      print(line);
+    }
   }
 
   handleError(e) {
     print("An error...: $e");
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
