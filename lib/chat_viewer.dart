@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path/path.dart' as p;
+import './file_list.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -114,7 +115,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
         backgroundColor: ChatColors.whatsAppGreen,
         title: Text(widget.title),
       ),
-      body: Chats(),
+      // body: Chats(),
+      body: WCVImportFileList(),
       floatingActionButton: FloatingActionButton(
         onPressed: (rootPath != null) ? () => _openFile(context) : null,
         tooltip: 'Add Chat',

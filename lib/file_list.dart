@@ -3,42 +3,41 @@ import './chat_colors.dart';
 import 'chat_model.dart';
 import './chat_details.dart';
 
-class Chats extends StatefulWidget {
-  ChatsState createState() => ChatsState();
+class WCVImportFileList extends StatefulWidget {
+  WCVImportFileListState createState() => WCVImportFileListState();
 }
 
-class ChatsState extends State<Chats> {
-  final List<Chat> chatsList = [
-    Chat(
+class WCVImportFileListState extends State<WCVImportFileList> {
+  final List<WCVImportFile> fileList = [
+
+    //     this.date,
+    // this.fileName,
+    // this.size,
+    // this.fileAttached,
+    WCVImportFile(
         date: "1/24/21",
-        time: "11:27 AM",
-        name: "Gates",
-        message: "I am a meglomaniacal, genocidal racist billionare twat",
+        fileName: "WhatsApp Chat 1/24/21.txt",
+        size:"45Kb",
         fileAttached: ""),
-    Chat(
+    WCVImportFile(
         date: "1/24/21",
-        time: "12:33 PM",
-        name: "Malcolm",
-        message: "Duis dapibus imperdiet tempus. Pellentesque rutrum a ex",
+        fileName: "John & Sam Chat 1/24/21.txt",
+        size:"180Kb",
         fileAttached: ""),
-    Chat(
+    WCVImportFile(
         date: "1/24/21",
-        time: "01:27 PM",
-        name: "Anthony",
-        message:
-            "Aenean auctor fermentum dolor, sed hendrerit augue cursus eget",
+        fileName: "Avengers.txt",
+        size:"45Kb",
         fileAttached: ""),
-    Chat(
+    WCVImportFile(
         date: "1/24/21",
-        time: "03:01 PM",
-        name: "Boris",
-        message: "I am the biggest lying bullshiting Prime Minister ever",
+        fileName: "ChatExport.txt",
+        size:"99Kb",
         fileAttached: ""),
-    Chat(
+    WCVImportFile(
         date: "1/24/21",
-        time: "02:27 PM",
-        name: "Hancock",
-        message: "Call me a COVID twat and dump me in the deepest hell prison",
+        fileName: "Test.txt",
+        size:"5Kb",
         fileAttached: ""),
   ];
   @override
@@ -51,7 +50,7 @@ class ChatsState extends State<Chats> {
               fit: BoxFit.cover),
         ),
         child: ListView.builder(
-          itemCount: chatsList.length,
+          itemCount: fileList.length,
           itemBuilder: (context, index) {
             return Column(
               children: [
@@ -59,17 +58,17 @@ class ChatsState extends State<Chats> {
                   leading: CircleAvatar(
                     backgroundColor: ChatColors.whatsAppGreen,
                     // foregroundColor: Colors.white,
-                    child: Text(chatsList[index].name[0]),
+                    child: Text(fileList[index].fileName[0]),
                   ),
-                  title: Text(chatsList[index].name),
-                  subtitle: Text(chatsList[index].message),
-                  trailing: Text(chatsList[index].time),
+                  title: Text(fileList[index].fileName),
+                  subtitle: Text(fileList[index].size),
+                  trailing: Text(fileList[index].date),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ChatDetailsScreen(),
-                          settings: RouteSettings(arguments: chatsList[index]),
+                          settings: RouteSettings(arguments: fileList[index]),
                         ));
                   },
                 ),
