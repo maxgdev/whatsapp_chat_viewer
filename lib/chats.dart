@@ -19,27 +19,6 @@ class ChatsState extends State<Chats> {
     ),
     Chat(
       date: "1/24/21",
-      time: "11:30 AM",
-      name: "Shaka",
-      message: " Curabitur mattis vulputate feugiat",
-      fileAttached: ""
-    ),
-    Chat(
-      date: "1/24/21",
-      time: "11:37 AM",
-      name: "Diop",
-      message: "Nam tincidunt velit sem, aliquam rhoncus massa feugiat vitae",
-      fileAttached: ""
-    ),
-    Chat(
-      date: "1/24/21",
-      time: "12:27 PM",
-      name: "Patrice",
-      message: "Fusce condimentum placerat gravida",
-      fileAttached: ""
-    ),
-    Chat(
-      date: "1/24/21",
       time: "12:33 PM",
       name: "Malcolm",
       message: "Duis dapibus imperdiet tempus. Pellentesque rutrum a ex",
@@ -50,13 +29,6 @@ class ChatsState extends State<Chats> {
       time: "01:27 PM",
       name: "Anthony",
       message: "Aenean auctor fermentum dolor, sed hendrerit augue cursus eget",
-      fileAttached: ""
-    ),
-    Chat(
-      date: "1/24/21",
-      time: "02:15 PM",
-      name: "Nelson",
-      message: "Fusce magna massa, auctor vitae ipsum in",
       fileAttached: ""
     ),
     Chat(

@@ -5,6 +5,7 @@ import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
+import 'package:path/path.dart' as p;
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -80,7 +81,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         // backgroundColor: ChatColors.whatsAppGreen,
       ));
       importedFile = file;
-      // print("$file");
+      print(p.basename('$importedFile'));
     }
     print("Open file_picker to import text file");
     // print(importedFile);
