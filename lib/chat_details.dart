@@ -74,10 +74,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     //
-    final Chat chat = ModalRoute.of(context).settings.arguments;
+    // final Chat chat = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text(chat.name),
+        // title: Text(chat.name),
+        title: Text("Chat Converesation"),
         backgroundColor: ChatColors.whatsAppGreen,
       ),
       body: Container(

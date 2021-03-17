@@ -3,17 +3,15 @@ import './chat_colors.dart';
 import 'chat_model.dart';
 import './chat_details.dart';
 
+
 class WCVImportFileList extends StatefulWidget {
   WCVImportFileListState createState() => WCVImportFileListState();
 }
 
 class WCVImportFileListState extends State<WCVImportFileList> {
+  
   final List<WCVImportFile> fileList = [
 
-    //     this.date,
-    // this.fileName,
-    // this.size,
-    // this.fileAttached,
     WCVImportFile(
         date: "1/24/21",
         fileName: "WhatsApp Chat 1/24/21.txt",

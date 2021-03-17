@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_chat_viewer/chats.dart';
+// import 'package:whatsapp_chat_viewer/chats.dart';
 import 'package:whatsapp_chat_viewer/chat_colors.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path/path.dart' as p;
-import './file_list.dart';
+import 'file_list.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -23,6 +23,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   String dirPath;
   FileTileSelectMode filePickerSelectMode = FileTileSelectMode.wholeTile;
   File importedFile;
+  String importedFileName;
 
   void initState() {
     super.initState();
@@ -40,20 +41,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
     if (!sampleFolder.existsSync()) {
       sampleFolder.createSync();
     }
-
-    // Create sample file if not exists
-    // File sampleFile = File('${sampleFolder.path}/Avengers.txt');
-    // if (!sampleFile.existsSync()) {
-    //   sampleFile.writeAsStringSync(
-    //       "25/09/16, 21:50 - Nick Fury created group 'Avengers'");
-    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added you");
-    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added Hulk");
-    //   sampleFile.writeAsStringSync("18/06/17, 22:45 - Nick Fury added Thor");
-    //   sampleFile
-    //       .writeAsStringSync("18/06/17, 22:45 - Nick Fury added Tony Stark");
-    //   sampleFile.writeAsStringSync(
-    //       "18/06/17, 22:47 - Thor: Stop pressing every button in there");
-    // }
 
     setState(() {});
   }
@@ -82,7 +69,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
         // backgroundColor: ChatColors.whatsAppGreen,
       ));
       importedFile = file;
-      print(p.basename('$importedFile'));
+      importedFileName = p.basename('$importedFile');
+      print(importedFileName);
+      // fileList.add(WCVImportFile(
+      //     date: "1/24/21",
+      //     fileName: p.basename('$importedFile'),
+      //     size: "99Kb",
+      //     fileAttached: ""));
     }
     print("Open file_picker to import text file");
     // print(importedFile);
