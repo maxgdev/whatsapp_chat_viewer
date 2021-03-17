@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'file_list.dart';
+import 'chat_model.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -25,6 +26,30 @@ class _ChatHomePageState extends State<ChatHomePage> {
   File importedFile;
   String importedFileName;
 
+  final List<WCVImportFile> fileList = [
+    WCVImportFile(
+        date: "1/24/21",
+        fileName: "WhatsApp Chat 1/24/21.txt",
+        size: "45Kb",
+        fileAttached: ""),
+    WCVImportFile(
+        date: "1/24/21",
+        fileName: "John & Sam Chat 1/24/21.txt",
+        size: "180Kb",
+        fileAttached: ""),
+    WCVImportFile(
+        date: "1/24/21",
+        fileName: "Avengers.txt",
+        size: "45Kb",
+        fileAttached: ""),
+    WCVImportFile(
+        date: "1/24/21",
+        fileName: "ChatExport.txt",
+        size: "99Kb",
+        fileAttached: ""),
+    WCVImportFile(
+        date: "1/24/21", fileName: "Test.txt", size: "5Kb", fileAttached: ""),
+  ];
   void initState() {
     super.initState();
 
@@ -71,11 +96,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
       importedFile = file;
       importedFileName = p.basename('$importedFile');
       print(importedFileName);
-      // fileList.add(WCVImportFile(
-      //     date: "1/24/21",
-      //     fileName: p.basename('$importedFile'),
-      //     size: "99Kb",
-      //     fileAttached: ""));
+      // Create file object to add to ileList
+      var fileObject = WCVImportFile(
+          date: "1/24/21",
+          fileName: p.basename('$importedFile'),
+          size: "99Kb",
+          fileAttached: "");
+      fileList.add(fileObject);
     }
     print("Open file_picker to import text file");
     // print(importedFile);
@@ -109,7 +136,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         title: Text(widget.title),
       ),
       // body: Chats(),
-      body: WCVImportFileList(),
+      body: WCVImportFileList(fileList),
       floatingActionButton: FloatingActionButton(
         onPressed: (rootPath != null) ? () => _openFile(context) : null,
         tooltip: 'Add Chat',

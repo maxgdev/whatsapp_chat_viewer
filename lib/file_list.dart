@@ -1,43 +1,46 @@
 import 'package:flutter/material.dart';
 import './chat_colors.dart';
-import 'chat_model.dart';
+
 import './chat_details.dart';
 
-
 class WCVImportFileList extends StatefulWidget {
+  WCVImportFileList(this.fileList);
+
+  final List fileList;
+
   WCVImportFileListState createState() => WCVImportFileListState();
 }
 
 class WCVImportFileListState extends State<WCVImportFileList> {
-  
-  final List<WCVImportFile> fileList = [
 
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "WhatsApp Chat 1/24/21.txt",
-        size:"45Kb",
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "John & Sam Chat 1/24/21.txt",
-        size:"180Kb",
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "Avengers.txt",
-        size:"45Kb",
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "ChatExport.txt",
-        size:"99Kb",
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "Test.txt",
-        size:"5Kb",
-        fileAttached: ""),
-  ];
+  // final List<WCVImportFile> fileList = [
+
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "WhatsApp Chat 1/24/21.txt",
+  //       size:"45Kb",
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "John & Sam Chat 1/24/21.txt",
+  //       size:"180Kb",
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "Avengers.txt",
+  //       size:"45Kb",
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "ChatExport.txt",
+  //       size:"99Kb",
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "Test.txt",
+  //       size:"5Kb",
+  //       fileAttached: ""),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +51,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
               fit: BoxFit.cover),
         ),
         child: ListView.builder(
-          itemCount: fileList.length,
+          itemCount: widget.fileList.length,
           itemBuilder: (context, index) {
             return Column(
               children: [
@@ -56,17 +59,17 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                   leading: CircleAvatar(
                     backgroundColor: ChatColors.whatsAppGreen,
                     // foregroundColor: Colors.white,
-                    child: Text(fileList[index].fileName[0]),
+                    child: Text(widget.fileList[index].fileName[0]),
                   ),
-                  title: Text(fileList[index].fileName),
-                  subtitle: Text(fileList[index].size),
-                  trailing: Text(fileList[index].date),
+                  title: Text(widget.fileList[index].fileName),
+                  subtitle: Text(widget.fileList[index].size),
+                  trailing: Text(widget.fileList[index].date),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ChatDetailsScreen(),
-                          settings: RouteSettings(arguments: fileList[index]),
+                          settings: RouteSettings(arguments: widget.fileList[index]),
                         ));
                   },
                 ),
