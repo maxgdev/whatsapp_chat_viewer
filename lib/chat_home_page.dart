@@ -98,6 +98,12 @@ class _ChatHomePageState extends State<ChatHomePage> {
       importedFileName = p.basename('$importedFile');
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
+      // importedFileSize = file.lengthSync(); // alternative
+      // importedFileSize = await file.length(); //
+      final stat = FileStat.statSync("$importedFile");
+      print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
+      print("--------- Imported File Stats ------------");
+
       print("Filename: $importedFileName, filesize: $importedFileSize");
       // Create file object to add to ileList
       var fileObject = WCVImportFile(
