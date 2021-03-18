@@ -62,7 +62,8 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                     child: Text(widget.fileList[index].fileName[0]),
                   ),
                   title: Text(widget.fileList[index].fileName),
-                  subtitle: Text(widget.fileList[index].size),
+                  // subtitle: Text(widget.fileList[index].size),
+                  subtitle: Text("${widget.fileList[index].filePath}"),
                   trailing: Text(widget.fileList[index].date),
                   onTap: () {
                     Navigator.push(

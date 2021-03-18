@@ -19,11 +19,13 @@ class WCVImportFile {
     this.date,
     this.fileName,
     this.size,
+    this.filePath,
     this.fileAttached,
   });
 
   String date; // from text file, do we need to store in DateTime object??
   String fileName;
   String size;
+  String filePath;
   String fileAttached; // string or boolean??
 }

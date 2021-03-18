@@ -95,6 +95,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         // backgroundColor: ChatColors.whatsAppGreen,
       ));
       importedFile = file;
+      print("file: $file");
       importedFileName = p.basename('$importedFile');
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
@@ -103,13 +104,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
       final stat = FileStat.statSync("$importedFile");
       print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
       print("--------- Imported File Stats ------------");
-
       print("Filename: $importedFileName, filesize: $importedFileSize");
       // Create file object to add to ileList
       var fileObject = WCVImportFile(
           date: "1/24/21",
           fileName: p.basename('$importedFile'),
           size: "$importedFileSize bytes",
+          filePath: "$file",
           fileAttached: "");
       fileList.add(fileObject);
     }

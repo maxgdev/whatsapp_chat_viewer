@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:whatsapp_chat_viewer/chat_model.dart';
+import './chat_model.dart';
+import 'package:whatsapp_chat_viewer/file_list.dart';
+// import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'dart:async';
@@ -8,6 +10,10 @@ import 'dart:convert';
 import './parse_line.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
+  ChatDetailsScreen({Key key, this.filePath}) : super(key: key);
+
+  final String filePath;
+
   @override
   _ChatDetailsScreenState createState() => _ChatDetailsScreenState();
 }
@@ -18,14 +24,27 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
-  String _selfName = 'John'; 
-  
+  String _selfName = 'John';
+
   Future<List<String>> _loadChatConversation() async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
     // Loading sample chat for development ONLY
     // production is selected from device/SD card
     await rootBundle.loadString('assets/chatsample.txt').then((q) {
+      for (String i in LineSplitter().convert(q)) {
+        chatConversation.add(i);
+      }
+    });
+    return chatConversation;
+  }
+
+  Future<List<String>> _loadImportedChatConversation(String filepath) async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+    // Loading sample chat for development ONLY
+    // production is selected from device/SD card
+    await rootBundle.loadString("${widget.filePath}").then((q) {
       for (String i in LineSplitter().convert(q)) {
         chatConversation.add(i);
       }
@@ -41,10 +60,16 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   _setup() async {
     // Retrieve the questions (Processed in the background)
-    List<String> chatConversation = await _loadChatConversation();
-
+    // List<String> chatConversation = await _loadChatConversation();
+    final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
+    List<String> chatConversation =
+        await _loadImportedChatConversation("$chatFile");
+    print(widget.filePath);
     // Notify the UI and display the questions
     setState(() {
+      // chatConversation != null
+      //     ? _chatConversation = chatConversation
+      //     : _chatConversation = [];
       _chatConversation = chatConversation;
     });
   }
@@ -75,17 +100,19 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   Widget build(BuildContext context) {
     //
     // final Chat chat = ModalRoute.of(context).settings.arguments;
+    // final WCVImportFileList fileList = ModalRoute.of(context).settings.arguments;
+  
     return Scaffold(
       appBar: AppBar(
         // title: Text(chat.name),
-        title: Text("Chat Converesation"),
+        title: Text("Conversation"),
         backgroundColor: ChatColors.whatsAppGreen,
       ),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/images/whatsapp_wallpaper.png"),
-          fit: BoxFit.cover
-          ),
+          image: DecorationImage(
+              image: AssetImage("assets/images/whatsapp_wallpaper.png"),
+              fit: BoxFit.cover),
         ),
         // color: Colors.yellow.withAlpha(64),
         child: ListView.builder(
@@ -103,28 +130,31 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   // ),
                   Expanded(
                     child: Bubble(
-                      style: 
-                        parseLine(_chatConversation[index], 2).trim() ==  _selfName 
-                          ? styleMe 
-                          : styleSomebody, 
+                      style: parseLine(_chatConversation[index], 2).trim() ==
+                              _selfName
+                          ? styleMe
+                          : styleSomebody,
                       margin: BubbleEdges.only(top: 4),
                       showNip: true,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("${parseLine(_chatConversation[index], 2)}",
-                          style: TextStyle(fontWeight: FontWeight.w800, color: ChatColors.whatsAppGreen),
+                          Text(
+                            "${parseLine(_chatConversation[index], 2)}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                color: ChatColors.whatsAppGreen),
                           ),
-                          Text("${parseLine(_chatConversation[index], 3)}"
-                            ),
+                          Text("${parseLine(_chatConversation[index], 3)}"),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Expanded(child: Text("${parseLine(_chatConversation[index], 0)}",
-                              style: TextStyle(fontSize: 9))),
+                              Expanded(
+                                  child: Text(
+                                      "${parseLine(_chatConversation[index], 0)}",
+                                      style: TextStyle(fontSize: 9))),
                               Text("${parseLine(_chatConversation[index], 1)}",
-                              style: TextStyle(fontSize: 9)
-                              ),
+                                  style: TextStyle(fontSize: 9)),
                             ],
                           ),
                         ],
