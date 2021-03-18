@@ -25,6 +25,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   FileTileSelectMode filePickerSelectMode = FileTileSelectMode.wholeTile;
   File importedFile;
   String importedFileName;
+  int importedFileSize;
 
   final List<WCVImportFile> fileList = [
     WCVImportFile(
@@ -95,12 +96,14 @@ class _ChatHomePageState extends State<ChatHomePage> {
       ));
       importedFile = file;
       importedFileName = p.basename('$importedFile');
-      print(importedFileName);
+      // get file size
+      importedFileSize = (await File(path).readAsBytes()).length;
+      print("Filename: $importedFileName, filesize: $importedFileSize");
       // Create file object to add to ileList
       var fileObject = WCVImportFile(
           date: "1/24/21",
           fileName: p.basename('$importedFile'),
-          size: "99Kb",
+          size: "$importedFileSize bytes",
           fileAttached: "");
       fileList.add(fileObject);
     }
