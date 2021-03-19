@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './chat_model.dart';
-import 'package:whatsapp_chat_viewer/file_list.dart';
+// import 'package:whatsapp_chat_viewer/file_list.dart';
 // import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
@@ -62,14 +62,13 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // Retrieve the questions (Processed in the background)
     // List<String> chatConversation = await _loadChatConversation();
     final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
+    print(chatFile);
     List<String> chatConversation =
         await _loadImportedChatConversation("$chatFile");
     print(widget.filePath);
     // Notify the UI and display the questions
     setState(() {
-      // chatConversation != null
-      //     ? _chatConversation = chatConversation
-      //     : _chatConversation = [];
+
       _chatConversation = chatConversation;
     });
   }
@@ -101,7 +100,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     //
     // final Chat chat = ModalRoute.of(context).settings.arguments;
     // final WCVImportFileList fileList = ModalRoute.of(context).settings.arguments;
-  
+
     return Scaffold(
       appBar: AppBar(
         // title: Text(chat.name),
