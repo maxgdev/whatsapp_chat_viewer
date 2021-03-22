@@ -95,16 +95,21 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
     if (path != null) {
       File file = File('$path');
-      String contents = await file.readAsString();
+      // String contents = await file.readAsString();
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(contents),
-        duration: Duration(seconds: 3),
-        // backgroundColor: ChatColors.whatsAppGreen,
-      ));
       importedFile = file;
       print("file: $file");
       importedFileName = p.basename('$importedFile');
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        // content: Text(contents),
+        content: Text(importedFileName),
+        duration: Duration(seconds: 3),
+        // backgroundColor: ChatColors.whatsAppGreen,
+      ));
+      // importedFile = file;
+      // print("file: $file");
+      // importedFileName = p.basename('$importedFile');
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
       // importedFileSize = file.lengthSync(); // alternative
