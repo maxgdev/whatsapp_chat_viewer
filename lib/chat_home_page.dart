@@ -53,9 +53,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
         filePath: "",
         fileAttached: ""),
     WCVImportFile(
-        date: "1/24/21", 
-        fileName: "Test.txt", 
-        size: "5Kb", 
+        date: "1/24/21",
+        fileName: "Test.txt",
+        size: "5Kb",
         filePath: "",
         fileAttached: ""),
   ];
@@ -99,11 +99,12 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
       importedFile = file;
       print("$file");
-      importedFileName = p.basename('$importedFile');
-
+      // importedFileName = p.basename('$importedFile');
+      importedFileName = importedFile.path.split('/').last;
+      
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         // content: Text(contents),
-        
+
         content: Text(importedFileName),
         duration: Duration(seconds: 3),
         // backgroundColor: ChatColors.whatsAppGreen,
@@ -120,7 +121,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // Create file object to add to fileList
       var fileObject = WCVImportFile(
           date: "1/24/21",
-          fileName: p.basename('$importedFile'),
+          fileName: '$importedFileName',
           size: "$importedFileSize bytes",
           filePath: "$file",
           fileAttached: "");
