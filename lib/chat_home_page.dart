@@ -98,18 +98,17 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // String contents = await file.readAsString();
 
       importedFile = file;
-      print("file: $file");
+      print("$file");
       importedFileName = p.basename('$importedFile');
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         // content: Text(contents),
+        
         content: Text(importedFileName),
         duration: Duration(seconds: 3),
         // backgroundColor: ChatColors.whatsAppGreen,
       ));
-      // importedFile = file;
-      // print("file: $file");
-      // importedFileName = p.basename('$importedFile');
+
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
       // importedFileSize = file.lengthSync(); // alternative
@@ -118,7 +117,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");
-      // Create file object to add to ileList
+      // Create file object to add to fileList
       var fileObject = WCVImportFile(
           date: "1/24/21",
           fileName: p.basename('$importedFile'),
@@ -142,9 +141,10 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   processLines(List<String> lines) {
     // process lines:
-    for (var line in lines) {
-      print(line);
-    }
+
+    // for (var line in lines) {
+    //   print(line);
+    // }
   }
 
   handleError(e) {
@@ -161,6 +161,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // body: Chats(),
       body: WCVImportFileList(fileList),
       floatingActionButton: FloatingActionButton(
+        heroTag: "btn1",
         onPressed: (rootPath != null) ? () => _openFile(context) : null,
         tooltip: 'Add Chat',
         backgroundColor: ChatColors.whatsAppGreen,
