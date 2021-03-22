@@ -32,24 +32,32 @@ class _ChatHomePageState extends State<ChatHomePage> {
         date: "1/24/21",
         fileName: "WhatsApp Chat 1/24/21.txt",
         size: "45Kb",
+        filePath: "",
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
+        filePath: "",
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Avengers.txt",
         size: "45Kb",
+        filePath: "",
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
+        filePath: "",
         fileAttached: ""),
     WCVImportFile(
-        date: "1/24/21", fileName: "Test.txt", size: "5Kb", fileAttached: ""),
+        date: "1/24/21", 
+        fileName: "Test.txt", 
+        size: "5Kb", 
+        filePath: "",
+        fileAttached: ""),
   ];
   void initState() {
     super.initState();
@@ -125,7 +133,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
     setState(() {
       filePath = path;
     });
-  }
+  } // _openFile()
 
   processLines(List<String> lines) {
     // process lines:

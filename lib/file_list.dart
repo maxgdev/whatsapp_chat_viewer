@@ -12,34 +12,6 @@ class WCVImportFileList extends StatefulWidget {
 
 class WCVImportFileListState extends State<WCVImportFileList> {
 
-  // final List<WCVImportFile> fileList = [
-
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "WhatsApp Chat 1/24/21.txt",
-  //       size:"45Kb",
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "John & Sam Chat 1/24/21.txt",
-  //       size:"180Kb",
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "Avengers.txt",
-  //       size:"45Kb",
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "ChatExport.txt",
-  //       size:"99Kb",
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "Test.txt",
-  //       size:"5Kb",
-  //       fileAttached: ""),
-  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
