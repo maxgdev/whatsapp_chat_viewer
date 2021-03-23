@@ -108,6 +108,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // importedFileName = importedFile.path.split('/').last.split('\'')[0];
       importedFileName = importedFile.path.split('/').last;
       print(importedFileName);
+      print("file.path: ${file.path}");
       print("------------------");
 
       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -117,8 +118,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
       //   duration: Duration(seconds: 3),
       //   // backgroundColor: ChatColors.whatsAppGreen,
       // ));
-
-
 
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
@@ -133,12 +132,12 @@ class _ChatHomePageState extends State<ChatHomePage> {
           date: "1/24/21",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
-          filePath: file.toString(),
+          filePath: file.path,
           fileAttached: "");
       fileList.add(fileObject);
     }
     print("Open file_picker to import text file");
-    // print(importedFile);
+    print("importedFile: $importedFile");
     // process lines of file
     importedFile
         .readAsLines()
