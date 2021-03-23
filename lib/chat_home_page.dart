@@ -32,36 +32,36 @@ class _ChatHomePageState extends State<ChatHomePage> {
         date: "1/24/21",
         fileName: "WhatsApp Chat 1/24/21.txt",
         size: "45Kb",
-        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsApp Chat with Sam 2.txt'
-,
+        filePath:
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsApp Chat with Sam 2.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
-        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
-,
+        filePath:
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Avengers.txt",
         size: "45Kb",
-        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
-,
+        filePath:
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
-        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
-,
+        filePath:
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Test.txt",
         size: "5Kb",
-        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
-,
+        filePath:
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
   ];
   void initState() {
@@ -103,17 +103,22 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // String contents = await file.readAsString();
 
       importedFile = file;
-      print("$file");
+      // print("$file");
       // importedFileName = p.basename('$importedFile');
+      // importedFileName = importedFile.path.split('/').last.split('\'')[0];
       importedFileName = importedFile.path.split('/').last;
-      
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        // content: Text(contents),
-        
-        content: Text(importedFileName),
-        duration: Duration(seconds: 3),
-        // backgroundColor: ChatColors.whatsAppGreen,
-      ));
+      print(importedFileName);
+      print("------------------");
+
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //   // content: Text(contents),
+
+      //   content: Text(importedFileName),
+      //   duration: Duration(seconds: 3),
+      //   // backgroundColor: ChatColors.whatsAppGreen,
+      // ));
+
+
 
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
@@ -128,7 +133,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
           date: "1/24/21",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
-          filePath: "$file",
+          filePath: file.toString(),
           fileAttached: "");
       fileList.add(fileObject);
     }
@@ -148,9 +153,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
   processLines(List<String> lines) {
     // process lines:
 
-    for (var line in lines) {
-      print(line);
-    }
+    // for (var line in lines) {
+    //   print(line);
+    // }
   }
 
   handleError(e) {

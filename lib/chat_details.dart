@@ -59,6 +59,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       for (String i in LineSplitter().convert(q)) {
         print(i); // diagnostic
         chatConversation.add(i);
+        print("chatConversation size: ${chatConversation.length}");
       }
     
     });
