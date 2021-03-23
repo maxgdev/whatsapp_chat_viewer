@@ -37,12 +37,20 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                   subtitle: Text("${widget.fileList[index].filePath}"),
                   trailing: Text(widget.fileList[index].date),
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatDetailsScreen(),
-                          settings: RouteSettings(arguments: widget.fileList[index]),
-                        ));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => ChatDetailsScreen(),
+                    //       settings: RouteSettings(arguments: widget.fileList[index]),
+                    //     ));
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        ChatDetailsScreen(
+                          filePath: "Just a test",
+                          wcvObject: widget.fileList[index],
+                            ),
+                  );
+                  Navigator.of(context).push(route);                    
                   },
                 ),
                 Divider(),

@@ -10,9 +10,10 @@ import 'dart:convert';
 import './parse_line.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
-  ChatDetailsScreen({Key key, this.filePath}) : super(key: key);
+  ChatDetailsScreen({Key key, this.filePath, this.wcvObject}) : super(key: key);
 
   final String filePath;
+  final WCVImportFile wcvObject;
 
   @override
   _ChatDetailsScreenState createState() => _ChatDetailsScreenState();
@@ -68,7 +69,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     print(widget.filePath);
     // Notify the UI and display the questions
     setState(() {
-
       _chatConversation = chatConversation;
     });
   }
@@ -104,7 +104,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         // title: Text(chat.name),
-        title: Text("Conversation"),
+        title: Text(widget.wcvObject.filePath),
         backgroundColor: ChatColors.whatsAppGreen,
       ),
       body: Container(
