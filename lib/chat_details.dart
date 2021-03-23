@@ -10,9 +10,8 @@ import 'dart:convert';
 import './parse_line.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
-  ChatDetailsScreen({Key key, this.filePath, this.wcvObject}) : super(key: key);
+  ChatDetailsScreen({Key key,this.wcvObject}) : super(key: key);
 
-  final String filePath;
   final WCVImportFile wcvObject;
 
   @override
@@ -27,25 +26,27 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // Pending function to select or identy "self" in chat conversation
   String _selfName = 'John';
 
-  Future<List<String>> _loadChatConversation() async {
-    // chatConversation scoped to inner function
-    List<String> chatConversation = [];
-    // Loading sample chat for development ONLY
-    // production is selected from device/SD card
-    await rootBundle.loadString('assets/chatsample.txt').then((q) {
-      for (String i in LineSplitter().convert(q)) {
-        chatConversation.add(i);
-      }
-    });
-    return chatConversation;
-  }
+  // _loadChatConversation for LOADING DUMMY Conversation
+  // ----------------------------------------------------
+  // Future<List<String>> _loadChatConversation() async {
+  //   // chatConversation scoped to inner function
+  //   List<String> chatConversation = [];
+  //   // Loading sample chat for development ONLY
+  //   // production is selected from device/SD card
+  //   await rootBundle.loadString('assets/chatsample.txt').then((q) {
+  //     for (String i in LineSplitter().convert(q)) {
+  //       chatConversation.add(i);
+  //     }
+  //   });
+  //   return chatConversation;
+  // }
 
-  Future<List<String>> _loadImportedChatConversation(String filepath) async {
+  Future<List<String>> _loadImportedChatConversation(WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
     // Loading sample chat for development ONLY
     // production is selected from device/SD card
-    await rootBundle.loadString("${widget.filePath}").then((q) {
+    await rootBundle.loadString("${wcvObject.filePath}").then((q) {
       for (String i in LineSplitter().convert(q)) {
         chatConversation.add(i);
       }
@@ -62,11 +63,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   _setup() async {
     // Retrieve the questions (Processed in the background)
     // List<String> chatConversation = await _loadChatConversation();
-    final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
-    print(chatFile);
+    // final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
+    
     List<String> chatConversation =
-        await _loadImportedChatConversation("$chatFile");
-    print(widget.filePath);
+        await _loadImportedChatConversation(widget.wcvObject);
+    print(widget.wcvObject.filePath);
     // Notify the UI and display the questions
     setState(() {
       _chatConversation = chatConversation;
@@ -104,7 +105,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         // title: Text(chat.name),
-        title: Text(widget.wcvObject.filePath),
+        title: Text(widget.wcvObject.fileName),
         backgroundColor: ChatColors.whatsAppGreen,
       ),
       body: Container(

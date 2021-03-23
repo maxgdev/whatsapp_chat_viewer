@@ -45,10 +45,9 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                     //     ));
                   var route = MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        ChatDetailsScreen(
-                          filePath: "Just a test",
-                          wcvObject: widget.fileList[index],
-                            ),
+                      ChatDetailsScreen(
+                        wcvObject: widget.fileList[index],
+                      ),
                   );
                   Navigator.of(context).push(route);                    
                   },
