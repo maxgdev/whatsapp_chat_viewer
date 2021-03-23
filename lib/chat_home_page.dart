@@ -32,31 +32,36 @@ class _ChatHomePageState extends State<ChatHomePage> {
         date: "1/24/21",
         fileName: "WhatsApp Chat 1/24/21.txt",
         size: "45Kb",
-        filePath: "",
+        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsApp Chat with Sam 2.txt'
+,
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
-        filePath: "",
+        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
+,
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Avengers.txt",
         size: "45Kb",
-        filePath: "",
+        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
+,
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
-        filePath: "",
+        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
+,
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Test.txt",
         size: "5Kb",
-        filePath: "",
+        filePath: '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt'
+,
         fileAttached: ""),
   ];
   void initState() {
@@ -104,7 +109,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         // content: Text(contents),
-
+        
         content: Text(importedFileName),
         duration: Duration(seconds: 3),
         // backgroundColor: ChatColors.whatsAppGreen,
@@ -143,9 +148,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
   processLines(List<String> lines) {
     // process lines:
 
-    // for (var line in lines) {
-    //   print(line);
-    // }
+    for (var line in lines) {
+      print(line);
+    }
   }
 
   handleError(e) {

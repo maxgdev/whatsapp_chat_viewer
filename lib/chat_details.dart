@@ -8,9 +8,10 @@ import 'package:bubble/bubble.dart';
 import 'dart:async';
 import 'dart:convert';
 import './parse_line.dart';
+import 'dart:io';
 
 class ChatDetailsScreen extends StatefulWidget {
-  ChatDetailsScreen({Key key,this.wcvObject}) : super(key: key);
+  ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
 
   final WCVImportFile wcvObject;
 
@@ -41,19 +42,33 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   //   return chatConversation;
   // }
 
-  Future<List<String>> _loadImportedChatConversation(WCVImportFile wcvObject) async {
+  Future<List<String>> _loadImportedChatConversation(
+      WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
-    // Loading sample chat for development ONLY
+
     // production is selected from device/SD card
-    await rootBundle.loadString("${wcvObject.filePath}").then((q) {
+    // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
+    //   for (String i in LineSplitter().convert(q)) {
+    //     print(i); // diagnostic
+    //     chatConversation.add(i);
+    //   }
+    // });
+    final _file = File(widget.wcvObject.filePath);
+    await _file.readAsString().then((q) {
       for (String i in LineSplitter().convert(q)) {
+        print(i); // diagnostic
         chatConversation.add(i);
       }
+    
     });
+
     return chatConversation;
   }
 
+// --------------------------------------------------------
+
+// --------------------------------------------------------
   @override
   void initState() {
     _setup();
@@ -64,7 +79,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // Retrieve the questions (Processed in the background)
     // List<String> chatConversation = await _loadChatConversation();
     // final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
-    
+
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
