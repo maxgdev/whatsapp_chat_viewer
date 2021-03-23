@@ -136,8 +136,10 @@ class _ChatHomePageState extends State<ChatHomePage> {
           fileAttached: "");
       fileList.add(fileObject);
     }
+    
     print("Open file_picker to import text file");
     print("importedFile: $importedFile");
+
     // process lines of file
     importedFile
         .readAsLines()
@@ -151,7 +153,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   processLines(List<String> lines) {
     // process lines:
-
     // for (var line in lines) {
     //   print(line);
     // }

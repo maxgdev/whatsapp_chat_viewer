@@ -29,12 +29,12 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: ChatColors.whatsAppGreen,
-                    // foregroundColor: Colors.white,
+                    
                     child: Text(widget.fileList[index].fileName[0]),
                   ),
                   title: Text(widget.fileList[index].fileName),
                   subtitle: Text(widget.fileList[index].size),
-                  // subtitle: Text("${widget.fileList[index].filePath}"),
+                  
                   trailing: Text(widget.fileList[index].date),
                   onTap: () {
                     // Navigator.push(
