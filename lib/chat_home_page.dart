@@ -6,9 +6,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path/path.dart' as p;
+import 'package:whatsapp_chat_viewer/temp_regex.dart';
 import 'file_list.dart';
 import 'chat_model.dart';
-
+import './parse_line.dart';
+import './temp_regex.dart';
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
 
@@ -136,10 +138,11 @@ class _ChatHomePageState extends State<ChatHomePage> {
           fileAttached: "");
       fileList.add(fileObject);
     }
-    
+
     print("Open file_picker to import text file");
     print("importedFile: $importedFile");
-
+    regexParseLine();
+    // regexDemo();
     // process lines of file
     importedFile
         .readAsLines()
@@ -155,6 +158,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
     // process lines:
     // for (var line in lines) {
     //   print(line);
+
     // }
   }
 
