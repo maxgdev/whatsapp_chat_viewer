@@ -141,13 +141,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
     print("Open file_picker to import text file");
     print("importedFile: $importedFile");
-    regexParseLine();
-    // regexDemo();
-    // process lines of file
-    importedFile
-        .readAsLines()
-        .then(processLines)
-        .catchError((err) => handleError(err));
+    // regexParseLine();
+    // // regexDemo();
+    // // process lines of file
+    // importedFile
+    //     .readAsLines()
+    //     .then(processLines)
+    //     .catchError((err) => handleError(err));
 
     setState(() {
       filePath = path;
