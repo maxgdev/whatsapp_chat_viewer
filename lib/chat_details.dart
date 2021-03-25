@@ -60,10 +60,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       LineSplitter ls = LineSplitter();
       List<String> _fileLines = ls.convert(q);
       for (String i in _fileLines) {
-
-          chatConversation.add(i);
-          print("chatConversation size: ${chatConversation.length}");
-
+        chatConversation.add(i);
+        print("chatConversation size: ${chatConversation.length}");
+        regexParseLine(i.toString());
       }
     });
 
