@@ -55,12 +55,17 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     //   }
     // });
     // Match line with dd/mm/yy, hh:mm - ONLY
-    RegExp lineExp = RegExp(r"(\s*[0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s-)", caseSensitive: false, multiLine: true);
-    
+    RegExp lineExp = RegExp(
+        r"(\s*[0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s-)",
+        caseSensitive: false,
+        multiLine: true);
+
     final _file = File(widget.wcvObject.filePath);
     await _file.readAsString().then((q) {
-      for (String i in LineSplitter().convert(q)) {
-        print(i); // 
+      LineSplitter ls = LineSplitter();
+      List<String> _fileLines = ls.convert(q);
+      for (String i in _fileLines) {
+        print(i); //
         print(lineExp.firstMatch("$i"));
         print(lineExp.hasMatch(i.toString()));
         print(lineExp.hasMatch("8/1/19, 12:09 PM - Sam: Missed voice call"));
@@ -73,10 +78,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         // else {
         //   // implement
         //   print("else section");
-          
+
         // }
       }
-    
     });
 
     return chatConversation;
