@@ -62,7 +62,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       for (String i in _fileLines) {
         chatConversation.add(i);
         print("chatConversation size: ${chatConversation.length}");
-        regexParseLine(i.toString());
+        regexParseLine(i);
       }
     });
 
