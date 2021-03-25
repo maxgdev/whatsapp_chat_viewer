@@ -46,7 +46,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
-
+    // Load from asset folder - dev & testing ONLY
     // production is selected from device/SD card
     // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
     //   for (String i in LineSplitter().convert(q)) {
@@ -54,32 +54,16 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     //     chatConversation.add(i);
     //   }
     // });
-    // Match line with dd/mm/yy, hh:mm - ONLY
-    RegExp lineExp = RegExp(
-        r"(\s*[0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s-)",
-        caseSensitive: false,
-        multiLine: true);
 
     final _file = File(widget.wcvObject.filePath);
     await _file.readAsString().then((q) {
       LineSplitter ls = LineSplitter();
       List<String> _fileLines = ls.convert(q);
       for (String i in _fileLines) {
-        print(i); //
-        print(lineExp.firstMatch("$i"));
-        print(lineExp.hasMatch(i.toString()));
-        print(lineExp.hasMatch("8/1/19, 12:09 PM - Sam: Missed voice call"));
-        // if(lineExp.hasMatch("18/06/17, 22:45 - Nick Fury added you") {
-        //   //impement
-        //   print("if TRUE section");
-        //   chatConversation.add(i);
-        //   print("chatConversation size: ${chatConversation.length}");
-        // }
-        // else {
-        //   // implement
-        //   print("else section");
 
-        // }
+          chatConversation.add(i);
+          print("chatConversation size: ${chatConversation.length}");
+
       }
     });
 
