@@ -10,7 +10,7 @@ Flutter WhatsApp Chat Viewer
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
-
+- [Smash Icons] https://www.flaticon.com/authors/smashicons
 - https://pub.dev/packages/filesystem_picker
 - https://pub.dev/packages/permission_handler
 - https://pub.dev/packages/bubble
