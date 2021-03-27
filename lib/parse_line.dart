@@ -19,21 +19,23 @@ regexParseLine(String txtLine) {
   // RegExp lineExp = RegExp(r"^([0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s)",
   //     caseSensitive: false, multiLine: false);
 
-  RegExp lineExp = RegExp(r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])",
-      caseSensitive: false, multiLine: false);
+  RegExp lineExp = RegExp(
+      r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])",
+      caseSensitive: false,
+      multiLine: false);
   // tempToken = tempToken.group(0) = 13/11/2014, 8:10
   // dateToken = tempToken.group(1) = 13/11/2014
   // timeToken = tempToken.group(2) = 8:10
 
   RegExp lineExp2 = RegExp(
-    r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)\s-\s(.*)",
-      caseSensitive: false, multiLine: false);
+      r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",
+      caseSensitive: false,
+      multiLine: false);
   // tempToken = tempToken.group(0) = 13/11/2014, 8:10 AM - Stacy: yeah I am good
   // dateToken = tempToken.group(1) = 13/11/2014
   // timeToken = tempToken.group(2) = 8:10
   // temp3Token =tempToken.group(3) = AM
   // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
-
 
   // Match line with dd/mm/yy, hh:mm - <name>:
   RegExp chatLineExp = RegExp(
@@ -44,9 +46,9 @@ regexParseLine(String txtLine) {
   var temp2Token, temp3Token;
   var tokenList;
   tempToken = lineExp2.firstMatch(txtLine);
-    // tempToken = chatLineExp.firstMatch(txtLine);
+  // tempToken = chatLineExp.firstMatch(txtLine);
 
-  if(tempToken != null) {
+  if (tempToken != null) {
     // tempToken.group(0) matches EVERYTHING??
     temp2Token = tempToken.group(0);
     dateToken = tempToken.group(1);
@@ -66,14 +68,13 @@ regexParseLine(String txtLine) {
     ];
   }
 
-
   print("regexParseLine running...");
 
   // Expectation: true
   if (tempToken != null) {
     // if (chatLineExp.hasMatch(txtLine)) {
     print('Line 1 is valid');
-    
+
     print("tempToken = tempToken.group(0) = ${tempToken.group(0)}");
     print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
     print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
@@ -84,21 +85,45 @@ regexParseLine(String txtLine) {
     // print("tempToken.group(7) = ${tempToken.group(7)}");
     //  print("tempToken.group(7) = ${tempToken.group(8)}");
   }
+}
 
-  // Expectation: true
-  // if (chatLineExp.hasMatch(
-  //     '12/3/18, 5:42 PM - Sam: Can you get some tofu chunks at Sainsburys on your way home? Want to put some in the soup and Morrisons didn\'t have any. Thanks.')) {
-  //   print('Line 2 is  is valid');
-  // }
+//-----------------------------------------
+regexP(String txtLine) {
+  RegExp lineExp = RegExp(
+      r"([0-9]?[0-9]\/[0-9]?[0-9]\/[0-9]{2,4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",
+      caseSensitive: false,
+      multiLine: false);
+  // tempToken = tempToken.group(0) = 13/11/2014, 8:10 AM - Stacy: yeah I am good
+  // dateToken = tempToken.group(1) = 13/11/2014
+  // timeToken = tempToken.group(2) = 8:10
+  // temp3Token =tempToken.group(3) = AM
+  // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
+  var tempToken;
+  tempToken = lineExp.firstMatch(txtLine);
+  print("regexParseLine running...");
 
-  // Expectation: false
-  // if (chatLineExp.hasMatch(
-  //     '*Spread some laughter, share the cheer.  Let\'s be happy, while we\'re here!*')) {
-  //   print('Line 3 is NOT valid');
-  // }
+  // check using RegExp
+  if (tempToken != null) {
+    print('tempToken is != null');
+    print("tempToken.group(0) = ${tempToken.group(0)}");
+    print("tempToken.group(1) = ${tempToken.group(1)}");
+    print("tempToken.group(2) = ${tempToken.group(2)}");
+    print("tempToken.group(3) = ${tempToken.group(3)}");
+    print("tempToken.group(4) = ${tempToken.group(4)}");
 
-  // if (lineExp
-  //     .hasMatch("25/09/16, 21:50 - Nick Fury created group \"Avengers\"")) {
-  //   print("Matched NONE chat line!!");
-  // }
+    print('-------------------');
+    print(tempToken.group(0));
+    print(txtLine);
+    if (tempToken.group(0) == txtLine) {
+      // match of whole line
+      print('tempToken == txtLine. Return true');
+      return true;
+    } else {
+      print('tempToken is != txtLine. Return false');
+      return false;
+    }
+  } else {
+    print("tempToken is null");
+    return false;
+  }
 }

@@ -55,17 +55,51 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     //   }
     // });
 
+    // final _file = File(widget.wcvObject.filePath);
+    // await _file.readAsString().then((q) {
+    //   LineSplitter ls = LineSplitter();
+    //   List<String> _fileLines = ls.convert(q);
+    //   for (String i in _fileLines) {
+    //     chatConversation.add(i);
+    //     print("chatConversation size: ${chatConversation.length}");
+    //     regexParseLine(i);
+    //   }
+    // });
+// --------------------------------------------------------
+// Parsing line with RegExp
+
     final _file = File(widget.wcvObject.filePath);
-    var _count = 0;
     await _file.readAsString().then((q) {
       LineSplitter ls = LineSplitter();
+      String tmpStr = ""; // Empty String to build multiline body
+      var chatLength = 0;
       List<String> _fileLines = ls.convert(q);
       for (String i in _fileLines) {
-        chatConversation.add(i);
-        print("chatConversation size: ${chatConversation.length}");
-        regexParseLine(i);
+        print(i);
+        if (regexP(i)) {
+          // if line has <date><time> format start new List entry
+          tmpStr = tmpStr + i;
+          chatConversation.add(tmpStr);
+          tmpStr = "";
+          print('match');
+        } else {
+          // if line does NOT match <date><time> format then body string
+          tmpStr = tmpStr + i;
+          chatLength = chatConversation.length;
+          print(chatLength);
+          if (chatLength == 0) {
+            chatConversation[chatLength] = tmpStr;
+          } else {
+            chatConversation[chatLength - 1] = tmpStr;
+          }
+        }
+        // chatConversation.add(i);
+
       }
+      print("chatConversation size: ${chatConversation.length}");
     });
+
+// --------------------------------------------------------
 
     return chatConversation;
   }
