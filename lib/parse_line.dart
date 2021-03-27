@@ -19,8 +19,21 @@ regexParseLine(String txtLine) {
   // RegExp lineExp = RegExp(r"^([0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s)",
   //     caseSensitive: false, multiLine: false);
 
-  RegExp lineExp = RegExp(r"[0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4},\s[0-9]?[0-9]:[0-9][0-9]",
+  RegExp lineExp = RegExp(r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])",
       caseSensitive: false, multiLine: false);
+  // tempToken = tempToken.group(0) = 13/11/2014, 8:10
+  // dateToken = tempToken.group(1) = 13/11/2014
+  // timeToken = tempToken.group(2) = 8:10
+
+  RegExp lineExp2 = RegExp(
+    r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)\s-\s(.*)",
+      caseSensitive: false, multiLine: false);
+  // tempToken = tempToken.group(0) = 13/11/2014, 8:10 AM - Stacy: yeah I am good
+  // dateToken = tempToken.group(1) = 13/11/2014
+  // timeToken = tempToken.group(2) = 8:10
+  // temp3Token =tempToken.group(3) = AM
+  // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
+
 
   // Match line with dd/mm/yy, hh:mm - <name>:
   RegExp chatLineExp = RegExp(
@@ -30,38 +43,42 @@ regexParseLine(String txtLine) {
   var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
   var temp2Token, temp3Token;
   var tokenList;
-  tempToken = lineExp.firstMatch(txtLine);
-  // tempToken = chatLineExp.firstMatch(txtLine);
-  // tempToken.group(0) matches EVERYTHING??
-  temp2Token = tempToken.group(0);
-  // dateToken = tempToken.group(1);
-  // timeToken = tempToken.group(2);
-  // temp3Token = tempToken.group(3);
-  // nameToken = tempToken.group(4);
-  // textToken = tempToken.group(5);
-  // restToken = tempToken.group(6);
-  tokenList = [
-    temp2Token,
-    dateToken,
-    timeToken,
-    temp3Token,
-    nameToken,
-    textToken,
-    restToken
-  ];
+  tempToken = lineExp2.firstMatch(txtLine);
+    // tempToken = chatLineExp.firstMatch(txtLine);
+
+  if(tempToken != null) {
+    // tempToken.group(0) matches EVERYTHING??
+    temp2Token = tempToken.group(0);
+    dateToken = tempToken.group(1);
+    timeToken = tempToken.group(2);
+    temp3Token = tempToken.group(3);
+    nameToken = tempToken.group(4);
+    // textToken = tempToken.group(5);
+    // restToken = tempToken.group(6);
+    tokenList = [
+      temp2Token,
+      dateToken,
+      timeToken,
+      temp3Token,
+      nameToken,
+      textToken,
+      restToken
+    ];
+  }
+
 
   print("regexParseLine running...");
 
   // Expectation: true
-  if (lineExp.hasMatch(txtLine)) {
+  if (tempToken != null) {
     // if (chatLineExp.hasMatch(txtLine)) {
     print('Line 1 is valid');
     
     print("tempToken = tempToken.group(0) = ${tempToken.group(0)}");
-    // print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
-    // print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
-    // print("temp3Token =tempToken.group(3) = ${tempToken.group(3)}");
-    // print("nameToken = tempToken.group(4) = ${tempToken.group(4)}");
+    print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
+    print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
+    print("temp3Token =tempToken.group(3) = ${tempToken.group(3)}");
+    print("nameToken = tempToken.group(4) = ${tempToken.group(4)}");
     // print("textToken = tempToken.group(5) = ${tempToken.group(5)}");
     // print("restToken = tempToken.group(6) = ${tempToken.group(6)}");
     // print("tempToken.group(7) = ${tempToken.group(7)}");
