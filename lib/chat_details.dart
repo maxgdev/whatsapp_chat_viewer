@@ -88,7 +88,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           chatLength = chatConversation.length;
           print(chatLength);
           if (chatLength == 0) {
-            chatConversation[chatLength] = tmpStr;
+            chatConversation.add(tmpStr);
           } else {
             chatConversation[chatLength - 1] = tmpStr;
           }
