@@ -56,6 +56,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // });
 
     final _file = File(widget.wcvObject.filePath);
+    var _count = 0;
     await _file.readAsString().then((q) {
       LineSplitter ls = LineSplitter();
       List<String> _fileLines = ls.convert(q);
