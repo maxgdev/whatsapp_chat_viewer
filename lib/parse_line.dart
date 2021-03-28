@@ -146,26 +146,26 @@ parseLine(String txtLine, int index) {
   var timeToken = "";
   var nameToken = "";
   var textToken = "";
-  var tokenList;
+  var tokenList = [];
   tempToken = lineExp.firstMatch(txtLine);
-  print("regexParseLine running...");
-  print("tempToken.groupCount: ${tempToken.groupCount}");
-  print("tempToken.input: ${tempToken.input}");
-  print("tempToken.pattern: ${tempToken.pattern}");
-  print("tempToken.start: ${tempToken.start}");
-  print("tempToken.end: ${tempToken.end}");
-  if (tempToken.group(1) == false) {
+  // print("regexParseLine running...");
+  // print("tempToken.groupCount: ${tempToken.groupCount}");
+  // print("tempToken.input: ${tempToken.input}");
+  // print("tempToken.pattern: ${tempToken.pattern}");
+  // print("tempToken.start: ${tempToken.start}");
+  // print("tempToken.end: ${tempToken.end}");
+  if (tempToken?.group(1) == null) {
     print("---- tempToken is null ----");
-    // print(tempToken.group(1));
+    
     return "None";
   } else {
     dateToken = tempToken.group(1);
     timeToken = tempToken.group(2);
     nameToken = tempToken.group(4).split(":")[0];
     textToken = tempToken.group(4).split(":")[1];
-    print(tempToken.group(4).split(":"));
-    print(nameToken);
-    print(textToken);
+    // print(tempToken.group(4).split(":"));
+    // print(nameToken);
+    // print(textToken);
     tokenList = [dateToken, timeToken, nameToken, textToken];
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     return tokenList[index];
