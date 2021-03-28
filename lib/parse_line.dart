@@ -1,17 +1,22 @@
 // Function to parse line string fronm text fiile
-parseLine(String txtLine, int index) {
-  var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
-  var tokenList;
-  tempToken = txtLine.split("-")[0];
-  dateToken = tempToken.split(",")[0];
-  timeToken = tempToken.split(",")[1];
-  restToken = txtLine.split("-")[1];
-  nameToken = restToken.split(":")[0];
-  textToken = restToken.split(":")[1];
-  tokenList = [dateToken, timeToken, nameToken, textToken];
-  // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
-  return tokenList[index];
-}
+// parseLine(String txtLine, int index) {
+//   var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
+//   var tokenList;
+//   tempToken = txtLine.split("-")[0];
+//   dateToken = tempToken.split(",")[0];
+//   timeToken = tempToken.split(",")[1];
+
+//   restToken =
+//       (txtLine.split("-")[1].toString() != null) ? txtLine.split("-")[1] : "";
+
+//   nameToken = (restToken.split(":")[0] != null)
+//       ? nameToken = restToken.split(":")[0]
+//       : "";
+//   textToken = (restToken.split(":")[1] != null) ? restToken.split(":")[1] : "";
+//   tokenList = [dateToken, timeToken, nameToken, textToken];
+//   // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
+//   return tokenList[index];
+// }
 
 regexParseLine(String txtLine) {
   // RegExp lineExp =  RegExp("([0-9]*\/([0-9]*\/([0-9]*),\s([0-9]*):[0-9]*)\s(AM|PM\s-\s([a-zA-Z]*):))", caseSensitive: false, multiLine: false);
@@ -105,15 +110,15 @@ regexP(String txtLine) {
   // check using RegExp
   if (tempToken != null) {
     print('tempToken is != null');
-    print("tempToken.group(0) = ${tempToken.group(0)}");
-    print("tempToken.group(1) = ${tempToken.group(1)}");
-    print("tempToken.group(2) = ${tempToken.group(2)}");
-    print("tempToken.group(3) = ${tempToken.group(3)}");
-    print("tempToken.group(4) = ${tempToken.group(4)}");
+    // print("tempToken.group(0) = ${tempToken.group(0)}");
+    // print("tempToken.group(1) = ${tempToken.group(1)}");
+    // print("tempToken.group(2) = ${tempToken.group(2)}");
+    // print("tempToken.group(3) = ${tempToken.group(3)}");
+    // print("tempToken.group(4) = ${tempToken.group(4)}");
 
-    print('-------------------');
-    print(tempToken.group(0));
-    print(txtLine);
+    // print('-------------------');
+    // print(tempToken.group(0));
+    // print(txtLine);
     if (tempToken.group(0) == txtLine) {
       // match of whole line
       print('tempToken == txtLine. Return true');
@@ -126,4 +131,34 @@ regexP(String txtLine) {
     print("tempToken is null");
     return false;
   }
+}
+
+// Function to parse line string fronm text fiile
+parseLine(String txtLine, int index) {
+  RegExp lineExp = RegExp(
+      r"([0-9]?[0-9]\/[0-9]?[0-9]\/[0-9]{2,4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",
+      caseSensitive: false,
+      multiLine: false);
+
+  var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
+  var tokenList;
+  tempToken = lineExp.firstMatch(txtLine);
+  print("regexParseLine running...");
+
+  if (tempToken.group(1) == null) {
+    print("---- tempToken is null ----");
+    print(tempToken);
+     return "null";
+  } else {
+    dateToken = tempToken.group(1);
+    timeToken = tempToken.group(2);
+    nameToken = tempToken.group(4).split(":")[0];
+    textToken = tempToken.group(4).split(":")[1];
+    print(nameToken);
+    print(textToken);
+    tokenList = [dateToken, timeToken, nameToken, textToken];
+    // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
+     return tokenList[index];
+  }
+
 }

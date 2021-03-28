@@ -97,6 +97,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
       }
       print("chatConversation size: ${chatConversation.length}");
+      print("lines imported: ${_fileLines.length}");
     });
 
 // --------------------------------------------------------
