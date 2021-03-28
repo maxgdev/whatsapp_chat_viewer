@@ -21,7 +21,7 @@ class ChatDetailsScreen extends StatefulWidget {
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // _chatConversation scoped to function
-  List<String> _chatConversation = [];
+  List<Chat> _chatConversation = [];
 
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
@@ -43,65 +43,68 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // }
 
   Future<List<String>> _loadImportedChatConversation(
-    WCVImportFile wcvObject) async {
-      // chatConversation scoped to inner function
-      List<String> chatConversation = [];
-      // Load from asset folder - dev & testing ONLY
-      // production is selected from device/SD card
-      // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
-      //   for (String i in LineSplitter().convert(q)) {
-      //     print(i); // diagnostic
-      //     chatConversation.add(i);
-      //   }
-      // });
+      WCVImportFile wcvObject) async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+    // Load from asset folder - dev & testing ONLY
+    // production is selected from device/SD card
+    // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
+    //   for (String i in LineSplitter().convert(q)) {
+    //     print(i); // diagnostic
+    //     chatConversation.add(i);
+    //   }
+    // });
 
-      // final _file = File(widget.wcvObject.filePath);
-      // await _file.readAsString().then((q) {
-      //   LineSplitter ls = LineSplitter();
-      //   List<String> _fileLines = ls.convert(q);
-      //   for (String i in _fileLines) {
-      //     chatConversation.add(i);
-      //     print("chatConversation size: ${chatConversation.length}");
-      //     regexParseLine(i);
-      //   }
-      // });
-        // --------------------------------------------------------
-      // Parsing line with RegExp
+    // final _file = File(widget.wcvObject.filePath);
+    // await _file.readAsString().then((q) {
+    //   LineSplitter ls = LineSplitter();
+    //   List<String> _fileLines = ls.convert(q);
+    //   for (String i in _fileLines) {
+    //     chatConversation.add(i);
+    //     print("chatConversation size: ${chatConversation.length}");
+    //     regexParseLine(i);
+    //   }
+    // });
+    // --------------------------------------------------------
+    // Parsing line with RegExp
 
-      final _file = File(widget.wcvObject.filePath);
-      await _file.readAsString().then((q) {
-        LineSplitter ls = LineSplitter();
-        String tmpStr = ""; // Empty String to build multiline body
-        var chatLength = 0;
-        List<String> _fileLines = ls.convert(q);
-        for (String i in _fileLines) {
-          if (regexP(i)) {
-            // if line has <date><time> format start new List entry
-            tmpStr = tmpStr + i;
+    final _file = File(widget.wcvObject.filePath);
+    await _file.readAsString().then((q) {
+      LineSplitter ls = LineSplitter();
+      String tmpStr = ""; // Empty String to build multiline body
+      var chatLength = 0;
+      List<String> _fileLines = ls.convert(q);
+      for (String i in _fileLines) {
+        if (regexP(i)) {
+          // if line has <date><time> format start new List entry
+          tmpStr = tmpStr + i;
+          chatConversation.add(tmpStr);
+          tmpStr = "";
+          // print('match');
+        } else {
+          // if line does NOT match <date><time> format then body string
+          tmpStr = tmpStr + i;
+          chatLength = chatConversation.length;
+          // print(chatLength);
+          if (chatLength == 0) {
             chatConversation.add(tmpStr);
-            tmpStr = "";
-            // print('match');
           } else {
-            // if line does NOT match <date><time> format then body string
-            tmpStr = tmpStr + i;
-            chatLength = chatConversation.length;
-            // print(chatLength);
-            if (chatLength == 0) {
-              chatConversation.add(tmpStr);
-            } else {
-              chatConversation[chatLength - 1] = tmpStr;
-            }
+            chatConversation[chatLength - 1] = tmpStr;
           }
-          // chatConversation.add(i);
-
         }
-        print("chatConversation size: ${chatConversation.length}");
-        print("lines imported: ${_fileLines.length}");
-      });
+        // chatConversation.add(i);
 
-      // --------------------------------------------------------
-      return chatConversation;
-    }
+      }
+      print("chatConversation size: ${chatConversation.length}");
+      print("lines imported: ${_fileLines.length}");
+    });
+
+    // --------------------------------------------------------
+    // Convert chatConversation List into Chat Objects List
+    //---------------------------------------------------------
+   
+    return chatConversation;
+  }
 
   @override
   void initState() {
@@ -111,14 +114,15 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   _setup() async {
     // List<String> chatConversation = await _loadChatConversation();
-    
+
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
-    
+
     setState(() {
-      _chatConversation = chatConversation;
+      _chatConversation = convertToChatObjects(chatConversation);
     });
+
   }
 
   static const styleSomebody = BubbleStyle(
@@ -175,7 +179,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   // ),
                   Expanded(
                     child: Bubble(
-                      style: parseLine(_chatConversation[index], 2).trim() ==
+                      style: _chatConversation[index].name ==
+                      // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
                           ? styleMe
                           : styleSomebody,
@@ -185,20 +190,24 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${parseLine(_chatConversation[index], 2)}",
+                            // "${parseLine(_chatConversation[index], 2)}",
+                            "${_chatConversation[index].name}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w800,
                                 color: ChatColors.whatsAppGreen),
                           ),
-                          Text("${parseLine(_chatConversation[index], 3)}"),
+                          // Text("${parseLine(_chatConversation[index], 3)}"),
+                          Text("${_chatConversation[index].message}"),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Expanded(
                                   child: Text(
-                                      "${parseLine(_chatConversation[index], 0)}",
+                                      // "${parseLine(_chatConversation[index], 0)}",
+                                      "${_chatConversation[index].date}",
                                       style: TextStyle(fontSize: 9))),
-                              Text("${parseLine(_chatConversation[index], 1)}",
+                              // Text("${parseLine(_chatConversation[index], 1)}",
+                              Text("${_chatConversation[index].time}",
                                   style: TextStyle(fontSize: 9)),
                             ],
                           ),

@@ -1,3 +1,4 @@
+import './chat_model.dart';
 // Function to parse line string fronm text fiile
 // parseLine(String txtLine, int index) {
 //   var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
@@ -110,11 +111,11 @@ regexP(String txtLine) {
   // check using RegExp
   if (tempToken != null) {
     print('tempToken is != null');
-    // print("tempToken.group(0) = ${tempToken.group(0)}");
-    // print("tempToken.group(1) = ${tempToken.group(1)}");
-    // print("tempToken.group(2) = ${tempToken.group(2)}");
-    // print("tempToken.group(3) = ${tempToken.group(3)}");
-    // print("tempToken.group(4) = ${tempToken.group(4)}");
+    print("tempToken.group(0) = ${tempToken.group(0)}");
+    print("tempToken.group(1) = ${tempToken.group(1)}");
+    print("tempToken.group(2) = ${tempToken.group(2)}");
+    print("tempToken.group(3) = ${tempToken.group(3)}");
+    print("tempToken.group(4) = ${tempToken.group(4)}");
 
     // print('-------------------');
     // print(tempToken.group(0));
@@ -140,25 +141,53 @@ parseLine(String txtLine, int index) {
       caseSensitive: false,
       multiLine: false);
 
-  var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
+  var tempToken;
+  var dateToken = "";
+  var timeToken = "";
+  var nameToken = "";
+  var textToken = "";
   var tokenList;
   tempToken = lineExp.firstMatch(txtLine);
   print("regexParseLine running...");
-
-  if (tempToken.group(1) == null) {
+  print("tempToken.groupCount: ${tempToken.groupCount}");
+  print("tempToken.input: ${tempToken.input}");
+  print("tempToken.pattern: ${tempToken.pattern}");
+  print("tempToken.start: ${tempToken.start}");
+  print("tempToken.end: ${tempToken.end}");
+  if (tempToken.group(1) == false) {
     print("---- tempToken is null ----");
-    print(tempToken);
-     return "null";
+    // print(tempToken.group(1));
+    return "None";
   } else {
     dateToken = tempToken.group(1);
     timeToken = tempToken.group(2);
     nameToken = tempToken.group(4).split(":")[0];
     textToken = tempToken.group(4).split(":")[1];
+    print(tempToken.group(4).split(":"));
     print(nameToken);
     print(textToken);
     tokenList = [dateToken, timeToken, nameToken, textToken];
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
-     return tokenList[index];
+    return tokenList[index];
   }
+}
 
+convertToChatObjects(List chatList) {
+  // chatList input List of lines from file
+  // convertedList output/returned List of Chat objects
+  List<Chat> convertChatList = [];
+
+  chatList.forEach((line) {
+    // Build 
+    convertChatList.add(Chat(
+        date: parseLine(line, 0),
+        time: parseLine(line, 1),
+        name:parseLine(line, 2).trim(),
+        message: parseLine(line, 3),
+        fileAttached: "",
+      )
+    );
+    
+  });
+  return convertChatList;
 }
