@@ -133,7 +133,7 @@ regexP(String txtLine) {
   }
 }
 
-// Function to parse line string fronm text fiile
+// Function to parse line string from text file
 parseLine(String txtLine, int index) {
   RegExp lineExp = RegExp(
       r"([0-9]?[0-9]\/[0-9]?[0-9]\/[0-9]{2,4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",

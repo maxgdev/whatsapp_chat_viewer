@@ -74,8 +74,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
     // Create sample directory if not exists
     Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
-    print(rootPath);
-    print(rootPath.path);
+    // print(rootPath);
+    // print(rootPath.path);
     if (!sampleFolder.existsSync()) {
       sampleFolder.createSync();
     }
@@ -106,9 +106,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // importedFileName = p.basename('$importedFile');
       // importedFileName = importedFile.path.split('/').last.split('\'')[0];
       importedFileName = importedFile.path.split('/').last;
-      print(importedFileName);
-      print("file.path: ${file.path}");
-      print("------------------");
+      // print(importedFileName);
+      // print("file.path: ${file.path}");
+      // print("------------------");
 
       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       //   // content: Text(contents),
@@ -136,8 +136,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
       fileList.add(fileObject);
     }
 
-    print("Open file_picker to import text file");
-    print("importedFile: $importedFile");
+    // print("Open file_picker to import text file");
+    // print("importedFile: $importedFile");
+    
     // regexParseLine();
     // // regexDemo();
     // // process lines of file

@@ -43,71 +43,66 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // }
 
   Future<List<String>> _loadImportedChatConversation(
-      WCVImportFile wcvObject) async {
-    // chatConversation scoped to inner function
-    List<String> chatConversation = [];
-    // Load from asset folder - dev & testing ONLY
-    // production is selected from device/SD card
-    // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
-    //   for (String i in LineSplitter().convert(q)) {
-    //     print(i); // diagnostic
-    //     chatConversation.add(i);
-    //   }
-    // });
+    WCVImportFile wcvObject) async {
+      // chatConversation scoped to inner function
+      List<String> chatConversation = [];
+      // Load from asset folder - dev & testing ONLY
+      // production is selected from device/SD card
+      // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
+      //   for (String i in LineSplitter().convert(q)) {
+      //     print(i); // diagnostic
+      //     chatConversation.add(i);
+      //   }
+      // });
 
-    // final _file = File(widget.wcvObject.filePath);
-    // await _file.readAsString().then((q) {
-    //   LineSplitter ls = LineSplitter();
-    //   List<String> _fileLines = ls.convert(q);
-    //   for (String i in _fileLines) {
-    //     chatConversation.add(i);
-    //     print("chatConversation size: ${chatConversation.length}");
-    //     regexParseLine(i);
-    //   }
-    // });
-// --------------------------------------------------------
-// Parsing line with RegExp
+      // final _file = File(widget.wcvObject.filePath);
+      // await _file.readAsString().then((q) {
+      //   LineSplitter ls = LineSplitter();
+      //   List<String> _fileLines = ls.convert(q);
+      //   for (String i in _fileLines) {
+      //     chatConversation.add(i);
+      //     print("chatConversation size: ${chatConversation.length}");
+      //     regexParseLine(i);
+      //   }
+      // });
+        // --------------------------------------------------------
+      // Parsing line with RegExp
 
-    final _file = File(widget.wcvObject.filePath);
-    await _file.readAsString().then((q) {
-      LineSplitter ls = LineSplitter();
-      String tmpStr = ""; // Empty String to build multiline body
-      var chatLength = 0;
-      List<String> _fileLines = ls.convert(q);
-      for (String i in _fileLines) {
-        print(i);
-        if (regexP(i)) {
-          // if line has <date><time> format start new List entry
-          tmpStr = tmpStr + i;
-          chatConversation.add(tmpStr);
-          tmpStr = "";
-          print('match');
-        } else {
-          // if line does NOT match <date><time> format then body string
-          tmpStr = tmpStr + i;
-          chatLength = chatConversation.length;
-          print(chatLength);
-          if (chatLength == 0) {
+      final _file = File(widget.wcvObject.filePath);
+      await _file.readAsString().then((q) {
+        LineSplitter ls = LineSplitter();
+        String tmpStr = ""; // Empty String to build multiline body
+        var chatLength = 0;
+        List<String> _fileLines = ls.convert(q);
+        for (String i in _fileLines) {
+          if (regexP(i)) {
+            // if line has <date><time> format start new List entry
+            tmpStr = tmpStr + i;
             chatConversation.add(tmpStr);
+            tmpStr = "";
+            // print('match');
           } else {
-            chatConversation[chatLength - 1] = tmpStr;
+            // if line does NOT match <date><time> format then body string
+            tmpStr = tmpStr + i;
+            chatLength = chatConversation.length;
+            // print(chatLength);
+            if (chatLength == 0) {
+              chatConversation.add(tmpStr);
+            } else {
+              chatConversation[chatLength - 1] = tmpStr;
+            }
           }
+          // chatConversation.add(i);
+
         }
-        // chatConversation.add(i);
+        print("chatConversation size: ${chatConversation.length}");
+        print("lines imported: ${_fileLines.length}");
+      });
 
-      }
-      print("chatConversation size: ${chatConversation.length}");
-      print("lines imported: ${_fileLines.length}");
-    });
+      // --------------------------------------------------------
+      return chatConversation;
+    }
 
-// --------------------------------------------------------
-
-    return chatConversation;
-  }
-
-// --------------------------------------------------------
-
-// --------------------------------------------------------
   @override
   void initState() {
     _setup();
@@ -115,14 +110,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   }
 
   _setup() async {
-    // Retrieve the questions (Processed in the background)
     // List<String> chatConversation = await _loadChatConversation();
-    // final WCVImportFile chatFile = ModalRoute.of(context).settings.arguments;
-
+    
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
-    // Notify the UI and display the questions
+    
     setState(() {
       _chatConversation = chatConversation;
     });
@@ -153,8 +146,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     //
-    // final Chat chat = ModalRoute.of(context).settings.arguments;
-    // final WCVImportFileList fileList = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       appBar: AppBar(

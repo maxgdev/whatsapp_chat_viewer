@@ -37,12 +37,6 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                   
                   trailing: Text(widget.fileList[index].date),
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => ChatDetailsScreen(),
-                    //       settings: RouteSettings(arguments: widget.fileList[index]),
-                    //     ));
                   var route = MaterialPageRoute(
                     builder: (BuildContext context) =>
                       ChatDetailsScreen(
