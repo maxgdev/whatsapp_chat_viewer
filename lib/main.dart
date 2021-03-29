@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/chat_home_page.dart';
+import './my_db_home.dart';
 
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
-      home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
+      home: MyDBHomePage(),
+      // home: ChatHomePage(title: 'WhatsApp Chat Viewer'),
     );
   }
 }
