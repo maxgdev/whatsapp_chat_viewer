@@ -9,6 +9,7 @@ import 'dart:async';
 import 'dart:convert';
 import './parse_line.dart';
 import 'dart:io';
+import './db_methods.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
@@ -22,6 +23,9 @@ class ChatDetailsScreen extends StatefulWidget {
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // _chatConversation scoped to function
   List<Chat> _chatConversation = [];
+
+  // reference to our single class that manages the database
+  final dbHelper = DatabaseHelper.instance;
 
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
@@ -79,6 +83,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           // if line has <date><time> format start new List entry
           tmpStr = tmpStr + i;
           chatConversation.add(tmpStr);
+          //
+          // add to db: table and row
+          //
           tmpStr = "";
           // print('match');
         } else {
@@ -97,14 +104,17 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       }
       print("chatConversation size: ${chatConversation.length}");
       print("lines imported: ${_fileLines.length}");
+      print(
+          "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
     });
 
     // --------------------------------------------------------
     // Convert chatConversation List into Chat Objects List
+    // convert chatConversation in db entries
     //---------------------------------------------------------
-   
+
     return chatConversation;
-  }
+  } // _loadImportedChatConversation
 
   @override
   void initState() {
@@ -113,16 +123,17 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   }
 
   _setup() async {
-    // List<String> chatConversation = await _loadChatConversation();
-
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-    });
+      _insertListIntoDb(_chatConversation);
 
+      // query all rows of table
+      // table, table size, rows
+    });
   }
 
   static const styleSomebody = BubbleStyle(
@@ -180,7 +191,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   Expanded(
                     child: Bubble(
                       style: _chatConversation[index].name ==
-                      // style: parseLine(_chatConversation[index], 2).trim() ==
+                              // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
                           ? styleMe
                           : styleSomebody,
@@ -190,24 +201,24 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            // "${parseLine(_chatConversation[index], 2)}",
                             "${_chatConversation[index].name}",
+                            // "${parseLine(_chatConversation[index], 2)}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w800,
                                 color: ChatColors.whatsAppGreen),
                           ),
-                          // Text("${parseLine(_chatConversation[index], 3)}"),
                           Text("${_chatConversation[index].message}"),
+                          // Text("${parseLine(_chatConversation[index], 3)}"),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Expanded(
                                   child: Text(
-                                      // "${parseLine(_chatConversation[index], 0)}",
                                       "${_chatConversation[index].date}",
+                                      // "${parseLine(_chatConversation[index], 0)}",
                                       style: TextStyle(fontSize: 9))),
-                              // Text("${parseLine(_chatConversation[index], 1)}",
                               Text("${_chatConversation[index].time}",
+                                  // Text("${parseLine(_chatConversation[index], 1)}",
                                   style: TextStyle(fontSize: 9)),
                             ],
                           ),
@@ -222,5 +233,63 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         ),
       ),
     );
+  }
+
+// Database methods
+
+  void _insert() async {
+    // row to insert
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnDate: '29/03/2021',
+      DatabaseHelper.columnTime: '11:34',
+      DatabaseHelper.columnName: 'John',
+      DatabaseHelper.columnMessage: 'This is a test message for the chat',
+    };
+    final id = await dbHelper.insert(row);
+    print('inserted row id: $id');
+  }
+
+  void _insertListIntoDb(List chatList) async {
+    chatList.forEach((element) {
+      // row to insert
+      print("element.date: ${element.date}");
+      print("element.time: ${element.time}");
+      print("element.name: ${element.name}");
+      print("element.message: ${element.message}");
+      Map<String, dynamic> row = {
+        DatabaseHelper.columnDate: element.date,
+        DatabaseHelper.columnTime: element.time,
+        DatabaseHelper.columnName: element.name,
+        DatabaseHelper.columnMessage: element.message,
+      };
+      var id = dbHelper.insert(row);
+      print('inserted row id: $id');
+    });
+  }
+
+  void _query() async {
+    final allRows = await dbHelper.queryAllRows();
+    print('query all rows:');
+    allRows.forEach((row) => print(row));
+  }
+
+  void _update() async {
+    // row to update
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnId: 1,
+      DatabaseHelper.columnDate: '29/03/2021',
+      DatabaseHelper.columnTime: '12:34',
+      DatabaseHelper.columnName: 'John',
+      DatabaseHelper.columnMessage: 'This test MESSAGE has changed',
+    };
+    final rowsAffected = await dbHelper.update(row);
+    print('updated $rowsAffected row(s)');
+  }
+
+  void _delete() async {
+    // Assuming that the number of rows is the id for the last row.
+    final id = await dbHelper.queryRowCount();
+    final rowsDeleted = await dbHelper.delete(id);
+    print('deleted $rowsDeleted row(s): row $id');
   }
 }
