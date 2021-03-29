@@ -156,8 +156,13 @@ parseLine(String txtLine, int index) {
   // print("tempToken.end: ${tempToken.end}");
   if (tempToken?.group(1) == null) {
     print("---- tempToken is null ----");
-    
-    return "None";
+    // Null tempToken is given dummy values
+    dateToken = "01/01/1970";
+    timeToken = "00:00";
+    nameToken = "None";
+    textToken = "";
+    tokenList = [dateToken, timeToken, nameToken, textToken];
+    return tokenList[index];
   } else {
     dateToken = tempToken.group(1);
     timeToken = tempToken.group(2);
