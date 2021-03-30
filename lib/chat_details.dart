@@ -129,7 +129,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      _insertListIntoDb(_chatConversation);
+      // _insertListIntoDb(_chatConversation);
 
       // query all rows of table
       // table, table size, rows
@@ -237,13 +237,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
 // Database methods
 
-  void _insert() async {
+  void _insert(rowElement) async {
     // row to insert
+    print(rowElement.date);
     Map<String, dynamic> row = {
-      DatabaseHelper.columnDate: '29/03/2021',
-      DatabaseHelper.columnTime: '11:34',
-      DatabaseHelper.columnName: 'John',
-      DatabaseHelper.columnMessage: 'This is a test message for the chat',
+      DatabaseHelper.columnDate: rowElement.date,
+      DatabaseHelper.columnTime: rowElement.time,
+      DatabaseHelper.columnName: rowElement.name,
+      DatabaseHelper.columnMessage: rowElement.message,
     };
     final id = await dbHelper.insert(row);
     print('inserted row id: $id');
@@ -256,14 +257,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       print("element.time: ${element.time}");
       print("element.name: ${element.name}");
       print("element.message: ${element.message}");
-      Map<String, dynamic> row = {
-        DatabaseHelper.columnDate: element.date,
-        DatabaseHelper.columnTime: element.time,
-        DatabaseHelper.columnName: element.name,
-        DatabaseHelper.columnMessage: element.message,
+      // Map<String, dynamic> rowElement = {
+      Map rowElement = {
+        DatabaseHelper.columnDate: "${element.date}",
+        DatabaseHelper.columnTime: "${element.time}",
+        DatabaseHelper.columnName: "${element.name}",
+        DatabaseHelper.columnMessage: "${element.message}",
       };
-      var id = dbHelper.insert(row);
-      print('inserted row id: $id');
+      _insert(rowElement);
     });
   }
 
