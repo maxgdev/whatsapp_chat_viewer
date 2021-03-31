@@ -29,3 +29,16 @@ class WCVImportFile {
   String filePath;
   String fileAttached; // string or boolean??
 }
+
+class Conversation {
+  Conversation({
+    this.id,
+    this.fileName,
+    this.list,
+
+  });
+
+  int id; 
+  String fileName;
+  String list;
+}

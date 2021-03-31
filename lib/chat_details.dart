@@ -129,7 +129,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      // _insertListIntoDb(_chatConversation);
+      _insertListIntoDb(_chatConversation);
 
       // query all rows of table
       // table, table size, rows
@@ -257,13 +257,15 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       print("element.time: ${element.time}");
       print("element.name: ${element.name}");
       print("element.message: ${element.message}");
+      Map<String, dynamic> rowElement = {
       // Map<String, dynamic> rowElement = {
-      Map rowElement = {
         DatabaseHelper.columnDate: "${element.date}",
         DatabaseHelper.columnTime: "${element.time}",
         DatabaseHelper.columnName: "${element.name}",
         DatabaseHelper.columnMessage: "${element.message}",
+
       };
+
       _insert(rowElement);
     });
   }
