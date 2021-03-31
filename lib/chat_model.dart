@@ -34,11 +34,11 @@ class Conversation {
   Conversation({
     this.id,
     this.fileName,
-    this.list,
+    this.chatList,
 
   });
 
   int id; 
   String fileName;
-  String list;
+  String chatList;
 }
