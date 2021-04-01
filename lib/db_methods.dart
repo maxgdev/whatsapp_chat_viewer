@@ -1,9 +1,8 @@
 import 'dart:io';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-import './chat_model.dart';
+// import './chat_model.dart';
 
 class DatabaseHelper {
   
@@ -19,10 +18,8 @@ class DatabaseHelper {
   // static final columnAge = 'age';
   
   static final columnId = '_id';
-  static final columnDate = 'date';
-  static final columnTime = 'time';
   static final columnName = 'name';
-  static final columnMessage = 'message';
+  static final columnList = 'list';
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -51,10 +48,8 @@ class DatabaseHelper {
     await db.execute('''
           CREATE TABLE $table (
             $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $columnDate TEXT NOT NULL,
-            $columnTime TEXT NOT NULL,
             $columnName TEXT NOT NULL,
-            $columnMessage TEXT NOT NULL
+            $columnList BLOB NOT NULL
             )
           ''');
   }

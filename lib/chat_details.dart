@@ -129,7 +129,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      _insertListIntoDb(_chatConversation);
+      _insert(_chatConversation);
 
       // query all rows of table
       // table, table size, rows
@@ -239,36 +239,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   void _insert(rowElement) async {
     // row to insert
-    print(rowElement.date);
     Map<String, dynamic> row = {
-      DatabaseHelper.columnDate: rowElement.date,
-      DatabaseHelper.columnTime: rowElement.time,
-      DatabaseHelper.columnName: rowElement.name,
-      DatabaseHelper.columnMessage: rowElement.message,
+      DatabaseHelper.columnName: "Test Name",
+      DatabaseHelper.columnList: rowElement,
     };
     final id = await dbHelper.insert(row);
     print('inserted row id: $id');
   }
 
-  void _insertListIntoDb(List chatList) async {
-    chatList.forEach((element) {
-      // row to insert
-      print("element.date: ${element.date}");
-      print("element.time: ${element.time}");
-      print("element.name: ${element.name}");
-      print("element.message: ${element.message}");
-      Map<String, dynamic> rowElement = {
-      // Map<String, dynamic> rowElement = {
-        DatabaseHelper.columnDate: "${element.date}",
-        DatabaseHelper.columnTime: "${element.time}",
-        DatabaseHelper.columnName: "${element.name}",
-        DatabaseHelper.columnMessage: "${element.message}",
-
-      };
-
-      _insert(rowElement);
-    });
-  }
 
   void _query() async {
     final allRows = await dbHelper.queryAllRows();
@@ -280,10 +258,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // row to update
     Map<String, dynamic> row = {
       DatabaseHelper.columnId: 1,
-      DatabaseHelper.columnDate: '29/03/2021',
-      DatabaseHelper.columnTime: '12:34',
-      DatabaseHelper.columnName: 'John',
-      DatabaseHelper.columnMessage: 'This test MESSAGE has changed',
+      DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
+      DatabaseHelper.columnList: [],
     };
     final rowsAffected = await dbHelper.update(row);
     print('updated $rowsAffected row(s)');
