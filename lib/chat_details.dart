@@ -129,7 +129,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      _insert(_chatConversation);
+      // _insert(_chatConversation);
 
       // query all rows of table
       // table, table size, rows
