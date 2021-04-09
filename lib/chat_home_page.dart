@@ -73,7 +73,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
     rootPath = await getTemporaryDirectory();
 
     // Create sample directory if not exists
-    Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
+    Directory sampleFolder = Directory('${rootPath.path}');
+    // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
     // print(rootPath);
     // print(rootPath.path);
     if (!sampleFolder.existsSync()) {
@@ -136,17 +137,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
       fileList.add(fileObject);
     }
 
-    // print("Open file_picker to import text file");
-    // print("importedFile: $importedFile");
-    
-    // regexParseLine();
-    // // regexDemo();
-    // // process lines of file
-    // importedFile
-    //     .readAsLines()
-    //     .then(processLines)
-    //     .catchError((err) => handleError(err));
-
     setState(() {
       filePath = path;
     });
@@ -156,7 +146,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
     // process lines:
     // for (var line in lines) {
     //   print(line);
-
     // }
   }
 
