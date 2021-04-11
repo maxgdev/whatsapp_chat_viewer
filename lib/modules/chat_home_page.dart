@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_chat_viewer/chat_colors.dart';
+import 'package:whatsapp_chat_viewer/modules/chat_colors.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'file_list.dart';
-import 'chat_model.dart';
+import '../model/chat_model.dart';
 // import 'package:path/path.dart' as p;
 
 class ChatHomePage extends StatefulWidget {
@@ -72,9 +72,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Future<void> _prepareStorage() async {
     rootPath = await getTemporaryDirectory();
 
-    // Create sample directory if not exists
-    Directory sampleFolder = Directory('${rootPath.path}');
-    // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
+    // Create sample directory if not exist
+    Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
     // print(rootPath);
     // print(rootPath.path);
     if (!sampleFolder.existsSync()) {

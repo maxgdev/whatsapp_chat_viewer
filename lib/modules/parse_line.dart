@@ -1,4 +1,4 @@
-import './chat_model.dart';
+import '../model/chat_model.dart';
 // Function to parse line string fronm text fiile
 // parseLine(String txtLine, int index) {
 //   var tempToken, dateToken, timeToken, restToken, nameToken, textToken;

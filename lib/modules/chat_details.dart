@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import './chat_model.dart';
+// import 'package:flutter/services.dart';
+import '../model/chat_model.dart';
 // import 'package:whatsapp_chat_viewer/file_list.dart';
 // import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'dart:async';
 import 'dart:convert';
-import './parse_line.dart';
+import 'parse_line.dart';
 import 'dart:io';
-import './db_methods.dart';
+import 'db_methods.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './chat_colors.dart';
-import 'chat_model.dart';
-import './chat_details.dart';
+import 'chat_colors.dart';
+import '../model/chat_model.dart';
+import 'chat_details.dart';
 
 class Chats extends StatefulWidget {
   ChatsState createState() => ChatsState();
