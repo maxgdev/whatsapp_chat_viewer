@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:whatsapp_chat_viewer/modules/chats.dart';
 // import './chat_model.dart';
 
 class DatabaseHelper {
@@ -63,6 +64,19 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.insert(table, row);
   }
+
+  // Batch indert of rows
+  // inserting 1 chat per row from List (converstion/file)
+  Future batchInsert(List<dynamic> rows) async {
+    Database db = await instance.database;
+    // return await db.insert(table, row);
+    Batch batch = db.batch();
+    for (Map<String, dynamic> row in rows) {
+      batch.insert(table, row);
+    }
+    return batch.commit(noResult: true);
+  }
+
 
   // All of the rows are returned as a list of maps, where each map is 
   // a key-value list of columns.
