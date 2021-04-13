@@ -68,17 +68,7 @@ class DatabaseHelper {
     return await db.insert(table, row);
   }
 
-  // // Batch indert of rows
-  // // inserting 1 chat per row from List (converstion/file)
-  // Future batchInsert(List<dynamic> rows) async {
-  //   Database db = await instance.database;
-  //   // return await db.insert(table, row);
-  //   Batch batch = db.batch();
-  //   for (Map<String, dynamic> row in rows) {
-  //     batch.insert(table, row);
-  //   }
-  //   return batch.commit(noResult: true);
-  // }
+
 
 //------------------------------------------------------
   // Batch indert of rows

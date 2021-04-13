@@ -180,11 +180,11 @@ parseLine(String txtLine, int index) {
 convertToChatObjects(List chatList) {
   // chatList input List of lines from file
   // convertedList output/returned List of Chat objects
-  List<Chat> convertChatList = [];
+  List<Chat> convertedChatList = [];
 
   chatList.forEach((line) {
     // Build 
-    convertChatList.add(Chat(
+    convertedChatList.add(Chat(
         date: parseLine(line, 0),
         time: parseLine(line, 1),
         name:parseLine(line, 2).trim(),
@@ -194,5 +194,5 @@ convertToChatObjects(List chatList) {
     );
     
   });
-  return convertChatList;
+  return convertedChatList;
 }

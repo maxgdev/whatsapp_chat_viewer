@@ -93,14 +93,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
       // Now batch insert chats as rows
-
-      var results = DatabaseHelper.instance.batchInsert(_chatConversation);
-      print("results: $results");
-      // query all rows of table
-      var myQuery = DatabaseHelper.instance.queryRowCount();
-      print(myQuery);
-      // table, table size, rows
     });
+
+    var results = DatabaseHelper.instance.batchInsert(_chatConversation);
+    print("results: $results");
+    // query all rows of table
+    var myQuery = DatabaseHelper.instance.queryRowCount();
+    print(myQuery);
+    // table, table size, rows
   }
 
   static const styleSomebody = BubbleStyle(
