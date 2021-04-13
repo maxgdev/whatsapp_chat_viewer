@@ -13,14 +13,17 @@ class DatabaseHelper {
 
   // static final table = 'my_table';
   static final table = 'wcv_table';
-  
+   
   // static final columnId = '_id';
   // static final columnName = 'name';
-  // static final columnAge = 'age';
+  // static final columnList = 'list';
+
+  static final chatId = '_id';
+  static final chatDate = 'date';
+  static final chatTime = 'time';
+  static final chatName = 'name';
+  static final chatMessage = 'message';
   
-  static final columnId = '_id';
-  static final columnName = 'name';
-  static final columnList = 'list';
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -46,13 +49,23 @@ class DatabaseHelper {
 
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
+    // await db.execute('''
+    //       CREATE TABLE $table (
+    //         $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
+    //         $columnName TEXT NOT NULL,
+    //         $columnList BLOB NOT NULL
+    //         )
+    //       ''');
     await db.execute('''
           CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $columnName TEXT NOT NULL,
-            $columnList BLOB NOT NULL
+            $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+            $chatDate TEXT NOT NULL,
+            $chatTime TEXT NOT NULL,
+            $chatName TEXT NOT NULL,
+            $chatMessage TEXT NOT NULL,
             )
           ''');
+
   }
   
   // Helper methods
@@ -65,17 +78,46 @@ class DatabaseHelper {
     return await db.insert(table, row);
   }
 
+  // // Batch indert of rows
+  // // inserting 1 chat per row from List (converstion/file)
+  // Future batchInsert(List<dynamic> rows) async {
+  //   Database db = await instance.database;
+  //   // return await db.insert(table, row);
+  //   Batch batch = db.batch();
+  //   for (Map<String, dynamic> row in rows) {
+  //     batch.insert(table, row);
+  //   }
+  //   return batch.commit(noResult: true);
+  // }
+
+//------------------------------------------------------
   // Batch indert of rows
   // inserting 1 chat per row from List (converstion/file)
   Future batchInsert(List<dynamic> rows) async {
     Database db = await instance.database;
-    // return await db.insert(table, row);
-    Batch batch = db.batch();
+
+      var batch = db.batch();
+      // Create table in database
+      
+      batch.execute('''
+          CREATE TABLE $table (
+            $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+            $chatDate TEXT NOT NULL,
+            $chatTime TEXT NOT NULL,
+            $chatName TEXT NOT NULL,
+            $chatMessage TEXT NOT NULL,
+            )
+          ''');
+
+    // Batch batch = db.batch();
     for (Map<String, dynamic> row in rows) {
       batch.insert(table, row);
+      // batch.insert('Test', {'name': 'item6'});
     }
-    return batch.commit(noResult: true);
+    var results = await batch.commit();
+    return results;
   }
+//------------------------------------------------------
 
 
   // All of the rows are returned as a list of maps, where each map is 
@@ -96,14 +138,14 @@ class DatabaseHelper {
   // column values will be used to update the row.
   Future<int> update(Map<String, dynamic> row) async {
     Database db = await instance.database;
-    int id = row[columnId];
-    return await db.update(table, row, where: '$columnId = ?', whereArgs: [id]);
+    int id = row[chatId];
+    return await db.update(table, row, where: '$chatId = ?', whereArgs: [id]);
   }
 
   // Deletes the row specified by the id. The number of affected rows is 
   // returned. This should be 1 as long as the row exists.
   Future<int> delete(int id) async {
     Database db = await instance.database;
-    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+    return await db.delete(table, where: '$chatId = ?', whereArgs: [id]);
   }
 }

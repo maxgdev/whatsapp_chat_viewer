@@ -31,47 +31,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // Pending function to select or identy "self" in chat conversation
   String _selfName = 'John';
 
-  // _loadChatConversation for LOADING DUMMY Conversation
-  // ----------------------------------------------------
-  // Future<List<String>> _loadChatConversation() async {
-  //   // chatConversation scoped to inner function
-  //   List<String> chatConversation = [];
-  //   // Loading sample chat for development ONLY
-  //   // production is selected from device/SD card
-  //   await rootBundle.loadString('assets/chatsample.txt').then((q) {
-  //     for (String i in LineSplitter().convert(q)) {
-  //       chatConversation.add(i);
-  //     }
-  //   });
-  //   return chatConversation;
-  // }
-
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
-    // Load from asset folder - dev & testing ONLY
-    // production is selected from device/SD card
-    // await rootBundle.loadString("${wcvObject.filePath}").then((q) {
-    //   for (String i in LineSplitter().convert(q)) {
-    //     print(i); // diagnostic
-    //     chatConversation.add(i);
-    //   }
-    // });
 
-    // final _file = File(widget.wcvObject.filePath);
-    // await _file.readAsString().then((q) {
-    //   LineSplitter ls = LineSplitter();
-    //   List<String> _fileLines = ls.convert(q);
-    //   for (String i in _fileLines) {
-    //     chatConversation.add(i);
-    //     print("chatConversation size: ${chatConversation.length}");
-    //     regexParseLine(i);
-    //   }
-    // });
-    // --------------------------------------------------------
     // Parsing line with RegExp
-
     final _file = File(widget.wcvObject.filePath);
     await _file.readAsString().then((q) {
       LineSplitter ls = LineSplitter();
@@ -126,11 +91,13 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
+    print(widget.wcvObject.fileName);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      // _insert(_chatConversation);
-
+      // Now batch insert chats as rows
+      // batchInsert(_chatConversation);
+      
       // query all rows of table
       // table, table size, rows
     });
@@ -240,8 +207,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   void _insert(rowElement) async {
     // row to insert
     Map<String, dynamic> row = {
-      DatabaseHelper.columnName: "Test Name",
-      DatabaseHelper.columnList: rowElement,
+      DatabaseHelper.chatName: "Test Name",
+      DatabaseHelper.chatMessage: "Test Message",
     };
     final id = await dbHelper.insert(row);
     print('inserted row id: $id');
@@ -254,16 +221,16 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     allRows.forEach((row) => print(row));
   }
 
-  void _update() async {
-    // row to update
-    Map<String, dynamic> row = {
-      DatabaseHelper.columnId: 1,
-      DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
-      DatabaseHelper.columnList: [],
-    };
-    final rowsAffected = await dbHelper.update(row);
-    print('updated $rowsAffected row(s)');
-  }
+  // void _update() async {
+  //   // row to update
+  //   Map<String, dynamic> row = {
+  //     DatabaseHelper.columnId: 1,
+  //     DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
+  //     DatabaseHelper.columnList: [],
+  //   };
+  //   final rowsAffected = await dbHelper.update(row);
+  //   print('updated $rowsAffected row(s)');
+  // }
 
   void _delete() async {
     // Assuming that the number of rows is the id for the last row.

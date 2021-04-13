@@ -79,13 +79,13 @@ regexParseLine(String txtLine) {
   // Expectation: true
   if (tempToken != null) {
     // if (chatLineExp.hasMatch(txtLine)) {
-    print('Line 1 is valid');
+    // print('Line 1 is valid');
 
-    print("tempToken = tempToken.group(0) = ${tempToken.group(0)}");
-    print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
-    print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
-    print("temp3Token =tempToken.group(3) = ${tempToken.group(3)}");
-    print("nameToken = tempToken.group(4) = ${tempToken.group(4)}");
+    // print("tempToken = tempToken.group(0) = ${tempToken.group(0)}");
+    // print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
+    // print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
+    // print("temp3Token =tempToken.group(3) = ${tempToken.group(3)}");
+    // print("nameToken = tempToken.group(4) = ${tempToken.group(4)}");
     // print("textToken = tempToken.group(5) = ${tempToken.group(5)}");
     // print("restToken = tempToken.group(6) = ${tempToken.group(6)}");
     // print("tempToken.group(7) = ${tempToken.group(7)}");
@@ -111,11 +111,11 @@ regexP(String txtLine) {
   // check using RegExp
   if (tempToken != null) {
     print('tempToken is != null');
-    print("tempToken.group(0) = ${tempToken.group(0)}");
-    print("tempToken.group(1) = ${tempToken.group(1)}");
-    print("tempToken.group(2) = ${tempToken.group(2)}");
-    print("tempToken.group(3) = ${tempToken.group(3)}");
-    print("tempToken.group(4) = ${tempToken.group(4)}");
+    // print("tempToken.group(0) = ${tempToken.group(0)}");
+    // print("tempToken.group(1) = ${tempToken.group(1)}");
+    // print("tempToken.group(2) = ${tempToken.group(2)}");
+    // print("tempToken.group(3) = ${tempToken.group(3)}");
+    // print("tempToken.group(4) = ${tempToken.group(4)}");
 
     // print('-------------------');
     // print(tempToken.group(0));

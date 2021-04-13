@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './modules/chat_home_page.dart';
-import './modules/sql_provider.dart';
 
 void main() {
   runApp(MyApp());
