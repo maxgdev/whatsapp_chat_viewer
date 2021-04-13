@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import '../model/chat_model.dart';
-// import 'package:whatsapp_chat_viewer/file_list.dart';
-// import 'package:whatsapp_chat_viewer/chat_model.dart';
 import 'chat_colors.dart';
 import 'package:bubble/bubble.dart';
 import 'dart:async';
@@ -67,10 +64,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         // chatConversation.add(i);
 
       }
-      print("chatConversation size: ${chatConversation.length}");
-      print("lines imported: ${_fileLines.length}");
-      print(
-          "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
+      // print("chatConversation size: ${chatConversation.length}");
+      // print("lines imported: ${_fileLines.length}");
+      // print(
+      //     "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
     });
 
     // --------------------------------------------------------
@@ -96,9 +93,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
       // Now batch insert chats as rows
-      // batchInsert(_chatConversation);
-      
+
+      var results = DatabaseHelper.instance.batchInsert(_chatConversation);
+      print("results: $results");
       // query all rows of table
+      var myQuery = DatabaseHelper.instance.queryRowCount();
+      print(myQuery);
       // table, table size, rows
     });
   }
@@ -204,38 +204,37 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
 // Database methods
 
-  void _insert(rowElement) async {
-    // row to insert
-    Map<String, dynamic> row = {
-      DatabaseHelper.chatName: "Test Name",
-      DatabaseHelper.chatMessage: "Test Message",
-    };
-    final id = await dbHelper.insert(row);
-    print('inserted row id: $id');
-  }
+//   void _insert(rowElement) async {
+//     // row to insert
+//     Map<String, dynamic> row = {
+//       DatabaseHelper.chatName: "Test Name",
+//       DatabaseHelper.chatMessage: "Test Message",
+//     };
+//     final id = await dbHelper.insert(row);
+//     print('inserted row id: $id');
+//   }
 
+//   void _query() async {
+//     final allRows = await dbHelper.queryAllRows();
+//     print('query all rows:');
+//     allRows.forEach((row) => print(row));
+//   }
 
-  void _query() async {
-    final allRows = await dbHelper.queryAllRows();
-    print('query all rows:');
-    allRows.forEach((row) => print(row));
-  }
+//   // void _update() async {
+//   //   // row to update
+//   //   Map<String, dynamic> row = {
+//   //     DatabaseHelper.columnId: 1,
+//   //     DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
+//   //     DatabaseHelper.columnList: [],
+//   //   };
+//   //   final rowsAffected = await dbHelper.update(row);
+//   //   print('updated $rowsAffected row(s)');
+//   // }
 
-  // void _update() async {
-  //   // row to update
-  //   Map<String, dynamic> row = {
-  //     DatabaseHelper.columnId: 1,
-  //     DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
-  //     DatabaseHelper.columnList: [],
-  //   };
-  //   final rowsAffected = await dbHelper.update(row);
-  //   print('updated $rowsAffected row(s)');
-  // }
-
-  void _delete() async {
-    // Assuming that the number of rows is the id for the last row.
-    final id = await dbHelper.queryRowCount();
-    final rowsDeleted = await dbHelper.delete(id);
-    print('deleted $rowsDeleted row(s): row $id');
-  }
+//   void _delete() async {
+//     // Assuming that the number of rows is the id for the last row.
+//     final id = await dbHelper.queryRowCount();
+//     final rowsDeleted = await dbHelper.delete(id);
+//     print('deleted $rowsDeleted row(s): row $id');
+//   }
 }

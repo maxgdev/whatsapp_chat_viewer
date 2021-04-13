@@ -30,15 +30,15 @@ class WCVImportFile {
   String fileAttached; // string or boolean??
 }
 
-class Conversation {
-  Conversation({
-    this.id,
-    this.fileName,
-    this.chatList,
+// class Conversation {
+//   Conversation({
+//     this.id,
+//     this.fileName,
+//     this.chatList,
 
-  });
+//   });
 
-  int id; 
-  String fileName;
-  String chatList;
-}
+//   int id; 
+//   String fileName;
+//   String chatList;
+// }
