@@ -200,8 +200,9 @@ formatFilename(String text) {
   var allSpaces = text.replaceAll(' ', '');
   // remove all '/' characters
   var allBackSlash = allSpaces.replaceAll('/', '');
-  // remove .txt
-  var result = allBackSlash.split('.txt')[0];
+  // remove .txt & make all lowercase
+  var result = allBackSlash.split('.txt')[0].toLowerCase();
   print(result);
+  // convert function to use to regex...
   return result;
 }
