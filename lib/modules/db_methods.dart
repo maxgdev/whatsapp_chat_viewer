@@ -6,16 +6,10 @@ import 'package:whatsapp_chat_viewer/modules/chats.dart';
 import '../model/chat_model.dart';
 
 class DatabaseHelper {
-  // static final _databaseName = "MyDatabase.db";
   static final _databaseName = "WCVDatabase.db";
   static final _databaseVersion = 1;
 
-  // static final table = 'my_table';
   static final table = 'wcv_table';
-
-  // static final columnId = '_id';
-  // static final columnName = 'name';
-  // static final columnList = 'list';
 
   static final chatId = '_id';
   static final chatDate = 'date';
@@ -69,35 +63,39 @@ class DatabaseHelper {
   }
 
 //------------------------------------------------------
-  // Batch indert of rows
+  // Batch insert of rows
   // inserting 1 chat per row from List (converstion/file)
-  Future batchInsert(rows) async {
+  Future batchInsert(tableName, rows) async {
     Database db = await instance.database;
 
     var batch = db.batch();
+    // if table already exists add a number to name
+    if (await db.query(tableName,
+            where: 'name = ?', whereArgs: [tableName]) !=
+        []) {
+      print("Database already exists");
+    }
     // Create table in database
+    if (await db.query(tableName,
+            where: 'name = ?', whereArgs: [tableName]) ==
+        []) {
+      batch.execute('''
+          CREATE TABLE $tableName (
+            $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+            $chatDate TEXT NOT NULL,
+            $chatTime TEXT NOT NULL,
+            $chatName TEXT NOT NULL,
+            $chatMessage TEXT NOT NULL,
+            )
+          ''');
+    }
 
-    // batch.execute('''
-    //       CREATE TABLE $table (
-    //         $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-    //         $chatDate TEXT NOT NULL,
-    //         $chatTime TEXT NOT NULL,
-    //         $chatName TEXT NOT NULL,
-    //         $chatMessage TEXT NOT NULL,
-    //         )
-    //       ''');
-
-    // Batch batch = db.batch();
-    // for (Map<String, Object> row in rows) {
-    //   batch.insert(table, row);
-    //   // batch.insert('Test', {'name': 'item6'});
-    // }
-    var count = 0;
+    // var count = 0;
     rows.forEach((element) {
-      print("count: $count");
-      count = count + 1;
-      print(
-          "${element.date}, ${element.time}, ${element.name}, ${element.message}");
+      // print("count: $count");
+      // count = count + 1;
+      // print(
+      //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {
         chatDate: element.date,
         chatTime: element.time,

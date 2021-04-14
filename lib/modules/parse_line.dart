@@ -73,7 +73,7 @@ regexP(String txtLine) {
   // DATE, TIME - NAME : TEXT
   var tempToken;
   tempToken = lineExp.firstMatch(txtLine);
-  print("regexParseLine running...");
+  print("regexP running...");
 
   // check using RegExp
   if (tempToken != null) {
@@ -164,7 +164,7 @@ convertToChatObjects(List chatList) {
 
 formatFilename(String text) {
   // remove all spaces
-  var allSpaces = text.replaceAll(' ', '');
+  var allSpaces = text.replaceAll(' ', '_');
   // remove all '/' characters
   var allBackSlash = allSpaces.replaceAll('/', '');
   // remove .txt & make all lowercase

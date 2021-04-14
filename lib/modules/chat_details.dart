@@ -89,14 +89,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
     print(widget.wcvObject.fileName);
-    formatFilename(widget.wcvObject.fileName);
+    var tableName = formatFilename(widget.wcvObject.fileName);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
       // Now batch insert chats as rows
     });
 
-    var results = await DatabaseHelper.instance.batchInsert(_chatConversation);
+    var results = await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
     print("results: $results");
     // query all rows of table
     // var myQuery = await DatabaseHelper.instance.queryRowCount();
