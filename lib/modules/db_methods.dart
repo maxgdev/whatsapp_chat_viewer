@@ -69,26 +69,18 @@ class DatabaseHelper {
     Database db = await instance.database;
 
     var batch = db.batch();
-    // if table already exists add a number to name
-    if (await db.query(tableName,
-            where: 'name = ?', whereArgs: [tableName]) !=
-        []) {
-      print("Database already exists");
+    // if table already exists add a number to name or enter new name??
+    if (await isTableExits(tableName) == true) {
+        print("Table already exists");
+        // Warn user and request new name
+    } else {
+        // Create table in database
+        print("Creating table $tableName ...");
+        
     }
-    // Create table in database
-    if (await db.query(tableName,
-            where: 'name = ?', whereArgs: [tableName]) ==
-        []) {
-      batch.execute('''
-          CREATE TABLE $tableName (
-            $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $chatDate TEXT NOT NULL,
-            $chatTime TEXT NOT NULL,
-            $chatName TEXT NOT NULL,
-            $chatMessage TEXT NOT NULL,
-            )
-          ''');
-    }
+
+    
+  
 
     // var count = 0;
     rows.forEach((element) {
@@ -139,4 +131,30 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.delete(table, where: '$chatId = ?', whereArgs: [id]);
   }
+
+  // Determine whether the table exists
+  isTableExits(String tableName) async {
+    //Built-in table sqlite_master
+    Database db = await instance.database;
+    var sql ="SELECT * FROM sqlite_master WHERE TYPE = 'table' AND NAME = '$tableName'";
+    var res = await db.rawQuery(sql);
+    var returnRes = res!=null && res.length > 0;
+    return returnRes;
+  }
+
+  //Create table
+  createTable(String tableName) async {
+    Database db = await instance.database;
+    // var batch = db.batch();
+    await db.execute('''
+        CREATE TABLE $tableName (
+          $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+          $chatDate TEXT NOT NULL,
+          $chatTime TEXT NOT NULL,
+          $chatName TEXT NOT NULL,
+          $chatMessage TEXT NOT NULL,
+          )
+        ''');
+  }
+
 }
