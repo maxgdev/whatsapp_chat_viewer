@@ -68,8 +68,6 @@ class DatabaseHelper {
     return await db.insert(table, row);
   }
 
-
-
 //------------------------------------------------------
   // Batch indert of rows
   // inserting 1 chat per row from List (converstion/file)
@@ -94,7 +92,10 @@ class DatabaseHelper {
     //   batch.insert(table, row);
     //   // batch.insert('Test', {'name': 'item6'});
     // }
+    var count = 0;
     rows.forEach((element) {
+      print("count: $count");
+      count = count + 1;
       print(
           "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {

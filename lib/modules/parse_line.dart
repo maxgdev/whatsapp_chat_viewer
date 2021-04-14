@@ -110,7 +110,7 @@ regexP(String txtLine) {
 
   // check using RegExp
   if (tempToken != null) {
-    print('tempToken is != null');
+    // print('tempToken is != null');
     // print("tempToken.group(0) = ${tempToken.group(0)}");
     // print("tempToken.group(1) = ${tempToken.group(1)}");
     // print("tempToken.group(2) = ${tempToken.group(2)}");
@@ -122,14 +122,14 @@ regexP(String txtLine) {
     // print(txtLine);
     if (tempToken.group(0) == txtLine) {
       // match of whole line
-      print('tempToken == txtLine. Return true');
+      // print('tempToken == txtLine. Return true');
       return true;
     } else {
-      print('tempToken is != txtLine. Return false');
+      // print('tempToken is != txtLine. Return false');
       return false;
     }
   } else {
-    print("tempToken is null");
+    // print("tempToken is null");
     return false;
   }
 }
@@ -183,16 +183,25 @@ convertToChatObjects(List chatList) {
   List<Chat> convertedChatList = [];
 
   chatList.forEach((line) {
-    // Build 
+    // Build
     convertedChatList.add(Chat(
-        date: parseLine(line, 0),
-        time: parseLine(line, 1),
-        name:parseLine(line, 2).trim(),
-        message: parseLine(line, 3),
-        fileAttached: "",
-      )
-    );
-    
+      date: parseLine(line, 0),
+      time: parseLine(line, 1),
+      name: parseLine(line, 2).trim(),
+      message: parseLine(line, 3),
+      fileAttached: "",
+    ));
   });
   return convertedChatList;
+}
+
+formatFilename(String text) {
+  // remove all spaces
+  var allSpaces = text.replaceAll(' ', '');
+  // remove all '/' characters
+  var allBackSlash = allSpaces.replaceAll('/', '');
+  // remove .txt
+  var result = allBackSlash.split('.txt')[0];
+  print(result);
+  return result;
 }

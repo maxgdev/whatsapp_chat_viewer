@@ -89,6 +89,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         await _loadImportedChatConversation(widget.wcvObject);
     print(widget.wcvObject.filePath);
     print(widget.wcvObject.fileName);
+    formatFilename(widget.wcvObject.fileName);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
