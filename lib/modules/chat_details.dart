@@ -49,12 +49,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           // add to db: table and row
           //
           tmpStr = "";
-          // print('match');
+          
         } else {
           // if line does NOT match <date><time> format then body string
           tmpStr = tmpStr + i;
           chatLength = chatConversation.length;
-          // print(chatLength);
+          
           if (chatLength == 0) {
             chatConversation.add(tmpStr);
           } else {
@@ -70,11 +70,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       //     "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
     });
 
-    // --------------------------------------------------------
-    // Convert chatConversation List into Chat Objects List
-    // convert chatConversation in db entries
-    //---------------------------------------------------------
-
     return chatConversation;
   } // _loadImportedChatConversation
 
@@ -87,20 +82,19 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   _setup() async {
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
-    print(widget.wcvObject.filePath);
+    // print(widget.wcvObject.filePath);
     print(widget.wcvObject.fileName);
     var tableName = formatFilename(widget.wcvObject.fileName);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
-      // Now batch insert chats as rows
     });
-
+    // Now batch insert chats as rows
     var results = await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-    // print("results: $results");
+    print("results: $results");
     // query all rows of table
-    // var myQuery = await DatabaseHelper.instance.queryRowCount();
-    // print(myQuery);
+    var myQuery = await DatabaseHelper.instance.queryRowCount();
+    print(myQuery);
     
   }
 
@@ -203,39 +197,4 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     );
   }
 
-// Database methods
-
-//   void _insert(rowElement) async {
-//     // row to insert
-//     Map<String, dynamic> row = {
-//       DatabaseHelper.chatName: "Test Name",
-//       DatabaseHelper.chatMessage: "Test Message",
-//     };
-//     final id = await dbHelper.insert(row);
-//     print('inserted row id: $id');
-//   }
-
-//   void _query() async {
-//     final allRows = await dbHelper.queryAllRows();
-//     print('query all rows:');
-//     allRows.forEach((row) => print(row));
-//   }
-
-//   // void _update() async {
-//   //   // row to update
-//   //   Map<String, dynamic> row = {
-//   //     DatabaseHelper.columnId: 1,
-//   //     DatabaseHelper.columnName: 'WhatsApp Chat 30/03/2021',
-//   //     DatabaseHelper.columnList: [],
-//   //   };
-//   //   final rowsAffected = await dbHelper.update(row);
-//   //   print('updated $rowsAffected row(s)');
-//   // }
-
-//   void _delete() async {
-//     // Assuming that the number of rows is the id for the last row.
-//     final id = await dbHelper.queryRowCount();
-//     final rowsDeleted = await dbHelper.delete(id);
-//     print('deleted $rowsDeleted row(s): row $id');
-//   }
 }

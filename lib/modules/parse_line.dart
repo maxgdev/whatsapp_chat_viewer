@@ -73,16 +73,9 @@ regexP(String txtLine) {
   // DATE, TIME - NAME : TEXT
   var tempToken;
   tempToken = lineExp.firstMatch(txtLine);
-  print("regexP running...");
-
+  
   // check using RegExp
   if (tempToken != null) {
-    // print('tempToken is != null');
-    // print("tempToken.group(0) = ${tempToken.group(0)}");
-    // print("tempToken.group(1) = ${tempToken.group(1)}");
-    // print("tempToken.group(2) = ${tempToken.group(2)}");
-    // print("tempToken.group(3) = ${tempToken.group(3)}");
-    // print("tempToken.group(4) = ${tempToken.group(4)}");
 
     // print('-------------------');
     // print(tempToken.group(0));
@@ -135,9 +128,6 @@ parseLine(String txtLine, int index) {
     timeToken = tempToken.group(2);
     nameToken = tempToken.group(4).split(":")[0];
     textToken = tempToken.group(4).split(":")[1];
-    // print(tempToken.group(4).split(":"));
-    // print(nameToken);
-    // print(textToken);
     tokenList = [dateToken, timeToken, nameToken, textToken];
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     return tokenList[index];
@@ -150,7 +140,7 @@ convertToChatObjects(List chatList) {
   List<Chat> convertedChatList = [];
 
   chatList.forEach((line) {
-    // Build
+    // Build Chat and add to List
     convertedChatList.add(Chat(
       date: parseLine(line, 0),
       time: parseLine(line, 1),

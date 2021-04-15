@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:whatsapp_chat_viewer/modules/chats.dart';
-import '../model/chat_model.dart';
+// import 'package:whatsapp_chat_viewer/modules/chats.dart';
+// import '../model/chat_model.dart';
 
 class DatabaseHelper {
   static final _databaseName = "WCVDatabase.db";
@@ -80,8 +80,8 @@ class DatabaseHelper {
     }
     // print(table);
     rows.forEach((element) {
-      print(
-          "${element.date}, ${element.time}, ${element.name}, ${element.message}");
+      // print(
+      //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {
         chatDate: element.date,
         chatTime: element.time,
@@ -126,7 +126,7 @@ class DatabaseHelper {
 
   // Determine whether the table exists
   isTableExits(String tableName) async {
-    //Built-in table sqlite_master
+    //Built-in table 'sqlite_master'
     Database db = await instance.database;
     var sql =
         "SELECT * FROM sqlite_master WHERE TYPE = 'table' AND NAME = '$tableName'";
@@ -144,16 +144,7 @@ class DatabaseHelper {
     var sql =
         "CREATE TABLE $tableName (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
 
-    // await db.execute('''
-    //     CREATE TABLE $tableName (
-    //       $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-    //       $chatDate TEXT NOT NULL,
-    //       $chatTime TEXT NOT NULL,
-    //       $chatName TEXT NOT NULL,
-    //       $chatMessage TEXT NOT NULL
-    //       )
-    //     ''');
     await db.execute(sql);
-    
+
   }
 }
