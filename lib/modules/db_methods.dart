@@ -71,29 +71,24 @@ class DatabaseHelper {
     var batch = db.batch();
     // if table already exists add a number to name or enter new name??
     if (await isTableExits(tableName) == true) {
-        print("Table already exists");
-        // Warn user and request new name
+      print("Table already exists");
+      // Warn user and request new name
     } else {
-        // Create table in database
-        print("Creating table $tableName ...");
-        
+      // Create table in database
+      print("Creating table $tableName ...");
+      await createTable(tableName);
     }
-
-    
-  
-
-    // var count = 0;
+    // print(table);
     rows.forEach((element) {
-      // print("count: $count");
-      // count = count + 1;
-      // print(
-      //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
+      print(
+          "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {
         chatDate: element.date,
         chatTime: element.time,
         chatName: element.name,
         chatMessage: element.message,
       };
+      // batch.insert(tableName, row);
       batch.insert(table, row);
     });
 
@@ -102,8 +97,6 @@ class DatabaseHelper {
   }
 //------------------------------------------------------
 
-  // All of the rows are returned as a list of maps, where each map is
-  // a key-value list of columns.
   Future<List> queryAllRows() async {
     Database db = await instance.database;
     return await db.query(table);
@@ -117,12 +110,11 @@ class DatabaseHelper {
         await db.rawQuery('SELECT COUNT(*) FROM $table'));
   }
 
-  // We are assuming here that the id column in the map is set. The other
-  // column values will be used to update the row.
-  Future<int> update(row) async {
+  Future<int> update(tableName, row) async {
     Database db = await instance.database;
     int id = row[chatId];
-    return await db.update(table, row, where: '$chatId = ?', whereArgs: [id]);
+    return await db
+        .update(tableName, row, where: '$chatId = ?', whereArgs: [id]);
   }
 
   // Deletes the row specified by the id. The number of affected rows is
@@ -136,25 +128,32 @@ class DatabaseHelper {
   isTableExits(String tableName) async {
     //Built-in table sqlite_master
     Database db = await instance.database;
-    var sql ="SELECT * FROM sqlite_master WHERE TYPE = 'table' AND NAME = '$tableName'";
+    var sql =
+        "SELECT * FROM sqlite_master WHERE TYPE = 'table' AND NAME = '$tableName'";
     var res = await db.rawQuery(sql);
-    var returnRes = res!=null && res.length > 0;
+    print("tableName: $tableName, res: $res");
+    print("res.length: ${res.length}");
+    var returnRes = res != null && res.length > 0;
+    print("returnRes: $returnRes");
     return returnRes;
   }
 
   //Create table
   createTable(String tableName) async {
     Database db = await instance.database;
-    // var batch = db.batch();
-    await db.execute('''
-        CREATE TABLE $tableName (
-          $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-          $chatDate TEXT NOT NULL,
-          $chatTime TEXT NOT NULL,
-          $chatName TEXT NOT NULL,
-          $chatMessage TEXT NOT NULL,
-          )
-        ''');
-  }
+    var sql =
+        "CREATE TABLE $tableName (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
 
+    // await db.execute('''
+    //     CREATE TABLE $tableName (
+    //       $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+    //       $chatDate TEXT NOT NULL,
+    //       $chatTime TEXT NOT NULL,
+    //       $chatName TEXT NOT NULL,
+    //       $chatMessage TEXT NOT NULL
+    //       )
+    //     ''');
+    await db.execute(sql);
+    
+  }
 }

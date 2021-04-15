@@ -97,7 +97,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     });
 
     var results = await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-    print("results: $results");
+    // print("results: $results");
     // query all rows of table
     // var myQuery = await DatabaseHelper.instance.queryRowCount();
     // print(myQuery);

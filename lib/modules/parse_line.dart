@@ -167,8 +167,10 @@ formatFilename(String text) {
   var allSpaces = text.replaceAll(' ', '_');
   // remove all '/' characters
   var allBackSlash = allSpaces.replaceAll('/', '');
+  // remove all '&' characters
+  var allAmpersand = allBackSlash.replaceAll('&', '');
   // remove .txt & make all lowercase
-  var result = allBackSlash.split('.txt')[0].toLowerCase();
+  var result = allAmpersand.split('.txt')[0].toLowerCase();
   print(result);
   // convert function to use to regex...
   return result;
