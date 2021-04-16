@@ -41,15 +41,19 @@ class DatabaseHelper {
 
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE $table (
-            $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $chatDate TEXT NOT NULL,
-            $chatTime TEXT NOT NULL,
-            $chatName TEXT NOT NULL,
-            $chatMessage TEXT NOT NULL,
-            )
-          ''');
+    // await db.execute('''
+    //       CREATE TABLE $table (
+    //         $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
+    //         $chatDate TEXT NOT NULL,
+    //         $chatTime TEXT NOT NULL,
+    //         $chatName TEXT NOT NULL,
+    //         $chatMessage TEXT NOT NULL,
+    //         )
+    //       ''');
+    // Database db = await instance.database;
+      var sql =
+        "CREATE TABLE $table (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
+      await db.execute(sql);
   }
 
   // Helper methods
