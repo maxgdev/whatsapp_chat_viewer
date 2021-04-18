@@ -120,6 +120,15 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     alignment: Alignment.topRight,
   );
 
+  static const noStyle = BubbleStyle(
+    color: Colors.white,
+    borderColor: Colors.blue,
+    borderWidth: 1,
+    elevation: 4,
+    margin: BubbleEdges.only(top: 8, right: 50),
+    alignment: Alignment.topCenter,
+  );
+
   @override
   Widget build(BuildContext context) {
     //
@@ -156,7 +165,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                               // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
                           ? styleMe
-                          : styleSomebody,
+                          : _chatConversation[index].name == "" 
+                            ? noStyle
+                            : styleSomebody,
                       margin: BubbleEdges.only(top: 4),
                       showNip: true,
                       child: Column(

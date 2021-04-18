@@ -128,21 +128,13 @@ parseLine(String txtLine, int index) {
 
     if (tempToken.group(4).split(":").length < 2) {
       // if no name them just return text
-      // // how will you know if no name
-      // // cannot find ":"
-      print("No name in chat object");
-      print(tempToken.group(4));
       nameToken = ""; // no name
       textToken = tempToken.group(4);
     } else {
-      // split as split as normal
       nameToken = tempToken.group(4).split(":")[0];
       textToken = tempToken.group(4).split(":")[1];
     }
     tokenList = [dateToken, timeToken, nameToken, textToken];
-
-    // print("nameToken: $nameToken");
-    // print("textToken: $textToken");
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     return tokenList[index];
   }
@@ -167,14 +159,14 @@ convertToChatObjects(List chatList) {
 }
 
 formatFilename(String text) {
-  // remove all spaces
-  var allSpaces = text.replaceAll(' ', '_');
   // remove all '/' characters
-  var allBackSlash = allSpaces.replaceAll('/', '');
+  var allBackSlash = text.replaceAll('/', '');
   // remove all '&' characters
   var allAmpersand = allBackSlash.replaceAll('&', '');
+  // remove all spaces
+  var allSpaces = allAmpersand.replaceAll(' ', '_');
   // remove .txt & make all lowercase
-  var result = allAmpersand.split('.txt')[0].toLowerCase();
+  var result = allSpaces.split('.txt')[0].toLowerCase();
   print(result);
   // convert function to use to regex...
   return result;
