@@ -26,7 +26,7 @@ import '../model/chat_model.dart';
 //     timeToken = tempToken.group(2);
 //     temp3Token = tempToken.group(3);
 //     nameToken = tempToken.group(4);
- 
+
 //     tokenList = [
 //       temp2Token,
 //       dateToken,
@@ -68,15 +68,14 @@ regexP(String txtLine) {
   // timeToken = tempToken.group(2) = 8:10
   // temp3Token =tempToken.group(3) = AM
   // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
-  // 
+  //
   // Match line with dd/mm/yy, hh:mm - <name>:
   // DATE, TIME - NAME : TEXT
   var tempToken;
   tempToken = lineExp.firstMatch(txtLine);
-  
+
   // check using RegExp
   if (tempToken != null) {
-
     // print('-------------------');
     // print(tempToken.group(0));
     // print(txtLine);
@@ -126,9 +125,24 @@ parseLine(String txtLine, int index) {
   } else {
     dateToken = tempToken.group(1);
     timeToken = tempToken.group(2);
-    nameToken = tempToken.group(4).split(":")[0];
-    textToken = tempToken.group(4).split(":")[1];
+
+    if (tempToken.group(4).split(":").length < 2) {
+      // if no name them just return text
+      // // how will you know if no name
+      // // cannot find ":"
+      print("No name in chat object");
+      print(tempToken.group(4));
+      nameToken = ""; // no name
+      textToken = tempToken.group(4);
+    } else {
+      // split as split as normal
+      nameToken = tempToken.group(4).split(":")[0];
+      textToken = tempToken.group(4).split(":")[1];
+    }
     tokenList = [dateToken, timeToken, nameToken, textToken];
+
+    // print("nameToken: $nameToken");
+    // print("textToken: $textToken");
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     return tokenList[index];
   }
