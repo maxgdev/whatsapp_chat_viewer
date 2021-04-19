@@ -67,7 +67,7 @@ parseLine(String txtLine, int index) {
     timeToken = tempToken.group(2);
 
     if (tempToken.group(4).split(":").length < 2) {
-      // if no name them just return text
+      // if no name then just return text
       nameToken = ""; // no name
       textToken = tempToken.group(4);
     } else {
@@ -75,7 +75,6 @@ parseLine(String txtLine, int index) {
       textToken = tempToken.group(4).split(":")[1];
     }
     // tokenList = [dateToken, timeToken, nameToken, textToken];
-    // // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     // return tokenList[index];
   }
     tokenList = [dateToken, timeToken, nameToken, textToken];
@@ -108,8 +107,12 @@ formatFilename(String text) {
   var allAmpersand = allBackSlash.replaceAll('&', '');
   // remove all spaces
   var allSpaces = allAmpersand.replaceAll(' ', '_');
+    // remove '( '& ')' characters 
+  var leftBracket = allSpaces.replaceAll('(', '');
+  var rightBracket = leftBracket.replaceAll(')', '');
   // remove .txt & make all lowercase
-  var result = allSpaces.split('.txt')[0].toLowerCase();
+  var result = rightBracket.split('.txt')[0].toLowerCase();
+
   // print(result);
   // convert function to use to regex...
   return result;
