@@ -113,8 +113,10 @@ parseLine(String txtLine, int index) {
   // print("tempToken.pattern: ${tempToken.pattern}");
   // print("tempToken.start: ${tempToken.start}");
   // print("tempToken.end: ${tempToken.end}");
-  if (tempToken?.group(1) == null) {
+  if (tempToken?.group(0) == null) {
     print("---- tempToken is null ----");
+    print("tempToken.group(0): ${tempToken.group(0)}");
+    print("tempToken.group(0): ${tempToken.group(1)}");
     // Null tempToken is given dummy values
     dateToken = "01/01/1970";
     timeToken = "00:00";

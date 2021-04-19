@@ -45,20 +45,22 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           // if line has <date><time> format start new List entry
           tmpStr = tmpStr + i;
           chatConversation.add(tmpStr);
+          print("chatConversation.add(tmpStr): $tmpStr");
           //
           // add to db: table and row
           //
           tmpStr = "";
-          
         } else {
           // if line does NOT match <date><time> format then body string
           tmpStr = tmpStr + i;
           chatLength = chatConversation.length;
-          
+
           if (chatLength == 0) {
             chatConversation.add(tmpStr);
+            print("chatLength == 0:  $tmpStr");
           } else {
-            chatConversation[chatLength - 1] = tmpStr;
+            chatConversation[chatLength - 1] = chatConversation[chatLength - 1] + tmpStr;
+            print("previousString + tmpStr: $tmpStr");
           }
         }
         // chatConversation.add(i);
@@ -90,12 +92,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       _chatConversation = convertToChatObjects(chatConversation);
     });
     // Now batch insert chats as rows
-    var results = await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
+    var results =
+        await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
     print("results: $results");
     // query all rows of table
     var myQuery = await DatabaseHelper.instance.queryRowCount();
     print(myQuery);
-    
   }
 
   static const styleSomebody = BubbleStyle(
@@ -165,9 +167,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                               // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
                           ? styleMe
-                          : _chatConversation[index].name == "" 
-                            ? noStyle
-                            : styleSomebody,
+                          : _chatConversation[index].name == ""
+                              ? noStyle
+                              : styleSomebody,
                       margin: BubbleEdges.only(top: 4),
                       showNip: true,
                       child: Column(
@@ -207,5 +209,4 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       ),
     );
   }
-
 }

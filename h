@@ -1,0 +1,563 @@
+[33mcommit a7184b606d73c972901499c583cecf4f4a087852[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Apr 18 21:42:59 2021 +0100
+
+    Added 'noStyle' for BubbleNip changed order of formatFilename replacemenst"
+
+[33mcommit 5f78baef3001cf8cc72f09349ee4ee3ce4aa812c[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Apr 18 21:01:41 2021 +0100
+
+    Fixed parseLine() error when ':' split for name is missing
+
+[33mcommit bda1941c9cc1833e1df8ff81d480b9296b0bf853[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Fri Apr 16 14:12:34 2021 +0100
+
+    Fixed sql query in _onCreate()
+
+[33mcommit 989cf1d99732b15e9a73209cddc426bd98514ba5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Apr 15 11:20:08 2021 +0100
+
+    Import into sqflite database working for dummy chats/conversations
+
+[33mcommit 355a7fabed24f9453c06f444f7845b5f2da24719[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Apr 15 10:55:07 2021 +0100
+
+    Added ampersand as character for removal from filename and fixed sql code for new table creation
+
+[33mcommit afa60448cad1c2e6f5716fff0009f4c63a4c8437[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 14 22:25:11 2021 +0100
+
+    Added code to test if db table exists and then creates table if it does not
+
+[33mcommit 0bd4e2d6622fd2f7d8f6e8c959643bc9ce5da8fe[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 14 21:27:28 2021 +0100
+
+    Added tableName parameter batchInsert() to create table for new imported files
+
+[33mcommit 8fcfdde14f1b0ce3f950f3d553501b695725f7ba[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 14 19:57:59 2021 +0100
+
+    tidy up parse_line.dart file
+
+[33mcommit 9aa83e2f155eab6089868b108f5569b7f1b496b3[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 14 19:49:54 2021 +0100
+
+    Added 'await' to DatabaseHelper in chat_details to wair for and display database query result
+
+[33mcommit 74ceebabf6a917ca70884d819689ccb1b93dd1ea[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 14 19:31:12 2021 +0100
+
+    Added formatFilename() to remove spaces, .txt and / from filename
+
+[33mcommit 2b2ab103486b235952195e255bfb9ac69251b928[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Apr 13 17:28:01 2021 +0100
+
+    Changed convertChatList to convertedChatList in parse_line.dart
+
+[33mcommit 9850fea5e5e976c4a781cfcac2dc922d5eb8d2af[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Apr 13 17:16:35 2021 +0100
+
+    Saving Chat object elements into {_databasename} & {table}
+
+[33mcommit 5138bfc28a0931a78317a988c539c3f8109086ff[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Apr 13 11:51:23 2021 +0100
+
+    More code cleanup/removal of comments. Changed database model to save Chat objects
+
+[33mcommit 0a50f1f2f7a8ff704e6f7ea0c7aaa75a43443cc3[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Apr 11 17:20:36 2021 +0100
+
+    Removed sql_provder.dart and added batchInsert()
+
+[33mcommit 17d393a8250ee767fce177e4b6e12cc1571e228f[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Apr 11 16:16:57 2021 +0100
+
+    Moved modules/widgets/classes to sub folders
+
+[33mcommit d2e3807832e1a46656c84b856b0556f72a8b4e75[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Fri Apr 9 22:59:15 2021 +0100
+
+    Code cleanup, added comments to pubspec.yaml, tested _prepareStorage()
+
+[33mcommit 4c15ce674a310e8f0e882879e469323c2dfa39b9[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Apr 7 13:42:15 2021 +0100
+
+    Removed _insert(_chatConversation) function
+
+[33mcommit 68efe2b529c87942469e7d5dfb9d8991c6d34801[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Apr 1 21:18:37 2021 +0100
+
+    Changed db insert to save List 'blob' instead of individual chats
+
+[33mcommit 2ef63aba9cded3729d4e248bebf0cfb99e1d0661[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 31 22:01:21 2021 +0100
+
+    Updated Conversation model
+
+[33mcommit 5337bb15392a019479e91bef07f72a787c2a09be[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 31 21:59:58 2021 +0100
+
+    Added Conversation model to store chatConversation in Db
+
+[33mcommit 045f287ea31ee38373cf7fdc350989e498ab4359[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 30 16:07:32 2021 +0100
+
+    Add another sqflite CRUD example to test saving chat to db
+
+[33mcommit eeee7267f0aea991e56291dedbce7b0e47fcf4c6[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 29 19:59:52 2021 +0100
+
+    Added sqflite CRUD method & files. Added code to insert chatConversation into databases
+
+[33mcommit 894003bda7aab01929be896bf2c2f7b93420eafa[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 29 16:33:23 2021 +0100
+
+    Null tempToken is given dummy values
+
+[33mcommit 26fd81235fdf06df3b8cb3211debd624acc419cc[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 29 11:47:06 2021 +0100
+
+    Added code for sqflite CRUD operations
+
+[33mcommit 4b92eb0ef9bc6f284933ffde2ad41622cd4f6552[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 29 10:06:44 2021 +0100
+
+    Added sqflite and path_provider plugins
+
+[33mcommit d48d643392cba4d42c445e84dc07e5dac6a7ccba[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 28 22:15:34 2021 +0100
+
+    Fixed noSuchMethod error on parseLine function by using Dart ? null check operator
+
+[33mcommit 41d9a300c5cc7240bf0a6e1bb60d68be91c133dc[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 28 21:39:40 2021 +0100
+
+    Added convertToChatObjects to parse imported lines to List of chat objects(conversation)
+
+[33mcommit 4a76f1127d0db920a638d3491326345ecdbf1b69[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 28 14:56:20 2021 +0100
+
+    Code cleanup
+
+[33mcommit fe52f954cd9ce3b81a75168dd128cf92ee95a246[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 28 14:45:59 2021 +0100
+
+    Adding more error checking to parseLine()
+
+[33mcommit 495f92fcf986c19a5937e2aee12f4346a2c8b2cf[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 27 21:47:53 2021 +0000
+
+    More error checking code in chat_details.dart
+
+[33mcommit 486de6cbc3faff9c764d3b7d5282724e57a415d9[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 27 21:03:45 2021 +0000
+
+    Parsing multiline into Chat body
+
+[33mcommit 82e229ea7bb94f21975ce8cccb607a16ab70e2ca[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 27 16:23:42 2021 +0000
+
+    Further testing of RegExp groupings
+
+[33mcommit 454e102dc0cc3d264a6470d3af3637a25d2dc9a5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 27 14:43:54 2021 +0000
+
+    Testing RegExp groups - down to 1 group
+
+[33mcommit dab47e4900c162dcd5fdcf5ef4d9a13e784c6db4[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Fri Mar 26 20:59:20 2021 +0000
+
+    Code Cleanup
+
+[33mcommit b82748a5cb2f81f9f2da2d46d7deca8a756eb73e[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 25 19:25:57 2021 +0000
+
+    Printing to console RegExp groups: 0 to 7
+
+[33mcommit f007ebec6b2667cf850f346f30e46840d5cb61c5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 25 18:01:12 2021 +0000
+
+    RegExp working in regexParseLine()
+
+[33mcommit c509a26993052f3d5607aa28293bfe1a552e880e[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 25 17:32:18 2021 +0000
+
+    Restored ChatDetails view from chatConversation List
+
+[33mcommit e5b53d34ac10a07e91c0be0f52a91a963a4e7b32[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 25 17:11:09 2021 +0000
+
+    Changed LineSplitter code section in ChatDetailsScreen for more readability
+
+[33mcommit 6fff7a636155d50db41f59cb624646b5f37e18ce[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 24 13:26:20 2021 +0000
+
+    Added \s* to regex to ensure spaces at start of line ar matched
+
+[33mcommit b1f70e66280382f65698857dc48ae4339ae7f6fb[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 24 13:20:14 2021 +0000
+
+    Added regex to chat_details to match lines read from file
+
+[33mcommit 15867c19bfa16709797fa68e1537cefade6e1630[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 24 10:38:04 2021 +0000
+
+    Added temp_regex.dart and regexParseLine to test regex line matching of imported chat files
+
+[33mcommit 1c2717f6adf01d237eee8aa2eae12707901e76a9[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 14:27:05 2021 +0000
+
+    End of day code cleanup
+
+[33mcommit 90f478929687136a75576af2bb607be0209bbb09[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 14:21:03 2021 +0000
+
+    Fixed _openFile to add correct file path to wcvObject
+
+[33mcommit 456e3291b235378854f08c2f5f4240b559aa700b[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 13:59:07 2021 +0000
+
+    Disabled import file notifcation snackbar
+
+[33mcommit 4042c107c694ae57145ab903bfc1407f8612a334[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 13:04:03 2021 +0000
+
+    Added path to test/dummy files on device emulator for WCVImportFile and can parse without error checking into chatConversations
+
+[33mcommit 71334995e014b55d5fabb2766a5abd5eb5232b30[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 10:13:46 2021 +0000
+
+    Passing wcvObject to ChatDetailsScreen
+
+[33mcommit f1c79f1e29201935da8e6061d233dd7718c226c1[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 23 09:56:44 2021 +0000
+
+    testing passing WCVIMportFile values to ChatDetailsScreen
+
+[33mcommit acb27e77b08d19fb25f65a2dfff3405a3c8fa9a7[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 22 17:38:54 2021 +0000
+
+    Fixed trailing ' in fileName
+
+[33mcommit da04f04a99b98c191648c124709e934015f92b49[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 22 17:10:40 2021 +0000
+
+    Fixed 'there are multiple heroes that share the same tag within a subtree' error by adding 'btn1' to heroTag of floating button
+
+[33mcommit bac2a900a3004d881e85f584f402445eaed6b5b7[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 22 16:49:22 2021 +0000
+
+    Only show filename and extention NOT content in Snackbar
+
+[33mcommit 9dc6985561efb5f41edd1f98d67cc89f9a0e6d3e[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 22 16:44:36 2021 +0000
+
+    Corrected/added filePath to test WCVImportFile objects
+
+[33mcommit eb33685f8110bd4612d464a84f927062cb21adff[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Fri Mar 19 19:04:07 2021 +0000
+
+    Some code cleanup
+
+[33mcommit 8f8e0cd7976a514bda82ff7970520b6958595836[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 18 19:19:52 2021 +0000
+
+    Added filePath to WCVImportFile model. Need to parse file in filePath into Chatdetails widget...
+
+[33mcommit 6dc6e55b0d0262cc7b86de92944d27e54d783ee2[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 18 17:38:14 2021 +0000
+
+    Added code to get last accessed and last modified time stamps for imported file
+
+[33mcommit 5cc5aa268e98b2896a7c405d0e6b849a58fdb62e[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 18 17:19:08 2021 +0000
+
+    Added code to get filesize in bytes & added to file List view
+
+[33mcommit 77ab5b977b6c058896e5138d02cf13432ffb860c[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 17 20:05:17 2021 +0000
+
+    Selected file now added to imported file list
+
+[33mcommit 7be0620f2763744e79643b7b4f1af780bb0b27f9[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 17 19:44:18 2021 +0000
+
+    Refactored ChatHomePage
+
+[33mcommit 33459e8158b51f57a716a27ca139481f732c3975[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 16 16:12:42 2021 +0000
+
+    Change Chats() to WCVImportFileList(), to display imported files instead of dummy chat ListTiles
+
+[33mcommit 7717fe5f6a888d4c248535db02c0c7456935d0e1[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 16 15:43:44 2021 +0000
+
+    get name of selected file with p.basename()
+
+[33mcommit 190ef67a831a0545093815b9d0b77576d6af1d16[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 16 13:34:49 2021 +0000
+
+    Added more demo files to '/data/user/0/com.example.whatsapp_chat_viewer/cache' on Pixel 3a device
+
+[33mcommit 6ae010bf80a3b040ef44b076070fb515eddbf5e4[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 15 20:23:53 2021 +0000
+
+    ChatDetailsScreen now renders all chat bubbles dynamically in ListView builder
+
+[33mcommit bf66adccc7ba9d8e25c05d730397adc95f2c9105[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 15 20:19:35 2021 +0000
+
+    Created String variable _selfName - holds name of right-side of chat
+
+[33mcommit e47a7c96651cf134f5d072f259f64aa16d25ea7d[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 14 21:42:47 2021 +0000
+
+    Disabled Avatar widget in chat bubble
+
+[33mcommit f6f1b4fa49da1d0f58298c38f139578eb0876d87[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sun Mar 14 21:35:56 2021 +0000
+
+    Added ternary to change chat bubble nip style
+
+[33mcommit 63ecacfcb9599877b7cac07d455dbd2eed96e795[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 20:26:19 2021 +0000
+
+    Added whatsapp_wallpaper.png as scaffold background image
+
+[33mcommit 769e96095bea8779c5056763aaecf34524591b6d[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 19:52:53 2021 +0000
+
+    Added more styling to chat bubble contents
+
+[33mcommit f38e6454ae379f5814f324b83ca6a1d0cde9c2a5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 19:04:06 2021 +0000
+
+    Align avatar to bottom of bubble. Row CrossAligment.end
+
+[33mcommit 3526f137438ebeff60a91ca926966a0bcf2f4fbf[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 18:56:02 2021 +0000
+
+    Added initial letter of name token to avatar, ignoring leading space
+
+[33mcommit 4c9888865aec459176e1d745e7931aead07c48c1[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 18:12:10 2021 +0000
+
+    Added CircleAvatar in front of chat bubble
+
+[33mcommit 579c4e2080478e3b4519a935e578b2a8af5241b9[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 14:10:09 2021 +0000
+
+    Cleanup of code to remove redundant, test files
+
+[33mcommit d7b1f4cbdafaa117bc9bf2c616816f66fa16c152[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 13:44:31 2021 +0000
+
+    Can now read, parse and displat chat conversations in chat bubbles with nips
+
+[33mcommit c317c0e8cedba5b0dbfb66d3216234b005e6faf5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 13:27:50 2021 +0000
+
+    Extract parseLine function to separate file parse_line.dart
+
+[33mcommit 746644d1922f41fec52db6169cd2fdce3e42ec51[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Sat Mar 13 13:18:54 2021 +0000
+
+    Added code to read & parse text file in assets folder
+
+[33mcommit 8b65b88832cd2184bdb0e536f47a0de768c9d6b7[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Fri Mar 12 15:52:59 2021 +0000
+
+    testing reading & writing to files
+
+[33mcommit f98d97fca1463a56eca38915ad37dc3a2c996217[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 11 14:38:21 2021 +0000
+
+    Added avengers.txt as file asset. Added getFile() to open avengers.txt
+
+[33mcommit eb646339b73690e1d7bce849778ada0a1ad501c8[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 11 13:00:06 2021 +0000
+
+    Used string split method instead of regex in parseLine()
+
+[33mcommit 1506dea59ad1770dd4901d4800345bdd7b0f767e[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Thu Mar 11 12:32:40 2021 +0000
+
+    Added code to display REGEX results
+
+[33mcommit 170393cf5b9d46808bc11abcbffe270993312e56[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 10 15:02:07 2021 +0000
+
+    final code cleanup for the day
+
+[33mcommit 5edcc8c94fdb854ced34079282e97ed232c236b8[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 10 14:57:24 2021 +0000
+
+    Added bubble plugin widgets to ChatDetailsScreen
+
+[33mcommit 19364caa8e5376035ba7204000d3090e527f6212[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Wed Mar 10 14:12:44 2021 +0000
+
+    Added bubble plugin to format chat
+
+[33mcommit 65bc9e48bec5a3e705aea6de16816a2b45cdc627[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 16:42:49 2021 +0000
+
+    End of day commit
+
+[33mcommit 318e9f97422713a3268971a3bd1d7f825aab11b5[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 16:28:13 2021 +0000
+
+    Increaded duration of snackbar to assist debugging returned file content
+
+[33mcommit 4450bbb3424c1f82cfb6997bee7975d4f530d79c[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 16:08:16 2021 +0000
+
+    Linked _openFile() from file_picker plugin floating button
+
+[33mcommit c31d1556827714cd55d1bfb1a291152e95554cf7[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 15:06:45 2021 +0000
+
+    Added filesystem_picke plugin to pubspec.yaml and permissions to AndroidManifest.xml
+
+[33mcommit 49921c93f26970eca90f82799321506a5b099564[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 14:29:39 2021 +0000
+
+    Added initial letter of name to ListTile avatar
+
+[33mcommit f6d43bb2a6995a2415f964051533e6f43e3fdfe6[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 14:16:10 2021 +0000
+
+    Changed generated chatsList with unique lorim ipsum data
+
+[33mcommit eb65af53671d97cf530c458d34681fa08a11156c[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 11:59:02 2021 +0000
+
+    Added ChatDetailsSceen class on chat_details.dart
+
+[33mcommit 93d228fd2a3bf9f5810344f120dd7840220f1d7b[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Tue Mar 9 10:30:12 2021 +0000
+
+    Added Colors class to centralize Color palette changes. Renamed MyHomePage to ChatHomePage
+
+[33mcommit 1ba4c8736cf288412ed8381f05d16959f8b476e8[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 23:59:14 2021 +0000
+
+    Changed ChatModel data types
+
+[33mcommit b3b3be3b3a89f5035f3abe7471aabb2eed82fb36[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 23:19:40 2021 +0000
+
+    Added ChatModel in chat_model.dart
+
+[33mcommit 4c8f44a831a68bf23785f5b39cdde2e240b4b310[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 23:10:39 2021 +0000
+
+    Changed green to macthed WhatsApp colors
+
+[33mcommit 4b2bbeca7bb07cd741d902a6f72df07831307f23[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 22:57:10 2021 +0000
+
+    1st iteration of ListView
+
+[33mcommit bbd6b8cde3abf3fc8a2af9cec7994bf69f8fb66a[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 22:12:55 2021 +0000
+
+    Moved MyHomePage to chat_viewer.dart
+
+[33mcommit 873856892baae5df0b8d62ee34cc353e2fda2616[m
+Author: maxgdev <max@maxgdev.net>
+Date:   Mon Mar 8 21:25:14 2021 +0000
+
+    first commit
