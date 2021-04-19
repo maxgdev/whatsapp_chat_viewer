@@ -45,7 +45,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           // if line has <date><time> format start new List entry
           tmpStr = tmpStr + i;
           chatConversation.add(tmpStr);
-          print("chatConversation.add(tmpStr): $tmpStr");
+          // print("chatConversation.add(tmpStr): $tmpStr");
           //
           // add to db: table and row
           //
@@ -57,10 +57,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
           if (chatLength == 0) {
             chatConversation.add(tmpStr);
-            print("chatLength == 0:  $tmpStr");
+            // print("chatLength == 0:  $tmpStr");
           } else {
             chatConversation[chatLength - 1] = chatConversation[chatLength - 1] + tmpStr;
-            print("previousString + tmpStr: $tmpStr");
+            // print("previousString + tmpStr: $tmpStr");
           }
         }
         // chatConversation.add(i);

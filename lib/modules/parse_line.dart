@@ -1,62 +1,5 @@
 import '../model/chat_model.dart';
 
-// regexParseLine(String txtLine) {
-
-//   RegExp lineExp = RegExp(
-//       r"([0-9]?[0-9]\/[0-9][0-9]\/[0-9]{4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",
-//       caseSensitive: false,
-//       multiLine: false);
-//   // tempToken = tempToken.group(0) = 13/11/2014, 8:10 AM - Stacy: yeah I am good
-//   // dateToken = tempToken.group(1) = 13/11/2014
-//   // timeToken = tempToken.group(2) = 8:10
-//   // temp3Token =tempToken.group(3) = AM
-//   // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
-
-//   // Match line with dd/mm/yy, hh:mm - <name>:
-//   // DATE, TIME - NAME : TEXT
-//   var tempToken, dateToken, timeToken, restToken, nameToken, textToken;
-//   var temp2Token, temp3Token;
-//   var tokenList;
-//   tempToken = lineExp.firstMatch(txtLine);
-
-//   if (tempToken != null) {
-//     // tempToken.group(0) matches EVERYTHING??
-//     temp2Token = tempToken.group(0);
-//     dateToken = tempToken.group(1);
-//     timeToken = tempToken.group(2);
-//     temp3Token = tempToken.group(3);
-//     nameToken = tempToken.group(4);
-
-//     tokenList = [
-//       temp2Token,
-//       dateToken,
-//       timeToken,
-//       temp3Token,
-//       nameToken,
-//       textToken,
-//       restToken
-//     ];
-//   }
-
-//   print("regexParseLine running...");
-
-//   // Expectation: true
-//   if (tempToken != null) {
-//     // if (chatLineExp.hasMatch(txtLine)) {
-//     // print('Line 1 is valid');
-
-//     // print("tempToken = tempToken.group(0) = ${tempToken.group(0)}");
-//     // print("dateToken = tempToken.group(1) = ${tempToken.group(1)}");
-//     // print("timeToken = tempToken.group(2) = ${tempToken.group(2)}");
-//     // print("temp3Token =tempToken.group(3) = ${tempToken.group(3)}");
-//     // print("nameToken = tempToken.group(4) = ${tempToken.group(4)}");
-//     // print("textToken = tempToken.group(5) = ${tempToken.group(5)}");
-//     // print("restToken = tempToken.group(6) = ${tempToken.group(6)}");
-//     // print("tempToken.group(7) = ${tempToken.group(7)}");
-//     //  print("tempToken.group(7) = ${tempToken.group(8)}");
-//   }
-// }
-
 //-----------------------------------------
 regexP(String txtLine) {
   RegExp lineExp = RegExp(
@@ -107,12 +50,7 @@ parseLine(String txtLine, int index) {
   var textToken = "";
   var tokenList = [];
   tempToken = lineExp.firstMatch(txtLine);
-  // print("regexParseLine running...");
-  // print("tempToken.groupCount: ${tempToken.groupCount}");
-  // print("tempToken.input: ${tempToken.input}");
-  // print("tempToken.pattern: ${tempToken.pattern}");
-  // print("tempToken.start: ${tempToken.start}");
-  // print("tempToken.end: ${tempToken.end}");
+
   if (tempToken?.group(0) == null) {
     print("---- tempToken is null ----");
     print("tempToken.group(0): ${tempToken.group(0)}");
@@ -122,8 +60,8 @@ parseLine(String txtLine, int index) {
     timeToken = "00:00";
     nameToken = "None";
     textToken = "";
-    tokenList = [dateToken, timeToken, nameToken, textToken];
-    return tokenList[index];
+    // tokenList = [dateToken, timeToken, nameToken, textToken];
+    // return tokenList[index];
   } else {
     dateToken = tempToken.group(1);
     timeToken = tempToken.group(2);
@@ -136,10 +74,13 @@ parseLine(String txtLine, int index) {
       nameToken = tempToken.group(4).split(":")[0];
       textToken = tempToken.group(4).split(":")[1];
     }
+    // tokenList = [dateToken, timeToken, nameToken, textToken];
+    // // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
+    // return tokenList[index];
+  }
     tokenList = [dateToken, timeToken, nameToken, textToken];
     // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
     return tokenList[index];
-  }
 }
 
 convertToChatObjects(List chatList) {
@@ -169,7 +110,7 @@ formatFilename(String text) {
   var allSpaces = allAmpersand.replaceAll(' ', '_');
   // remove .txt & make all lowercase
   var result = allSpaces.split('.txt')[0].toLowerCase();
-  print(result);
+  // print(result);
   // convert function to use to regex...
   return result;
 }
