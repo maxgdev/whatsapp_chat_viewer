@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'file_list.dart';
 import '../model/chat_model.dart';
-// import 'package:path/path.dart' as p;
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -43,17 +42,10 @@ class _ChatHomePageState extends State<ChatHomePage> {
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
-        fileName: "Avengers.txt",
-        size: "45Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
         filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
+            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/ChatExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
@@ -78,7 +70,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
     // Create sample directory if not exist
     // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
-    Directory sampleFolder = Directory('${rootPath.path}/sampleFolder');
+    Directory sampleFolder = Directory('${rootPath.path}/sample Folder');
 
     print(rootPath);
     print(rootPath.path);
@@ -108,13 +100,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // String contents = await file.readAsString();
 
       importedFile = file;
-      // print("$file");
-      // importedFileName = p.basename('$importedFile');
-      // importedFileName = importedFile.path.split('/').last.split('\'')[0];
       importedFileName = importedFile.path.split('/').last;
-      // print(importedFileName);
-      // print("file.path: ${file.path}");
-      // print("------------------");
 
       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       //   // content: Text(contents),
@@ -147,16 +133,16 @@ class _ChatHomePageState extends State<ChatHomePage> {
     });
   } // _openFile()
 
-  processLines(List<String> lines) {
-    // process lines:
-    // for (var line in lines) {
-    //   print(line);
-    // }
-  }
+  // processLines(List<String> lines) {
+  //   // process lines:
+  //   // for (var line in lines) {
+  //   //   print(line);
+  //   // }
+  // }
 
-  handleError(e) {
-    print("An error...: $e");
-  }
+  // handleError(e) {
+  //   print("An error...: $e");
+  // }
 
   @override
   Widget build(BuildContext context) {
