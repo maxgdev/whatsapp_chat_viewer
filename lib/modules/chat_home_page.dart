@@ -70,12 +70,18 @@ class _ChatHomePageState extends State<ChatHomePage> {
   }
 
   Future<void> _prepareStorage() async {
-    rootPath = await getTemporaryDirectory();
+    // rootPath = await getTemporaryDirectory();
+    // rootPath = await getExternalStorageDirectory();
+    // rootPath = await getApplicationDocumentsDirectory();
+    // rootPath = await getApplicationSupportDirectory();
+    rootPath = Directory('/storage/emulated/0/Download/');
 
     // Create sample directory if not exist
-    Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
-    // print(rootPath);
-    // print(rootPath.path);
+    // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
+    Directory sampleFolder = Directory('${rootPath.path}/sampleFolder');
+
+    print(rootPath);
+    print(rootPath.path);
     if (!sampleFolder.existsSync()) {
       sampleFolder.createSync();
     }
