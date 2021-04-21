@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'chat_colors.dart';
+
 class SettingsRoute extends StatelessWidget {
+  String userName = 'John';
+  String defaultImportPath = '/storage/emulated/0/Download/';
+              
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,42 +24,39 @@ class SettingsRoute extends StatelessWidget {
             Divider(),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("Username: 'Tony'",
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text("Default import file path: '/storage/emulated/0/Download/'",
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
+              child: Text(
+                "Username: '$userName'",
+                style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("Lorem ipsum setting: ...",
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
+              child: Text(
+                "Default import file path: $defaultImportPath",
+                style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
               ),
             ),
-          
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                "Lorem ipsum setting: ...",
+                style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
