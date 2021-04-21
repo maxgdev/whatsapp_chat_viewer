@@ -24,7 +24,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   File importedFile;
   String importedFileName;
   int importedFileSize;
-
+ 
   final List<WCVImportFile> fileList = [
     WCVImportFile(
         date: "1/24/21",
@@ -150,6 +150,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
       appBar: AppBar(
         backgroundColor: ChatColors.whatsAppGreen,
         title: Text(widget.title),
+        actions: [
+          IconButton(icon: Icon(Icons.settings), onPressed: () {}),
+        ],
       ),
       // body: Chats(),
       body: WCVImportFileList(fileList),
