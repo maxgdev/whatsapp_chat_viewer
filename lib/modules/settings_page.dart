@@ -8,7 +8,6 @@ class SettingsRoute extends StatefulWidget {
 
 class _SettingsRouteState extends State<SettingsRoute> {
   String userName = '';
-
   String defaultImportPath = '/storage/emulated/0/Download/';
 
   @override
@@ -27,23 +26,20 @@ class _SettingsRouteState extends State<SettingsRoute> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('Enter your username as it appears in your chat',
+              style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold)
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 decoration: InputDecoration(labelText: 'UserName'),             
                 onChanged: (val) => setState(() => userName = val),
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Username: '$userName'",
-                style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),

@@ -42,3 +42,16 @@ class WCVImportFile {
 //   String fileName;
 //   String chatList;
 // }
+// 
+class UserSettings {
+  UserSettings({
+    this.userName,
+    this.defaultImportPath,
+
+  });
+
+ // from text file, do we need to store in DateTime object??
+  String userName;
+  String defaultImportPath;
+
+}
