@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'chat_colors.dart';
 
-class SettingsRoute extends StatelessWidget {
-  String userName = 'John';
+class SettingsRoute extends StatefulWidget {
+  @override
+  _SettingsRouteState createState() => _SettingsRouteState();
+}
+
+class _SettingsRouteState extends State<SettingsRoute> {
+  String userName = '';
+
   String defaultImportPath = '/storage/emulated/0/Download/';
-              
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +30,19 @@ class SettingsRoute extends StatelessWidget {
             Divider(),
             Padding(
               padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                decoration: InputDecoration(labelText: 'UserName'),             
+                onChanged: (val) => setState(() => userName = val),
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Username: '$userName'",
                 style: TextStyle(
                     color: Colors.grey[600],
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -39,21 +53,12 @@ class SettingsRoute extends StatelessWidget {
                 "Default import file path: $defaultImportPath",
                 style: TextStyle(
                     color: Colors.grey[600],
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold),
               ),
             ),
             Divider(),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Lorem ipsum setting: ...",
-                style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+
           ],
         ),
       ),
