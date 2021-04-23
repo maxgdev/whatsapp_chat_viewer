@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/modules/chat_colors.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
-// import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'file_list.dart';
@@ -25,7 +25,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
   File importedFile;
   String importedFileName;
   int importedFileSize;
- 
+  // retain userName for chatdetails screen
+
+  final userSettings = UserSettings(
+    userName: '',
+    defaultImportPath: '/storage/emulated/0/Download/',
+  );
+
   final List<WCVImportFile> fileList = [
     WCVImportFile(
         date: "1/24/21",
@@ -65,13 +71,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Future<void> _prepareStorage() async {
     // rootPath = await getTemporaryDirectory();
     // rootPath = await getExternalStorageDirectory();
-    // rootPath = await getApplicationDocumentsDirectory();
+    rootPath = await getApplicationDocumentsDirectory();
     // rootPath = await getApplicationSupportDirectory();
-    rootPath = Directory('/storage/emulated/0/Download/');
+    // rootPath = Directory('/storage/emulated/0/Download/');
 
     // Create sample directory if not exist
     // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
-    Directory sampleFolder = Directory('${rootPath.path}/sample Folder');
+    Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
 
     print(rootPath);
     print(rootPath.path);
@@ -152,13 +158,14 @@ class _ChatHomePageState extends State<ChatHomePage> {
         backgroundColor: ChatColors.whatsAppGreen,
         title: Text(widget.title),
         actions: [
-          IconButton(icon: Icon(Icons.more_vert), onPressed: () 
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SettingsRoute()),
-            );
-          },
+          IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsRoute(userSettings: userSettings)),
+              );
+            },
           ),
         ],
       ),
