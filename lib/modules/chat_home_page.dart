@@ -29,7 +29,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   final userSettings = UserSettings(
     userName: '',
-    defaultImportPath: '/storage/emulated/0/Download/',
+    defaultImportPath: '/data/user/0/com.example.whatsapp_chat_viewer/app_flutter/',
   );
 
   final List<WCVImportFile> fileList = [
@@ -69,7 +69,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   }
 
   Future<void> _prepareStorage() async {
-    // rootPath = await getTemporaryDirectory();
+   
     // rootPath = await getExternalStorageDirectory();
     rootPath = await getApplicationDocumentsDirectory();
     // rootPath = await getApplicationSupportDirectory();
