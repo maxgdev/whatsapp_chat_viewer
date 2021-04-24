@@ -29,7 +29,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   final userSettings = UserSettings(
     userName: '',
-    defaultImportPath: '/data/user/0/com.example.whatsapp_chat_viewer/app_flutter/',
+    defaultImportPath: '/data/user/0/com.example.whatsapp_chat_viewer/',
   );
 
   final List<WCVImportFile> fileList = [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './modules/chat_home_page.dart';
+import './modules/chat_colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'WhatsApp Chat Viewer',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: createMaterialColor(Color(0xff0E6655)),
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
