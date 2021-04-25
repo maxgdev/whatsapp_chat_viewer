@@ -38,28 +38,28 @@ class _ChatHomePageState extends State<ChatHomePage> {
         fileName: "WhatsApp Chat 1/24/21.txt",
         size: "45Kb",
         filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsApp Chat with Sam 2.txt',
+            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
         filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
+            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
         filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/ChatExport.txt',
+            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
         fileAttached: ""),
     WCVImportFile(
         date: "1/24/21",
         fileName: "Test.txt",
         size: "5Kb",
         filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/cache/Sample folder/WhatsAppExport.txt',
+            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
   ];
   void initState() {
