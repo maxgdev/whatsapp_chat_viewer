@@ -57,7 +57,7 @@ class ChatsState extends State<Chats> {
               children: [
                 ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: ChatColors.whatsAppGreen,
+                    backgroundColor: ChatStyles.whatsAppGreen,
                     // foregroundColor: Colors.white,
                     child: Text(chatsList[index].name[0]),
                   ),

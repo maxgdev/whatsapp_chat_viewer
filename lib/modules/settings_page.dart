@@ -17,7 +17,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ChatColors.whatsAppGreen,
+        backgroundColor: ChatStyles.whatsAppGreen,
         title: Text("Settings"),
       ),
       body: Container(

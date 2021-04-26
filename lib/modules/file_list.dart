@@ -28,7 +28,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
               children: [
                 ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: ChatColors.whatsAppGreen,
+                    backgroundColor: ChatStyles.whatsAppGreen,
                     
                     child: Text(widget.fileList[index].fileName[0]),
                   ),

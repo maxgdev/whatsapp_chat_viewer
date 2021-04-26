@@ -155,7 +155,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ChatColors.whatsAppGreen,
+        backgroundColor: ChatStyles.whatsAppGreen,
         title: Text(widget.title),
         actions: [
           IconButton(
@@ -175,7 +175,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         heroTag: "btn1",
         onPressed: (rootPath != null) ? () => _openFile(context) : null,
         tooltip: 'Add Chat',
-        backgroundColor: ChatColors.whatsAppGreen,
+        backgroundColor: ChatStyles.whatsAppGreen,
         child: Icon(Icons.message),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

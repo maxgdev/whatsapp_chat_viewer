@@ -7,6 +7,8 @@ import 'dart:convert';
 import 'parse_line.dart';
 import 'dart:io';
 import 'db_methods.dart';
+import 'chat_styles.dart';
+
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
@@ -59,7 +61,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
             chatConversation.add(tmpStr);
             // print("chatLength == 0:  $tmpStr");
           } else {
-            chatConversation[chatLength - 1] = chatConversation[chatLength - 1] + tmpStr;
+            chatConversation[chatLength - 1] =
+                chatConversation[chatLength - 1] + tmpStr;
             // print("previousString + tmpStr: $tmpStr");
           }
         }
@@ -100,46 +103,45 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     print(myQuery);
   }
 
-  static const styleSomebody = BubbleStyle(
-    // nip: BubbleNip.leftCenter,
-    nip: BubbleNip.leftBottom,
-    color: Colors.white,
-    borderColor: Colors.blue,
-    borderWidth: 1,
-    elevation: 4,
-    margin: BubbleEdges.only(top: 8, right: 50),
-    alignment: Alignment.topLeft,
-  );
+  // static const styleSomebody = BubbleStyle(
+  //   // nip: BubbleNip.leftCenter,
+  //   nip: BubbleNip.leftBottom,
+  //   color: Colors.white,
+  //   borderColor: Colors.blue,
+  //   borderWidth: 1,
+  //   elevation: 4,
+  //   margin: BubbleEdges.only(top: 8, right: 50),
+  //   alignment: Alignment.topLeft,
+  // );
 
-  static const styleMe = BubbleStyle(
-    // nip: BubbleNip.rightCenter,
-    nip: BubbleNip.rightBottom,
-    color: Color.fromARGB(255, 225, 255, 199),
-    borderColor: Colors.blue,
-    borderWidth: 1,
-    elevation: 4,
-    margin: BubbleEdges.only(top: 8, left: 50),
-    alignment: Alignment.topRight,
-  );
+  // static const styleMe = BubbleStyle(
+  //   // nip: BubbleNip.rightCenter,
+  //   nip: BubbleNip.rightBottom,
+  //   color: Color.fromARGB(255, 225, 255, 199),
+  //   borderColor: Colors.blue,
+  //   borderWidth: 1,
+  //   elevation: 4,
+  //   margin: BubbleEdges.only(top: 8, left: 50),
+  //   alignment: Alignment.topRight,
+  // );
 
-  static const noStyle = BubbleStyle(
-    color: Colors.white,
-    borderColor: Colors.blue,
-    borderWidth: 1,
-    elevation: 4,
-    margin: BubbleEdges.only(top: 8, right: 50),
-    alignment: Alignment.topCenter,
-  );
+  // static const noStyle = BubbleStyle(
+  //   color: Colors.white,
+  //   borderColor: Colors.blue,
+  //   borderWidth: 1,
+  //   elevation: 4,
+  //   margin: BubbleEdges.only(top: 8, right: 50),
+  //   alignment: Alignment.topCenter,
+  // );
 
   @override
   Widget build(BuildContext context) {
     //
-
     return Scaffold(
       appBar: AppBar(
         // title: Text(chat.name),
         title: Text(widget.wcvObject.fileName),
-        backgroundColor: ChatColors.whatsAppGreen,
+        backgroundColor: ChatStyles.whatsAppGreen,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -166,10 +168,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                       style: _chatConversation[index].name ==
                               // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
-                          ? styleMe
+                          ? ChatStyles.styleMe
                           : _chatConversation[index].name == ""
-                              ? noStyle
-                              : styleSomebody,
+                              ? ChatStyles.noStyle
+                              : ChatStyles.styleSomebody,
                       margin: BubbleEdges.only(top: 4),
                       showNip: true,
                       child: Column(
@@ -180,7 +182,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                             // "${parseLine(_chatConversation[index], 2)}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w800,
-                                color: ChatColors.whatsAppGreen),
+                                color: ChatStyles.whatsAppGreen),
                           ),
                           Text("${_chatConversation[index].message}"),
                           // Text("${parseLine(_chatConversation[index], 3)}"),
