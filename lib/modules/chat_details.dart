@@ -9,7 +9,6 @@ import 'dart:io';
 import 'db_methods.dart';
 import 'chat_styles.dart';
 
-
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
 
@@ -153,19 +152,20 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                           ),
                           Text("${_chatConversation[index].message}"),
                           // Text("${parseLine(_chatConversation[index], 3)}"),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                      "${_chatConversation[index].date}",
-                                      // "${parseLine(_chatConversation[index], 0)}",
-                                      style: ChatStyles.chatInfoStyle)),
-                              Text("${_chatConversation[index].time}",
-                                  // Text("${parseLine(_chatConversation[index], 1)}",
-                                  style: ChatStyles.chatInfoStyle),
-                            ],
-                          ),
+                          chatBottomRow(_chatConversation[index].date, _chatConversation[index].time),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          //   children: [
+                          //     Expanded(
+                          //         child: Text(
+                          //             "${_chatConversation[index].date}",
+                          //             // "${parseLine(_chatConversation[index], 0)}",
+                          //             style: ChatStyles.chatInfoStyle)),
+                          //     Text("${_chatConversation[index].time}",
+                          //         // Text("${parseLine(_chatConversation[index], 1)}",
+                          //         style: ChatStyles.chatInfoStyle),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -176,6 +176,21 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
           },
         ),
       ),
+    );
+  }
+
+  Widget chatBottomRow(String date, String time) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+            child: Text("$date",
+                // "${parseLine(_chatConversation[index], 0)}",
+                style: ChatStyles.chatInfoStyle)),
+        Text("$time",
+            // Text("${parseLine(_chatConversation[index], 1)}",
+            style: ChatStyles.chatInfoStyle),
+      ],
     );
   }
 }
