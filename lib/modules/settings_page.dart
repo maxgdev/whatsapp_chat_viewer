@@ -32,10 +32,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text('Enter your username as it appears in your chat',
-                  style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold)),
+                  style: ChatStyles.chatInputStyle1),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -50,10 +47,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Default import file path: ${widget.userSettings.defaultImportPath}",
-                style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
+                style: ChatStyles.chatInputStyle1,
               ),
             ),
             Divider(),

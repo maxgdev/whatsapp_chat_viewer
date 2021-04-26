@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'parse_line.dart';
 import 'dart:io';
 import 'db_methods.dart';
-import 'chat_styles.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);

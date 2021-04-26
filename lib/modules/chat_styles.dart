@@ -40,12 +40,13 @@ class ChatStyles {
     alignment: Alignment.topCenter,
   );
 
-  static final chatNameStyle = TextStyle(
-        fontWeight: FontWeight.w800, 
-        color: ChatStyles.whatsAppGreen
-        );
+  static final chatNameStyle =
+      TextStyle(fontWeight: FontWeight.w800, color: ChatStyles.whatsAppGreen);
 
   static final chatInfoStyle = TextStyle(fontSize: 9);
+
+  static final chatInputStyle1 = TextStyle(
+      color: Colors.grey[600], fontSize: 14, fontWeight: FontWeight.bold);
 }
 
 // https://blog.usejournal.com/creating-a-custom-color-swatch-in-flutter-554bcdcb27f3
