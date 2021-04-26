@@ -98,16 +98,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
     print("results: $results");
     // query all rows of table
-    var myQuery = await DatabaseHelper.instance.queryRowCount();
-    print(myQuery);
+    // var myQuery = await DatabaseHelper.instance.queryRowCount();
+    // print(myQuery);
   }
 
   @override
   Widget build(BuildContext context) {
-    //
     return Scaffold(
       appBar: AppBar(
-        // title: Text(chat.name),
         title: Text(widget.wcvObject.fileName),
         backgroundColor: ChatStyles.whatsAppGreen,
       ),
@@ -117,24 +115,17 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
               image: AssetImage("assets/images/whatsapp_wallpaper.png"),
               fit: BoxFit.cover),
         ),
-        // color: Colors.yellow.withAlpha(64),
         child: ListView.builder(
           itemCount: _chatConversation.length,
           itemBuilder: (context, index) {
-            // return Text(_chatConversation[index]);
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // CircleAvatar(
-                  //   backgroundColor: ChatColors.whatsAppGreen,
-                  //   child: Text("${parseLine(_chatConversation[index], 2)[1]}"),
-                  // ),
                   Expanded(
                     child: Bubble(
                       style: _chatConversation[index].name ==
-                              // style: parseLine(_chatConversation[index], 2).trim() ==
                               _selfName
                           ? ChatStyles.styleMe
                           : _chatConversation[index].name == ""
@@ -147,25 +138,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         children: [
                           Text(
                             "${_chatConversation[index].name}",
-                            // "${parseLine(_chatConversation[index], 2)}",
-                            style: ChatStyles.chatNameStyle,
+                              style: ChatStyles.chatNameStyle,
                           ),
                           Text("${_chatConversation[index].message}"),
-                          // Text("${parseLine(_chatConversation[index], 3)}"),
                           chatBottomRow(_chatConversation[index].date, _chatConversation[index].time),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          //   children: [
-                          //     Expanded(
-                          //         child: Text(
-                          //             "${_chatConversation[index].date}",
-                          //             // "${parseLine(_chatConversation[index], 0)}",
-                          //             style: ChatStyles.chatInfoStyle)),
-                          //     Text("${_chatConversation[index].time}",
-                          //         // Text("${parseLine(_chatConversation[index], 1)}",
-                          //         style: ChatStyles.chatInfoStyle),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
@@ -185,10 +161,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       children: [
         Expanded(
             child: Text("$date",
-                // "${parseLine(_chatConversation[index], 0)}",
                 style: ChatStyles.chatInfoStyle)),
         Text("$time",
-            // Text("${parseLine(_chatConversation[index], 1)}",
             style: ChatStyles.chatInfoStyle),
       ],
     );
