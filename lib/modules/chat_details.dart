@@ -103,37 +103,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     print(myQuery);
   }
 
-  // static const styleSomebody = BubbleStyle(
-  //   // nip: BubbleNip.leftCenter,
-  //   nip: BubbleNip.leftBottom,
-  //   color: Colors.white,
-  //   borderColor: Colors.blue,
-  //   borderWidth: 1,
-  //   elevation: 4,
-  //   margin: BubbleEdges.only(top: 8, right: 50),
-  //   alignment: Alignment.topLeft,
-  // );
-
-  // static const styleMe = BubbleStyle(
-  //   // nip: BubbleNip.rightCenter,
-  //   nip: BubbleNip.rightBottom,
-  //   color: Color.fromARGB(255, 225, 255, 199),
-  //   borderColor: Colors.blue,
-  //   borderWidth: 1,
-  //   elevation: 4,
-  //   margin: BubbleEdges.only(top: 8, left: 50),
-  //   alignment: Alignment.topRight,
-  // );
-
-  // static const noStyle = BubbleStyle(
-  //   color: Colors.white,
-  //   borderColor: Colors.blue,
-  //   borderWidth: 1,
-  //   elevation: 4,
-  //   margin: BubbleEdges.only(top: 8, right: 50),
-  //   alignment: Alignment.topCenter,
-  // );
-
   @override
   Widget build(BuildContext context) {
     //
@@ -180,9 +149,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                           Text(
                             "${_chatConversation[index].name}",
                             // "${parseLine(_chatConversation[index], 2)}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                color: ChatStyles.whatsAppGreen),
+                            style: ChatStyles.chatNameStyle,
                           ),
                           Text("${_chatConversation[index].message}"),
                           // Text("${parseLine(_chatConversation[index], 3)}"),
@@ -193,10 +160,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                                   child: Text(
                                       "${_chatConversation[index].date}",
                                       // "${parseLine(_chatConversation[index], 0)}",
-                                      style: TextStyle(fontSize: 9))),
+                                      style: ChatStyles.chatInfoStyle)),
                               Text("${_chatConversation[index].time}",
                                   // Text("${parseLine(_chatConversation[index], 1)}",
-                                  style: TextStyle(fontSize: 9)),
+                                  style: ChatStyles.chatInfoStyle),
                             ],
                           ),
                         ],

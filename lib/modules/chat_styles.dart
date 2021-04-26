@@ -6,10 +6,10 @@ import 'package:bubble/bubble.dart';
 class ChatStyles {
   static const Color whatsAppGreen = Color.fromRGBO(14, 102, 85, 0.8);
   // #0E6655 = Color.fromRGBO(14, 102, 85, 0.8)
-  // 
+  //
   // static const Color antiqueWhite = const Color(0xFFFAEBD7);
   // static const Color aqua = const Color(0xFF00FFFF);
-  // 
+  //
   static final styleSomebody = BubbleStyle(
     // nip: BubbleNip.leftCenter,
     nip: BubbleNip.leftBottom,
@@ -20,7 +20,7 @@ class ChatStyles {
     margin: BubbleEdges.only(top: 8, right: 50),
     alignment: Alignment.topLeft,
   );
-    static const styleMe = BubbleStyle(
+  static const styleMe = BubbleStyle(
     // nip: BubbleNip.rightCenter,
     nip: BubbleNip.rightBottom,
     color: Color.fromARGB(255, 225, 255, 199),
@@ -40,10 +40,16 @@ class ChatStyles {
     alignment: Alignment.topCenter,
   );
 
+  static final chatNameStyle = TextStyle(
+        fontWeight: FontWeight.w800, 
+        color: ChatStyles.whatsAppGreen
+        );
+
+  static final chatInfoStyle = TextStyle(fontSize: 9);
 }
 
 // https://blog.usejournal.com/creating-a-custom-color-swatch-in-flutter-554bcdcb27f3
-// 
+//
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
   Map swatch = <int, Color>{};
@@ -63,4 +69,3 @@ MaterialColor createMaterialColor(Color color) {
   });
   return MaterialColor(color.value, swatch);
 }
-
