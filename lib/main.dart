@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './modules/chat_home_page.dart';
-import './modules/chat_colors.dart';
+import 'modules/chat_styles.dart';
 
 void main() {
   runApp(MyApp());

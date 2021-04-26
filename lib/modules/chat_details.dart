@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/chat_model.dart';
-import 'chat_colors.dart';
+import 'chat_styles.dart';
 import 'package:bubble/bubble.dart';
 import 'dart:async';
 import 'dart:convert';

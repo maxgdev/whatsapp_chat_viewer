@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/model/chat_model.dart';
-import 'chat_colors.dart';
+import 'chat_styles.dart';
 
 class SettingsRoute extends StatefulWidget {
   SettingsRoute({Key key, this.userSettings}) : super(key: key);

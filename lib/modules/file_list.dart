@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'chat_colors.dart';
+import 'chat_styles.dart';
 import 'chat_details.dart';
 
 class WCVImportFileList extends StatefulWidget {
