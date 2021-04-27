@@ -47,6 +47,12 @@ class ChatStyles {
 
   static final chatInputStyle1 = TextStyle(
       color: Colors.grey[600], fontSize: 14, fontWeight: FontWeight.bold);
+      
+  static final containerBackgroundImage = BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/images/whatsapp_wallpaper.png"),
+        fit: BoxFit.cover),
+  );
 }
 
 // https://blog.usejournal.com/creating-a-custom-color-swatch-in-flutter-554bcdcb27f3

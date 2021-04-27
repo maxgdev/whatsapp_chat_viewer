@@ -16,11 +16,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/whatsapp_wallpaper.png"),
-              fit: BoxFit.cover),
-        ),
+        decoration: ChatStyles.containerBackgroundImage,
         child: ListView.builder(
           itemCount: widget.fileList.length,
           itemBuilder: (context, index) {
