@@ -12,7 +12,6 @@ class SettingsRoute extends StatefulWidget {
 }
 
 class _SettingsRouteState extends State<SettingsRoute> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +20,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
         title: Text("Settings"),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/whatsapp_wallpaper.png"),
-              fit: BoxFit.cover),
-        ),
+        decoration: ChatStyles.containerBackgroundImage,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

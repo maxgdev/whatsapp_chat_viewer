@@ -109,11 +109,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         backgroundColor: ChatStyles.whatsAppGreen,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/whatsapp_wallpaper.png"),
-              fit: BoxFit.cover),
-        ),
+        decoration: ChatStyles.containerBackgroundImage,
         child: ListView.builder(
           itemCount: _chatConversation.length,
           itemBuilder: (context, index) {
