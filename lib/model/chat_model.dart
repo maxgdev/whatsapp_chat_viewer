@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+
 class Chat {
   Chat({
     this.date,

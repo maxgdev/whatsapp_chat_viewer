@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/model/chat_model.dart';
 import 'chat_styles.dart';
+import 'package:provider/provider.dart';
+import 'chat_home_page.dart';
 
 class SettingsRoute extends StatefulWidget {
   SettingsRoute({Key key, this.userSettings}) : super(key: key);
@@ -31,12 +33,20 @@ class _SettingsRouteState extends State<SettingsRoute> {
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(
-                decoration: InputDecoration(labelText: 'UserName'),
-                onChanged: (val) =>
-                    setState(() => widget.userSettings.userName = val),
+              child: 
+              // TextFormField(
+              //   decoration: InputDecoration(labelText: 'UserName'),
+              //   onChanged: (val) =>
+              //       setState(() => widget.userSettings.userName = val),
+              // ),
+              Consumer<SetUser>(
+                builder: (context, setuser, child) => TextFormField(
+                    decoration: InputDecoration(labelText: setuser.name),
+                    onChanged: (val) => setuser.changeName(val)
+                    ),
               ),
             ),
+
             Divider(),
             Padding(
               padding: const EdgeInsets.all(10.0),

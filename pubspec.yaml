@@ -30,6 +30,7 @@ dependencies:
   bubble: ^1.2.1              # https://pub.dev/packages/bubble
   sqflite: ^2.0.0+3           # https://pub.dev/packages?q=sqflite
   path_provider: ^2.0.1       # https://pub.dev/packages/path_provider
+  provider: ^5.0.0            # https://pub.dev/packages/provider
   # url_launcher: ^6.0.2
 
   # The following adds the Cupertino Icons font to your application.

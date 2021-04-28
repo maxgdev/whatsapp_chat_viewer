@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import './modules/chat_home_page.dart';
 import 'modules/chat_styles.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+    create: (context) => SetUser(),
+    child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_chat_viewer/modules/chat_home_page.dart';
 import '../model/chat_model.dart';
 import 'chat_styles.dart';
 import 'package:bubble/bubble.dart';
@@ -26,7 +27,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
-  String _selfName = 'John';
+  String _selfName = '';
 
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {

@@ -8,6 +8,15 @@ import 'file_list.dart';
 import '../model/chat_model.dart';
 import 'settings_page.dart';
 
+class SetUser with ChangeNotifier {
+  String name = "";
+  void changeName(val) {
+    name = val;
+    print(name);
+    notifyListeners();
+  }
+}
+
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
 
@@ -53,13 +62,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
         size: "99Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "Test.txt",
-        size: "5Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
   ];
   void initState() {
