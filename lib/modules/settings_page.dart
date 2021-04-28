@@ -27,34 +27,37 @@ class _SettingsRouteState extends State<SettingsRoute> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text('Enter your username as it appears in your chat',
-                  style: ChatStyles.chatInputStyle1),
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+              child: Text('Enter your name as it appears in your chat',
+                  style: ChatStyles.chatInputStyle0
+              )    
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: 
-              // TextFormField(
-              //   decoration: InputDecoration(labelText: 'UserName'),
-              //   onChanged: (val) =>
-              //       setState(() => widget.userSettings.userName = val),
-              // ),
-              Consumer<SetUser>(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Consumer<SetUser>(
                 builder: (context, setuser, child) => TextFormField(
                     decoration: InputDecoration(labelText: setuser.name),
                     onChanged: (val) => setuser.changeName(val)
-                    ),
+                  ),
               ),
             ),
 
             Divider(),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Default import file path: ${widget.userSettings.defaultImportPath}",
-                style: ChatStyles.chatInputStyle1,
+              child:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Default import file path: ",
+                      style: ChatStyles.chatInputStyle1,
+                      ),
+                  Text(
+                  " ${widget.userSettings.defaultImportPath}",
+                    style: ChatStyles.chatInputStyle2,)
+                ],
               ),
             ),
+      
             Divider(),
           ],
         ),

@@ -45,8 +45,14 @@ class ChatStyles {
 
   static final chatInfoStyle = TextStyle(fontSize: 9);
 
+  static final chatInputStyle0 = TextStyle(
+    color: Colors.grey[800], fontSize: 18);
+
   static final chatInputStyle1 = TextStyle(
-      color: Colors.grey[600], fontSize: 14, fontWeight: FontWeight.bold);
+    color: Colors.grey[600], fontSize: 16, fontWeight: FontWeight.bold);
+
+  static final chatInputStyle2 = TextStyle(
+    color: Colors.grey[600], fontSize: 14);
 
   // Background iamge for containers
   static final containerBackgroundImage = BoxDecoration(
