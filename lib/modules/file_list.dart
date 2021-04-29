@@ -27,15 +27,20 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                     child: Text(widget.fileList[index].fileName[0]),
                   ),
                   title: Text(widget.fileList[index].fileName),
-                  subtitle: Column(
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Size: ${widget.fileList[index].size}"),
+                      Padding(padding: EdgeInsets.fromLTRB(5, 0, 5, 0),),
                       Text(" Date: ${widget.fileList[index].date}"),
                     ],
                   ),
-                  trailing:
-                      IconButton(icon: Icon(Icons.delete), onPressed: () {}),
+                  trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        print("${widget.fileList[index].fileName} deleted!");
+                      }),
                   onTap: () {
                     var route = MaterialPageRoute(
                       builder: (BuildContext context) => ChatDetailsScreen(
