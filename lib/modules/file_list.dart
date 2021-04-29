@@ -11,7 +11,6 @@ class WCVImportFileList extends StatefulWidget {
 }
 
 class WCVImportFileListState extends State<WCVImportFileList> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +24,25 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: ChatStyles.whatsAppGreen,
-                    
                     child: Text(widget.fileList[index].fileName[0]),
                   ),
                   title: Text(widget.fileList[index].fileName),
-                  subtitle: Text(widget.fileList[index].size),
-                  
-                  trailing: Text(widget.fileList[index].date),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Size: ${widget.fileList[index].size}"),
+                      Text(" Date: ${widget.fileList[index].date}"),
+                    ],
+                  ),
+                  trailing:
+                      IconButton(icon: Icon(Icons.delete), onPressed: () {}),
                   onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      ChatDetailsScreen(
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => ChatDetailsScreen(
                         wcvObject: widget.fileList[index],
                       ),
-                  );
-                  Navigator.of(context).push(route);                    
+                    );
+                    Navigator.of(context).push(route);
                   },
                 ),
                 Divider(),

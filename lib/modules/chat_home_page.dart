@@ -33,29 +33,31 @@ class _ChatHomePageState extends State<ChatHomePage> {
   //   userName: '',
   // );
 
-  final List<WCVImportFile> fileList = [
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "WhatsApp Chat 1/24/21.txt",
-        size: "45Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "John & Sam Chat 1/24/21.txt",
-        size: "180Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "ChatExport.txt",
-        size: "99Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
-        fileAttached: ""),
-  ];
+  final List<WCVImportFile> fileList = [];
+
+  // final List<WCVImportFile> fileList = [
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "WhatsApp Chat 1/24/21.txt",
+  //       size: "45Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "John & Sam Chat 1/24/21.txt",
+  //       size: "180Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "ChatExport.txt",
+  //       size: "99Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
+  //       fileAttached: ""),
+  // ];
   void initState() {
     super.initState();
 
@@ -63,7 +65,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
   }
 
   Future<void> _prepareStorage() async {
-   
     // rootPath = await getExternalStorageDirectory();
     rootPath = await getApplicationDocumentsDirectory();
     // rootPath = await getApplicationSupportDirectory();
@@ -158,7 +159,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsRoute(userSettings: userSettings)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SettingsRoute(userSettings: userSettings)),
               );
             },
           ),
