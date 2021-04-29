@@ -3,10 +3,12 @@ import 'package:whatsapp_chat_viewer/modules/chat_styles.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:io';
-import 'file_list.dart';
 import '../model/chat_model.dart';
 import 'settings_page.dart';
+import 'file_list.dart';
+import 'dart:io';
+
+import 'package:provider/provider.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -27,10 +29,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
   int importedFileSize;
   // retain userName for chatdetails screen
 
-  final userSettings = UserSettings(
-    userName: '',
-    defaultImportPath: '/data/user/0/com.example.whatsapp_chat_viewer/',
-  );
+  // final userSettings = UserSettings(
+  //   userName: '',
+  // );
 
   final List<WCVImportFile> fileList = [
     WCVImportFile(
@@ -146,6 +147,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userSettings = Provider.of<SetUser>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ChatStyles.whatsAppGreen,

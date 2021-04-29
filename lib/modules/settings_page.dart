@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_chat_viewer/model/chat_model.dart';
 import 'chat_styles.dart';
 import 'package:provider/provider.dart';
-import 'chat_home_page.dart';
 
 class SettingsRoute extends StatefulWidget {
   SettingsRoute({Key key, this.userSettings}) : super(key: key);
 
-  final UserSettings userSettings;
+  final SetUser userSettings;
 
   @override
   _SettingsRouteState createState() => _SettingsRouteState();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:whatsapp_chat_viewer/modules/chat_home_page.dart';
 import '../model/chat_model.dart';
 import 'chat_styles.dart';
 import 'package:bubble/bubble.dart';
@@ -88,14 +87,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   _setup() async {
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
-    // print(widget.wcvObject.filePath);
-    print(widget.wcvObject.fileName);
-    var tableName = formatFilename(widget.wcvObject.fileName);
-
+    
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
     });
+    
     // Now batch insert chats as rows
+    print(widget.wcvObject.fileName);
+    var tableName = formatFilename(widget.wcvObject.fileName);
     var results =
         await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
     print("results: $results");
