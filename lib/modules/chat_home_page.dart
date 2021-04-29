@@ -35,29 +35,29 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   // final List<WCVImportFile> fileList = [];
 
-  final List<WCVImportFile> fileList = [
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "WhatsApp Chat 1/24/21.txt",
-        size: "45Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "John & Sam Chat 1/24/21.txt",
-        size: "180Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
-        fileAttached: ""),
-    WCVImportFile(
-        date: "1/24/21",
-        fileName: "ChatExport.txt",
-        size: "99Kb",
-        filePath:
-            '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
-        fileAttached: ""),
-  ];
+  // final List<WCVImportFile> fileList = [
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "WhatsApp Chat 1/24/21.txt",
+  //       size: "45Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "John & Sam Chat 1/24/21.txt",
+  //       size: "180Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
+  //       fileAttached: ""),
+  //   WCVImportFile(
+  //       date: "1/24/21",
+  //       fileName: "ChatExport.txt",
+  //       size: "99Kb",
+  //       filePath:
+  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
+  //       fileAttached: ""),
+  // ];
   void initState() {
     super.initState();
 
@@ -127,7 +127,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
           size: "$importedFileSize bytes",
           filePath: file.path,
           fileAttached: "");
-      fileList.add(fileObject);
+      Provider.of<ImportedChats>(context, listen: false)
+          .addImportedChats(fileObject);
+      // fileList.add(fileObject);
     }
 
     setState(() {
@@ -149,6 +151,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   @override
   Widget build(BuildContext context) {
     final userSettings = Provider.of<SetUser>(context);
+    final fileList = Provider.of<ImportedChats>(context).fileList;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ChatStyles.whatsAppGreen,

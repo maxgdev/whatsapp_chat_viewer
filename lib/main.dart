@@ -6,8 +6,11 @@ import './model/chat_model.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-    create: (context) => SetUser(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SetUser()),
+        ChangeNotifierProvider(create: (context) => ImportedChats()),
+      ],
     child: MyApp(),
     )
   );

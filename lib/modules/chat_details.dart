@@ -28,7 +28,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
   
-  String _selfName = 'John';
 
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {
