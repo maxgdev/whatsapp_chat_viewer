@@ -8,15 +8,6 @@ import 'file_list.dart';
 import '../model/chat_model.dart';
 import 'settings_page.dart';
 
-class SetUser with ChangeNotifier {
-  String name = "";
-  void changeName(val) {
-    name = val;
-    print(name);
-    notifyListeners();
-  }
-}
-
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
 

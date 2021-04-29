@@ -1,4 +1,4 @@
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class Chat {
   Chat({
@@ -56,4 +56,13 @@ class UserSettings {
   String userName;
   String defaultImportPath;
 
+}
+
+class SetUser with ChangeNotifier {
+  String name = "";
+  void changeName(val) {
+    name = val;
+    print(name);
+    notifyListeners();
+  }
 }

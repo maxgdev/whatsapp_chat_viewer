@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_chat_viewer/modules/chat_home_page.dart';
+// import 'package:whatsapp_chat_viewer/modules/chat_home_page.dart';
 import '../model/chat_model.dart';
 import 'chat_styles.dart';
 import 'package:bubble/bubble.dart';
@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'parse_line.dart';
 import 'dart:io';
 import 'db_methods.dart';
+import 'package:provider/provider.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
@@ -27,7 +28,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   // Store name of self for right-side chat
   // Pending function to select or identy "self" in chat conversation
-  String _selfName = '';
+  
+  String _selfName = 'John';
 
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {
@@ -104,6 +106,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userName = Provider.of<SetUser>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),
@@ -121,8 +124,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 children: [
                   Expanded(
                     child: Bubble(
-                      style: _chatConversation[index].name ==
-                              _selfName
+                      style: _chatConversation[index].name == userName.name
                           ? ChatStyles.styleMe
                           : _chatConversation[index].name == ""
                               ? ChatStyles.noStyle
@@ -134,10 +136,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         children: [
                           Text(
                             "${_chatConversation[index].name}",
-                              style: ChatStyles.chatNameStyle,
+                            style: ChatStyles.chatNameStyle,
                           ),
                           Text("${_chatConversation[index].message}"),
-                          chatBottomRow(_chatConversation[index].date, _chatConversation[index].time),
+                          chatBottomRow(_chatConversation[index].date,
+                              _chatConversation[index].time),
                         ],
                       ),
                     ),
@@ -155,11 +158,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Expanded(
-            child: Text("$date",
-                style: ChatStyles.chatInfoStyle)),
-        Text("$time",
-            style: ChatStyles.chatInfoStyle),
+        Expanded(child: Text("$date", style: ChatStyles.chatInfoStyle)),
+        Text("$time", style: ChatStyles.chatInfoStyle),
       ],
     );
   }
