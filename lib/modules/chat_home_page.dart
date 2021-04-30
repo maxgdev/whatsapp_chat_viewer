@@ -74,12 +74,11 @@ class _ChatHomePageState extends State<ChatHomePage> {
     // Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
     Directory sampleFolder = Directory('${rootPath.path}/Sample folder');
 
-    print(rootPath);
-    print(rootPath.path);
+    // print(rootPath);
+    // print(rootPath.path);
     if (!sampleFolder.existsSync()) {
       sampleFolder.createSync();
     }
-
     setState(() {});
   }
 
@@ -157,20 +156,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
         backgroundColor: ChatStyles.whatsAppGreen,
         title: Text(widget.title),
         actions: [
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        SettingsRoute(userSettings: userSettings)),
-              );
-            },
-          ),
+          settingsIconBtn(userSettings)
         ],
       ),
-      // body: Chats(),
       body: WCVImportFileList(fileList),
       floatingActionButton: FloatingActionButton(
         heroTag: "btn1",
@@ -180,5 +168,19 @@ class _ChatHomePageState extends State<ChatHomePage> {
         child: Icon(Icons.message),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Widget settingsIconBtn(userSettings) {
+    return IconButton(
+      icon: Icon(Icons.more_vert),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  SettingsRoute(userSettings: userSettings)),
+        );
+      },
+      );
   }
 }

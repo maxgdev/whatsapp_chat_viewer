@@ -61,10 +61,10 @@ class DatabaseHelper {
   // Inserts a row in the database where each key in the Map is a column name
   // and the value is the column value. The return value is the id of the
   // inserted row.
-  Future<int> insert(row) async {
-    Database db = await instance.database;
-    return await db.insert(table, row);
-  }
+  // Future<int> insert(row) async {
+  //   Database db = await instance.database;
+  //   return await db.insert(table, row);
+  // }
 
 //------------------------------------------------------
   // Batch insert of rows
