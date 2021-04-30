@@ -92,7 +92,7 @@ class ImportedChats with ChangeNotifier {
         fileAttached: ""),
   ];
 
-  void deleteImportedChats(List<WCVImportFile> fileList, int index) {
+  void deleteImportedChats(List fileList, int index) {
     fileList.remove(index);
     notifyListeners();
   }
