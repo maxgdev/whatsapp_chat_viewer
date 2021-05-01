@@ -28,7 +28,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   File importedFile;
   String importedFileName;
   int importedFileSize;
- 
+
   void initState() {
     super.initState();
     _prepareStorage();
@@ -85,17 +85,21 @@ class _ChatHomePageState extends State<ChatHomePage> {
       importedFileSize = (await File(path).readAsBytes()).length;
       // importedFileSize = file.lengthSync(); // alternative
       // importedFileSize = await file.length(); //
-       
+
       final stat = FileStat.statSync("$importedFile");
-      // var formattedDate = DateFormat('kk:mm:a').format(stat.modified);
-      print(DateFormat.yMMMd().format(DateTime.now()));
-      print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
+      // var formattedDate = DateFormat('kk:mm:a').format(stat.modified);    
+      var modifiedTime = DateFormat('dd/MM/yy').format(stat.modified);
+      // var modifiedTime = DateFormat.yMd().format(stat.modified);
+      
+      print("modifiedTime: $modifiedTime");
+      var accessedTime = DateFormat.yMd().format(stat.modified);
+      print("accessedTime; $accessedTime");
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");
-      
+
       // Create file object to add to fileList
       var fileObject = WCVImportFile(
-          date: "${stat.modified}",
+          date: "$modifiedTime",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
           filePath: file.path,
@@ -129,9 +133,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       appBar: AppBar(
         backgroundColor: ChatStyles.whatsAppGreen,
         title: Text(widget.title),
-        actions: [
-          settingsIconBtn(userSettings)
-        ],
+        actions: [settingsIconBtn(userSettings)],
       ),
       body: WCVImportFileList(fileList),
       floatingActionButton: FloatingActionButton(
@@ -151,8 +153,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-              SettingsRoute(userSettings: userSettings)),
+              builder: (context) => SettingsRoute(userSettings: userSettings)),
         );
       },
     );

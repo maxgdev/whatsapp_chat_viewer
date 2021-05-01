@@ -15,21 +15,21 @@ class UserSettings with ChangeNotifier {
 class ImportedChats with ChangeNotifier {
   List fileList = [
     WCVImportFile(
-        date: "1/24/21",
+        date: "24/01/21",
         fileName: "WhatsApp Chat 1/24/21.txt",
         size: "45Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
         fileAttached: ""),
     WCVImportFile(
-        date: "1/24/21",
+        date: "24/01/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
         fileAttached: ""),
     WCVImportFile(
-        date: "1/24/21",
+        date: "24/01/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
         filePath:
