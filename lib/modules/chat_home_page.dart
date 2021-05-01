@@ -8,7 +8,7 @@ import '../providers/providers.dart';
 import 'settings_page.dart';
 import 'file_list.dart';
 import 'dart:io';
-
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ChatHomePage extends StatefulWidget {
@@ -87,6 +87,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // importedFileSize = await file.length(); //
        
       final stat = FileStat.statSync("$importedFile");
+      // var formattedDate = DateFormat('kk:mm:a').format(stat.modified);
+      print(DateFormat.yMMMd().format(DateTime.now()));
       print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");

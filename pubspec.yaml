@@ -32,7 +32,8 @@ dependencies:
   path_provider: ^2.0.1       # https://pub.dev/packages/path_provider
   provider: ^5.0.0            # https://pub.dev/packages/provider
   # url_launcher: ^6.0.2
-
+  intl: ^0.17.0               # https://pub.dev/packages/intl
+  
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
