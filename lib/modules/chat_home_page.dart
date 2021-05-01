@@ -4,6 +4,7 @@ import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../model/chat_model.dart';
+import '../providers/providers.dart';
 import 'settings_page.dart';
 import 'file_list.dart';
 import 'dart:io';

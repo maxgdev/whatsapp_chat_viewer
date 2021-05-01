@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_chat_viewer/model/chat_model.dart';
+// import 'package:whatsapp_chat_viewer/model/chat_model.dart';
+import '../providers/providers.dart';
 import 'chat_styles.dart';
 import 'chat_details.dart';
 import 'package:provider/provider.dart';

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import './modules/chat_home_page.dart';
 import 'modules/chat_styles.dart';
 import 'package:provider/provider.dart';
-import './model/chat_model.dart';
+// import './model/chat_model.dart';
+import './providers/providers.dart';
 
 void main() {
   runApp(
