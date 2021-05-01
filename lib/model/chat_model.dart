@@ -45,18 +45,18 @@ class WCVImportFile {
 //   String chatList;
 // }
 //
-class UserSettings {
-  UserSettings({
-    this.userName,
-    this.defaultImportPath,
-  });
+// class UserSettings {
+//   UserSettings({
+//     this.userName,
+//     this.defaultImportPath,
+//   });
 
-  // from text file, do we need to store in DateTime object??
-  String userName;
-  String defaultImportPath;
-}
+//   // from text file, do we need to store in DateTime object??
+//   String userName;
+//   String defaultImportPath;
+// }
 
-class SetUser with ChangeNotifier {
+class UserSettings with ChangeNotifier {
   String name = "";
   String defaultImportPath = '/data/user/0/com.example.whatsapp_chat_viewer/';
 

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class SettingsRoute extends StatefulWidget {
   SettingsRoute({Key key, this.userSettings}) : super(key: key);
 
-  final SetUser userSettings;
+  final UserSettings userSettings;
 
   @override
   _SettingsRouteState createState() => _SettingsRouteState();
@@ -33,7 +33,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Consumer<SetUser>(
+              child: Consumer<UserSettings>(
                 builder: (context, setuser, child) => TextFormField(
                     decoration: InputDecoration(labelText: setuser.name),
                     onChanged: (val) => setuser.changeName(val)

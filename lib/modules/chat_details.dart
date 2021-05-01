@@ -104,7 +104,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userName = Provider.of<SetUser>(context);
+    final userName = Provider.of<UserSettings>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),

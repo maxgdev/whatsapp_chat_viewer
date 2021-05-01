@@ -27,40 +27,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
   File importedFile;
   String importedFileName;
   int importedFileSize;
-  // retain userName for chatdetails screen
-
-  // final userSettings = UserSettings(
-  //   userName: '',
-  // );
-
-  // final List<WCVImportFile> fileList = [];
-
-  // final List<WCVImportFile> fileList = [
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "WhatsApp Chat 1/24/21.txt",
-  //       size: "45Kb",
-  //       filePath:
-  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "John & Sam Chat 1/24/21.txt",
-  //       size: "180Kb",
-  //       filePath:
-  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
-  //       fileAttached: ""),
-  //   WCVImportFile(
-  //       date: "1/24/21",
-  //       fileName: "ChatExport.txt",
-  //       size: "99Kb",
-  //       filePath:
-  //           '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
-  //       fileAttached: ""),
-  // ];
+ 
   void initState() {
     super.initState();
-
     _prepareStorage();
   }
 
@@ -115,13 +84,15 @@ class _ChatHomePageState extends State<ChatHomePage> {
       importedFileSize = (await File(path).readAsBytes()).length;
       // importedFileSize = file.lengthSync(); // alternative
       // importedFileSize = await file.length(); //
+       
       final stat = FileStat.statSync("$importedFile");
       print("Last access: ${stat.accessed}, Last modifiied: ${stat.modified} ");
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");
+      
       // Create file object to add to fileList
       var fileObject = WCVImportFile(
-          date: "1/24/21",
+          date: "${stat.modified}",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
           filePath: file.path,
@@ -149,7 +120,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userSettings = Provider.of<SetUser>(context);
+    final userSettings = Provider.of<UserSettings>(context);
     final fileList = Provider.of<ImportedChats>(context).fileList;
     return Scaffold(
       appBar: AppBar(
@@ -177,10 +148,10 @@ class _ChatHomePageState extends State<ChatHomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  SettingsRoute(userSettings: userSettings)),
+            builder: (context) =>
+              SettingsRoute(userSettings: userSettings)),
         );
       },
-      );
+    );
   }
 }

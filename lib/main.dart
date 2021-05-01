@@ -8,7 +8,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SetUser()),
+        ChangeNotifierProvider(create: (context) => UserSettings()),
         ChangeNotifierProvider(create: (context) => ImportedChats()),
       ],
     child: MyApp(),
