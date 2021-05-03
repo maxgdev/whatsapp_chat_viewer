@@ -119,41 +119,30 @@ formatFilename(String text) {
   return result;
 }
 
-  List extractToChat(chatConversation, q) {
-    LineSplitter ls = LineSplitter();
-    String tmpStr = ""; // Empty String to build multiline body
-    var chatLength = 0;
-    List<String> _fileLines = ls.convert(q);
-    for (String i in _fileLines) {
-      if (regexP(i)) {
-        // if line has <date><time> format start new List entry
-        tmpStr = tmpStr + i;
+List extractToChat(chatConversation, q) {
+  LineSplitter ls = LineSplitter();
+  String tmpStr = ""; // Empty String to build multiline body
+  var chatLength = 0;
+  List<String> _fileLines = ls.convert(q);
+  for (String i in _fileLines) {
+    if (regexP(i)) {
+      // if line has <date><time> format start new List entry
+      tmpStr = tmpStr + i;
+      chatConversation.add(tmpStr);
+      tmpStr = "";
+    } else {
+      // if line does NOT match <date><time> format then body string
+      tmpStr = tmpStr + i;
+      chatLength = chatConversation.length;
+      if (chatLength == 0) {
         chatConversation.add(tmpStr);
-        // print("chatConversation.add(tmpStr): $tmpStr");
-        //
-        // add to db: table and row
-        //
-        tmpStr = "";
+
       } else {
-        // if line does NOT match <date><time> format then body string
-        tmpStr = tmpStr + i;
-        chatLength = chatConversation.length;
-
-        if (chatLength == 0) {
-          chatConversation.add(tmpStr);
-          // print("chatLength == 0:  $tmpStr");
-        } else {
-          chatConversation[chatLength - 1] =
-              chatConversation[chatLength - 1] + tmpStr;
-          // print("previousString + tmpStr: $tmpStr");
-        }
+        chatConversation[chatLength - 1] =
+            chatConversation[chatLength - 1] + tmpStr;
       }
-      // chatConversation.add(i);
-
     }
-    // print("chatConversation size: ${chatConversation.length}");
-    // print("lines imported: ${_fileLines.length}");
-    // print(
-    //     "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
-    return chatConversation;
+    // chatConversation.add(i);
   }
+  return chatConversation;
+}
