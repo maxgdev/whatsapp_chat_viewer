@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:bubble/bubble.dart';
 import '../model/chat_model.dart';
 import '../providers/providers.dart';
 import 'chat_styles.dart';
-import 'package:bubble/bubble.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'parse_line.dart';
-import 'dart:io';
+import 'parse_utils.dart';
 import 'db_methods.dart';
-import 'package:provider/provider.dart';
+import 'parse_utils.dart';
+import 'dart:async';
+import 'dart:io';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
@@ -26,10 +26,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // reference to our single class that manages the database
   final dbHelper = DatabaseHelper.instance;
 
-  // Store name of self for right-side chat
-  // Pending function to select or identy "self" in chat conversation
-  
-
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
@@ -38,41 +34,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // Parsing line with RegExp
     final _file = File(widget.wcvObject.filePath);
     await _file.readAsString().then((q) {
-      LineSplitter ls = LineSplitter();
-      String tmpStr = ""; // Empty String to build multiline body
-      var chatLength = 0;
-      List<String> _fileLines = ls.convert(q);
-      for (String i in _fileLines) {
-        if (regexP(i)) {
-          // if line has <date><time> format start new List entry
-          tmpStr = tmpStr + i;
-          chatConversation.add(tmpStr);
-          // print("chatConversation.add(tmpStr): $tmpStr");
-          //
-          // add to db: table and row
-          //
-          tmpStr = "";
-        } else {
-          // if line does NOT match <date><time> format then body string
-          tmpStr = tmpStr + i;
-          chatLength = chatConversation.length;
-
-          if (chatLength == 0) {
-            chatConversation.add(tmpStr);
-            // print("chatLength == 0:  $tmpStr");
-          } else {
-            chatConversation[chatLength - 1] =
-                chatConversation[chatLength - 1] + tmpStr;
-            // print("previousString + tmpStr: $tmpStr");
-          }
-        }
-        // chatConversation.add(i);
-
-      }
-      // print("chatConversation size: ${chatConversation.length}");
-      // print("lines imported: ${_fileLines.length}");
-      // print(
-      //     "lines imported: ${_fileLines.toString()}"); // print _fileLines as string??
+      extractToChat(chatConversation, q);
     });
 
     return chatConversation;
@@ -87,11 +49,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   _setup() async {
     List<String> chatConversation =
         await _loadImportedChatConversation(widget.wcvObject);
-    
+
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
     });
-    
+
     // Now batch insert chats as rows
     print(widget.wcvObject.fileName);
     var tableName = formatFilename(widget.wcvObject.fileName);

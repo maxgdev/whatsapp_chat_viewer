@@ -58,9 +58,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       context: context,
       rootDirectory: rootPath,
       fsType: FilesystemType.file,
-      // folderIconColor: Colors.teal,
       allowedExtensions: ['.txt'],
-      // fileTileSelectMode: filePickerSelectMode,
       fileTileSelectMode: FileTileSelectMode.wholeTile,
       requestPermission: () async =>
           await Permission.storage.request().isGranted,
@@ -72,28 +70,21 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
       importedFile = file;
       importedFileName = importedFile.path.split('/').last;
+      // get file size
+      importedFileSize = (await File(path).readAsBytes()).length;
+      // importedFileSize = file.lengthSync();    // alternative
+      // importedFileSize = await file.length();  // alternative
 
       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       //   // content: Text(contents),
-
       //   content: Text(importedFileName),
       //   duration: Duration(seconds: 3),
       //   // backgroundColor: ChatColors.whatsAppGreen,
       // ));
 
-      // get file size
-      importedFileSize = (await File(path).readAsBytes()).length;
-      // importedFileSize = file.lengthSync(); // alternative
-      // importedFileSize = await file.length(); //
-
       final stat = FileStat.statSync("$importedFile");
-      // var formattedDate = DateFormat('kk:mm:a').format(stat.modified);    
       var modifiedTime = DateFormat('dd/MM/yy').format(stat.modified);
-      // var modifiedTime = DateFormat.yMd().format(stat.modified);
-      
-      print("modifiedTime: $modifiedTime");
-      var accessedTime = DateFormat.yMd().format(stat.modified);
-      print("accessedTime; $accessedTime");
+   
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");
 
