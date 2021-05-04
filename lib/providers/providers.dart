@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../model/chat_model.dart';
+import '../modules/parse_utils.dart';
+import 'dart:async';
+import 'dart:io';
 
 class UserSettings with ChangeNotifier {
   String name = "";
@@ -49,22 +52,33 @@ class ImportedChats with ChangeNotifier {
 }
 
 class ChatConversations with ChangeNotifier {
-  
-  List chatConversation = [];
+  List<Chat> _chatConversation = [];
+  List<String> chatConversation;
+  // WCVImportFile wcvObject;
 
-  void readConversations(list) {
-    // read from list/db_table
+  Future<List<String>> _loadImportedChatConversation(wcvObject) async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+
+    // Parsing line with RegExp
+    var _file = File(wcvObject.filePath);
+    await _file.readAsString().then((q) {
+      extractToChat(chatConversation, q);
+    });
+
+    return chatConversation;
+  } // _l
+
+  void readConversations(chatConversation, wcvObject) {
+    // read from list/
+    List<String> chatConversation = _loadImportedChatConversation(wcvObject);
+    _chatConversation = convertToChatObjects(chatConversation);
+
     notifyListeners();
   }
 
-  void writeConversations(list) {
+  void writeConversations(chatConversation) {
     // write to list/db_table
     notifyListeners();
   }
-
-  void deleteConversations(list) {
-    // delete list/db_table
-    notifyListeners();
-  }
-
 }

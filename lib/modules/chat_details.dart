@@ -6,7 +6,6 @@ import '../providers/providers.dart';
 import 'chat_styles.dart';
 import 'parse_utils.dart';
 import 'db_methods.dart';
-import 'parse_utils.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -24,7 +23,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   List<Chat> _chatConversation = [];
 
   // reference to our single class that manages the database
-  final dbHelper = DatabaseHelper.instance;
+  
+  // final dbHelper = DatabaseHelper.instance;
 
   Future<List<String>> _loadImportedChatConversation(
       WCVImportFile wcvObject) async {
@@ -55,11 +55,13 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     });
 
     // Now batch insert chats as rows
-    print(widget.wcvObject.fileName);
-    var tableName = formatFilename(widget.wcvObject.fileName);
-    var results =
-        await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-    print("results: $results");
+
+    // print(widget.wcvObject.fileName);
+    // var tableName = formatFilename(widget.wcvObject.fileName);
+    // var results =
+    //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
+    // print("results: $results");
+
     // query all rows of table
     // var myQuery = await DatabaseHelper.instance.queryRowCount();
     // print(myQuery);
@@ -73,6 +75,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         title: Text(widget.wcvObject.fileName),
         backgroundColor: ChatStyles.whatsAppGreen,
       ),
+      // Add Consumer to body widget for MultiProvider consumption
       body: Container(
         decoration: ChatStyles.containerBackgroundImage,
         child: ListView.builder(
