@@ -97,24 +97,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
           fileAttached: "");
       Provider.of<ImportedChats>(context, listen: false)
           .addImportedChats(fileObject);
-      // fileList.add(fileObject);
+      
     }
 
     setState(() {
       filePath = path;
     });
   } // _openFile()
-
-  // processLines(List<String> lines) {
-  //   // process lines:
-  //   // for (var line in lines) {
-  //   //   print(line);
-  //   // }
-  // }
-
-  // handleError(e) {
-  //   print("An error...: $e");
-  // }
 
   @override
   Widget build(BuildContext context) {

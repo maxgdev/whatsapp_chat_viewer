@@ -41,9 +41,30 @@ class ImportedChats with ChangeNotifier {
     fileList.removeAt(index);
     notifyListeners();
   }
-    void addImportedChats(WCVImportFile fileObject) {
+
+  void addImportedChats(WCVImportFile fileObject) {
     fileList.add(fileObject);
     notifyListeners();
   }
 }
 
+class ChatConversations with ChangeNotifier {
+  
+  List chatConversation = [];
+
+  void readConversations(list) {
+    // read from list/db_table
+    notifyListeners();
+  }
+
+  void writeConversations(list) {
+    // write to list/db_table
+    notifyListeners();
+  }
+
+  void deleteConversations(list) {
+    // delete list/db_table
+    notifyListeners();
+  }
+
+}
