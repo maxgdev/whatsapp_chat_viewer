@@ -1,5 +1,7 @@
 import '../model/chat_model.dart';
 import 'dart:convert';
+import 'dart:async';
+import 'dart:io';
 
 //-----------------------------------------
 regexP(String txtLine) {
@@ -78,9 +80,9 @@ parseLine(String txtLine, int index) {
     // tokenList = [dateToken, timeToken, nameToken, textToken];
     // return tokenList[index];
   }
-    tokenList = [dateToken, timeToken, nameToken, textToken];
-    // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
-    return tokenList[index];
+  tokenList = [dateToken, timeToken, nameToken, textToken];
+  // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
+  return tokenList[index];
 }
 
 convertToChatObjects(List chatList) {
@@ -108,7 +110,7 @@ formatFilename(String text) {
   var allAmpersand = allBackSlash.replaceAll('&', '');
   // remove all spaces
   var allSpaces = allAmpersand.replaceAll(' ', '_');
-    // remove '( '& ')' characters 
+  // remove '( '& ')' characters
   var leftBracket = allSpaces.replaceAll('(', '');
   var rightBracket = leftBracket.replaceAll(')', '');
   // remove .txt & make all lowercase
@@ -136,7 +138,6 @@ List extractToChat(chatConversation, q) {
       chatLength = chatConversation.length;
       if (chatLength == 0) {
         chatConversation.add(tmpStr);
-
       } else {
         chatConversation[chatLength - 1] =
             chatConversation[chatLength - 1] + tmpStr;
@@ -146,3 +147,27 @@ List extractToChat(chatConversation, q) {
   }
   return chatConversation;
 }
+
+fileToChatObject(wcvObject) {
+  
+  Future<List<String>> loadConversation(WCVImportFile wcvObject) async {
+    // chatConversation scoped to inner function
+    List<String> chatConversation = [];
+
+    // Parsing line with RegExp
+    final _file = File(wcvObject.filePath);
+    await _file.readAsString().then((q) {
+      extractToChat(chatConversation, q);
+    });
+    return chatConversation;
+  } // _loadConversation
+
+  return loadConversation(wcvObject);
+}
+// setup() async {
+//   List<String> chatConversation =
+//       await loadConversation(wcvObject);
+
+//     _chatConversation = convertToChatObjects(chatConversation);
+
+// }

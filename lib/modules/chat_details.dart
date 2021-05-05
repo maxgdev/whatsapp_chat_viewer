@@ -26,19 +26,19 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   // final dbHelper = DatabaseHelper.instance;
 
-  Future<List<String>> _loadImportedChatConversation(
-      WCVImportFile wcvObject) async {
-    // chatConversation scoped to inner function
-    List<String> chatConversation = [];
+  // Future<List<String>> _loadImportedChatConversation(
+  //     WCVImportFile wcvObject) async {
+  //   // chatConversation scoped to inner function
+  //   List<String> chatConversation = [];
 
-    // Parsing line with RegExp
-    final _file = File(widget.wcvObject.filePath);
-    await _file.readAsString().then((q) {
-      extractToChat(chatConversation, q);
-    });
+  //   // Parsing line with RegExp
+  //   final _file = File(widget.wcvObject.filePath);
+  //   await _file.readAsString().then((q) {
+  //     extractToChat(chatConversation, q);
+  //   });
 
-    return chatConversation;
-  } // _loadImportedChatConversation
+  //   return chatConversation;
+  // } // _loadImportedChatConversation
 
   @override
   void initState() {
@@ -47,8 +47,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   }
 
   _setup() async {
+    // List<String> chatConversation =
+    //     await _loadImportedChatConversation(widget.wcvObject);
+
     List<String> chatConversation =
-        await _loadImportedChatConversation(widget.wcvObject);
+        await fileToChatObject(widget.wcvObject);
 
     setState(() {
       _chatConversation = convertToChatObjects(chatConversation);
@@ -70,8 +73,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
-    final chats = Provider.of<ChatConversations>(context);
-    List _chatConversation = chats.chatConversation;
+    // final chatsObject= Provider.of<ChatConversations>(context);
+    // _chatConversation = chatsObject.chatConversation;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),
