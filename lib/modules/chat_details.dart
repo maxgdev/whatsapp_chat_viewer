@@ -23,7 +23,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   List<Chat> _chatConversation = [];
 
   // reference to our single class that manages the database
-  
+
   // final dbHelper = DatabaseHelper.instance;
 
   Future<List<String>> _loadImportedChatConversation(
@@ -69,7 +69,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userName = Provider.of<UserSettings>(context);
+    final userSettingsVar = Provider.of<UserSettings>(context);
+    final chats = Provider.of<ChatConversations>(context);
+    List _chatConversation = chats.chatConversation;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),
@@ -88,7 +90,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 children: [
                   Expanded(
                     child: Bubble(
-                      style: _chatConversation[index].name == userName.name
+                      style: _chatConversation[index].name == userSettingsVar.name
                           ? ChatStyles.styleMe
                           : _chatConversation[index].name == ""
                               ? ChatStyles.noStyle

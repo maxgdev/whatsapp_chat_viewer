@@ -52,27 +52,56 @@ class ImportedChats with ChangeNotifier {
 }
 
 class ChatConversations with ChangeNotifier {
-  List<Chat> _chatConversation = [];
-  List<String> chatConversation;
+  
+  List<Chat> chatConversation =  [
+    Chat(
+      date: "12/11/2014",
+      time:"12:22",
+      name:"John",
+      message:"Hi Stacy",
+      fileAttached: "",
+    ),
+        Chat(
+      date: "12/11/2014",
+      time:"12:22",
+      name:"John",
+      message:"Here are the details for tomorrow's picnic. The park is located at 123 Main Street. Bring your own snacks, we will also be grilling. It is going to be very warm so dress appropriately. We should be getting there at noon. See you then and don't forget the sunscreen.",
+      fileAttached: "",
+    ),
+        Chat(
+      date: "13/11/2014",
+      time:"8:09",
+      name:"Stacy",
+      message:"yeah I am good",
+      fileAttached: "",
+    ),
+        Chat(
+      date: "12/11/2014,",
+      time:"12:22",
+      name:"Stacy",
+      message:"and home too",
+      fileAttached: "",
+    ),
+  ];
   // WCVImportFile wcvObject;
 
-  Future<List<String>> _loadImportedChatConversation(wcvObject) async {
-    // chatConversation scoped to inner function
-    List<String> chatConversation = [];
+  // Future<List<String>> _loadImportedChatConversation(wcvObject) async {
+  //   // chatConversation scoped to inner function
+  //   List<String> chatConversation = [];
 
-    // Parsing line with RegExp
-    var _file = File(wcvObject.filePath);
-    await _file.readAsString().then((q) {
-      extractToChat(chatConversation, q);
-    });
+  //   // Parsing line with RegExp
+  //   var _file = File(wcvObject.filePath);
+  //   await _file.readAsString().then((q) {
+  //     extractToChat(chatConversation, q);
+  //   });
 
-    return chatConversation;
-  } // _l
+  //   return chatConversation;
+  // } // _l
 
   void readConversations(chatConversation, wcvObject) {
     // read from list/
-    List<String> chatConversation = _loadImportedChatConversation(wcvObject);
-    _chatConversation = convertToChatObjects(chatConversation);
+    // List<String> chatConversation = _loadImportedChatConversation(wcvObject);
+    // _chatConversation = convertToChatObjects(chatConversation);
 
     notifyListeners();
   }
