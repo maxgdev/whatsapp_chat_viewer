@@ -52,36 +52,36 @@ class ImportedChats with ChangeNotifier {
 }
 
 class ChatConversations with ChangeNotifier {
-  
   // List<Chat> _chatConversation = [];
 
-  List<Chat> _chatConversation =  [
+  List<Chat> _chatConversation = [
     Chat(
       date: "12/11/2014",
-      time:"12:22",
-      name:"John",
-      message:"Hi Stacy",
+      time: "12:22",
+      name: "John",
+      message: "Hi Stacy",
       fileAttached: "",
     ),
-        Chat(
+    Chat(
       date: "12/11/2014",
-      time:"12:22",
-      name:"John",
-      message:"Here are the details for tomorrow's picnic. The park is located at 123 Main Street. Bring your own snacks, we will also be grilling. It is going to be very warm so dress appropriately. We should be getting there at noon. See you then and don't forget the sunscreen.",
+      time: "12:22",
+      name: "John",
+      message:
+          "Here are the details for tomorrow's picnic. The park is located at 123 Main Street. Bring your own snacks, we will also be grilling. It is going to be very warm so dress appropriately. We should be getting there at noon. See you then and don't forget the sunscreen.",
       fileAttached: "",
     ),
-        Chat(
+    Chat(
       date: "13/11/2014",
-      time:"8:09",
-      name:"Stacy",
-      message:"yeah I am good",
+      time: "8:09",
+      name: "Stacy",
+      message: "yeah I am good",
       fileAttached: "",
     ),
-        Chat(
+    Chat(
       date: "12/11/2014,",
-      time:"12:22",
-      name:"Stacy",
-      message:"and home too",
+      time: "12:22",
+      name: "Stacy",
+      message: "and home too",
       fileAttached: "",
     ),
   ];
@@ -89,28 +89,19 @@ class ChatConversations with ChangeNotifier {
 
   List get chatConversation => _chatConversation;
 
-  setup(WCVImportFile wcvObject) async {
-    // List<String> chatConversation =
-    //     await _loadImportedChatConversation(widget.wcvObject);
+  int get conversationLength => _chatConversation.length;
+  
+  // List get chatConversation => {
+  //   readConversations();
+  //   notifyListeners();
+  // }
+
+  readConversations(WCVImportFile wcvObject) async {
     List<String> tempChatConversation = await fileToChatObject(wcvObject);
-   return tempChatConversation;
 
-  }
-
-
-  void readConversations(wcvObject) {
     // read from list/
     // List<String> chatConversation = _loadImportedChatConversation(wcvObject);
-    // _chatConversation = convertToChatObjects(chatConversation);
-
-    // List<String> chatC1 =
-    //     await _loadImportedChatConversation(wcvObject);
-
-    // List<String> chatC2 =
-    //     await fileToChatObject(wcvObject);
-
-
-    // )
+    _chatConversation = convertToChatObjects(tempChatConversation);
 
     // Now batch insert chats as rows
 
@@ -123,9 +114,8 @@ class ChatConversations with ChangeNotifier {
     // query all rows of table
     // var myQuery = await DatabaseHelper.instance.queryRowCount();
     // print(myQuery);
-  
 
-    notifyListeners();
+ 
   }
 
   void writeConversations(chatConversation) {

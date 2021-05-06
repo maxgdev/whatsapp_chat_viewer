@@ -4,10 +4,10 @@ import 'package:bubble/bubble.dart';
 import '../model/chat_model.dart';
 import '../providers/providers.dart';
 import 'chat_styles.dart';
-import 'parse_utils.dart';
-import 'db_methods.dart';
-import 'dart:async';
-import 'dart:io';
+// import 'parse_utils.dart';
+// import 'db_methods.dart';
+// import 'dart:async';
+// import 'dart:io';
 
 class ChatDetailsScreen extends StatefulWidget {
   ChatDetailsScreen({Key key, this.wcvObject}) : super(key: key);
@@ -19,48 +19,14 @@ class ChatDetailsScreen extends StatefulWidget {
 }
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
+
   // _chatConversation scoped to function
-  List<Chat> _chatConversation = [];
-
-  // reference to our single class that manages the database
-  // final dbHelper = DatabaseHelper.instance;
-
-  @override
-  void initState() {
-    // _setup();
-    super.initState();
-  }
-
-  _setup() async {
-    // List<String> chatConversation =
-    //     await _loadImportedChatConversation(widget.wcvObject);
-
-    // List<String> chatConversation =
-    //     await fileToChatObject(widget.wcvObject);
-
-    setState(() {
-        // _chatConversation = convertToChatObjects(chatConversation);
-      }
-    );
-
-    // Now batch insert chats as rows
-
-    // print(widget.wcvObject.fileName);
-    // var tableName = formatFilename(widget.wcvObject.fileName);
-    // var results =
-    //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-    // print("results: $results");
-
-    // query all rows of table
-    // var myQuery = await DatabaseHelper.instance.queryRowCount();
-    // print(myQuery);
-  }
+  // List<Chat> _chatConversation = [];
 
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
-    // final chatsObject= Provider.of<ChatConversations>(context);
-    // _chatConversation = chatsObject.chatConversation;
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),
@@ -71,7 +37,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         builder: (context, chatObj, child) => Container(
           decoration: ChatStyles.containerBackgroundImage,
           child: ListView.builder(
-            itemCount: chatObj.chatConversation.length,
+            itemCount: chatObj.conversationLength,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),

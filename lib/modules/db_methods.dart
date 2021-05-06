@@ -152,3 +152,16 @@ class DatabaseHelper {
 
   }
 }
+
+    // Now batch insert chats as rows
+
+    // print(widget.wcvObject.fileName);
+    // var tableName = formatFilename(widget.wcvObject.fileName);
+    // var results =
+    //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
+    // print("results: $results");
+
+    // query all rows of table
+    // var myQuery = await DatabaseHelper.instance.queryRowCount();
+    // print(myQuery);
+  // }
