@@ -19,14 +19,13 @@ class ChatDetailsScreen extends StatefulWidget {
 }
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
-
   // _chatConversation scoped to function
   // List<Chat> _chatConversation = [];
 
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
-    
+    Provider.of<ChatConversations>(context).readConversations(widget.wcvObject);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),
@@ -37,7 +36,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         builder: (context, chatObj, child) => Container(
           decoration: ChatStyles.containerBackgroundImage,
           child: ListView.builder(
-            itemCount: chatObj.conversationLength,
+            itemCount: chatObj.conversationLength(widget.wcvObject),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -46,7 +45,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   children: [
                     Expanded(
                       child: Bubble(
-                        style: chatObj.chatConversation[index].name == userSettingsVar.name
+                        style: chatObj.chatConversation[index].name ==
+                                userSettingsVar.name
                             ? ChatStyles.styleMe
                             : chatObj.chatConversation[index].name == ""
                                 ? ChatStyles.noStyle

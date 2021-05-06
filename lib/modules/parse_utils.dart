@@ -122,6 +122,7 @@ formatFilename(String text) {
 }
 
 List extractToChat(chatConversation, q) {
+  print("extractToChat");
   LineSplitter ls = LineSplitter();
   String tmpStr = ""; // Empty String to build multiline body
   var chatLength = 0;
@@ -150,7 +151,7 @@ List extractToChat(chatConversation, q) {
 
 // Extract/Parse file to List (lines) of Strings
 fileToChatObject(wcvObject) {
-
+  print("fileToChatObject(wcvObject)");
   Future<List<String>> loadConversation(WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
@@ -165,4 +166,3 @@ fileToChatObject(wcvObject) {
 
   return loadConversation(wcvObject);
 }
-
