@@ -53,7 +53,9 @@ class ImportedChats with ChangeNotifier {
 
 class ChatConversations with ChangeNotifier {
   
-  List<Chat> chatConversation =  [
+  // List<Chat> _chatConversation = [];
+
+  List<Chat> _chatConversation =  [
     Chat(
       date: "12/11/2014",
       time:"12:22",
@@ -85,23 +87,43 @@ class ChatConversations with ChangeNotifier {
   ];
   // WCVImportFile wcvObject;
 
-  // Future<List<String>> _loadImportedChatConversation(wcvObject) async {
-  //   // chatConversation scoped to inner function
-  //   List<String> chatConversation = [];
+  List get chatConversation => _chatConversation;
 
-  //   // Parsing line with RegExp
-  //   var _file = File(wcvObject.filePath);
-  //   await _file.readAsString().then((q) {
-  //     extractToChat(chatConversation, q);
-  //   });
+  setup(WCVImportFile wcvObject) async {
+    // List<String> chatConversation =
+    //     await _loadImportedChatConversation(widget.wcvObject);
+    List<String> tempChatConversation = await fileToChatObject(wcvObject);
+   return tempChatConversation;
 
-  //   return chatConversation;
-  // } // _l
+  }
 
-  void readConversations(chatConversation, wcvObject) {
+
+  void readConversations(wcvObject) {
     // read from list/
     // List<String> chatConversation = _loadImportedChatConversation(wcvObject);
     // _chatConversation = convertToChatObjects(chatConversation);
+
+    // List<String> chatC1 =
+    //     await _loadImportedChatConversation(wcvObject);
+
+    // List<String> chatC2 =
+    //     await fileToChatObject(wcvObject);
+
+
+    // )
+
+    // Now batch insert chats as rows
+
+    // print(widget.wcvObject.fileName);
+    // var tableName = formatFilename(widget.wcvObject.fileName);
+    // var results =
+    //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
+    // print("results: $results");
+
+    // query all rows of table
+    // var myQuery = await DatabaseHelper.instance.queryRowCount();
+    // print(myQuery);
+  
 
     notifyListeners();
   }

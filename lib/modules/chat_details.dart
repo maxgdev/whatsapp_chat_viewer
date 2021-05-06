@@ -23,26 +23,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   List<Chat> _chatConversation = [];
 
   // reference to our single class that manages the database
-
   // final dbHelper = DatabaseHelper.instance;
-
-  // Future<List<String>> _loadImportedChatConversation(
-  //     WCVImportFile wcvObject) async {
-  //   // chatConversation scoped to inner function
-  //   List<String> chatConversation = [];
-
-  //   // Parsing line with RegExp
-  //   final _file = File(widget.wcvObject.filePath);
-  //   await _file.readAsString().then((q) {
-  //     extractToChat(chatConversation, q);
-  //   });
-
-  //   return chatConversation;
-  // } // _loadImportedChatConversation
 
   @override
   void initState() {
-    _setup();
+    // _setup();
     super.initState();
   }
 
@@ -50,12 +35,13 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // List<String> chatConversation =
     //     await _loadImportedChatConversation(widget.wcvObject);
 
-    List<String> chatConversation =
-        await fileToChatObject(widget.wcvObject);
+    // List<String> chatConversation =
+    //     await fileToChatObject(widget.wcvObject);
 
     setState(() {
-      _chatConversation = convertToChatObjects(chatConversation);
-    });
+        // _chatConversation = convertToChatObjects(chatConversation);
+      }
+    );
 
     // Now batch insert chats as rows
 
@@ -81,43 +67,45 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         backgroundColor: ChatStyles.whatsAppGreen,
       ),
       // Add Consumer to body widget for MultiProvider consumption
-      body: Container(
-        decoration: ChatStyles.containerBackgroundImage,
-        child: ListView.builder(
-          itemCount: _chatConversation.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Bubble(
-                      style: _chatConversation[index].name == userSettingsVar.name
-                          ? ChatStyles.styleMe
-                          : _chatConversation[index].name == ""
-                              ? ChatStyles.noStyle
-                              : ChatStyles.styleSomebody,
-                      margin: BubbleEdges.only(top: 4),
-                      showNip: true,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${_chatConversation[index].name}",
-                            style: ChatStyles.chatNameStyle,
-                          ),
-                          Text("${_chatConversation[index].message}"),
-                          chatBottomRow(_chatConversation[index].date,
-                              _chatConversation[index].time),
-                        ],
+      body: Consumer<ChatConversations>(
+        builder: (context, chatObj, child) => Container(
+          decoration: ChatStyles.containerBackgroundImage,
+          child: ListView.builder(
+            itemCount: chatObj.chatConversation.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Bubble(
+                        style: chatObj.chatConversation[index].name == userSettingsVar.name
+                            ? ChatStyles.styleMe
+                            : chatObj.chatConversation[index].name == ""
+                                ? ChatStyles.noStyle
+                                : ChatStyles.styleSomebody,
+                        margin: BubbleEdges.only(top: 4),
+                        showNip: true,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${chatObj.chatConversation[index].name}",
+                              style: ChatStyles.chatNameStyle,
+                            ),
+                            Text("${chatObj.chatConversation[index].message}"),
+                            chatBottomRow(chatObj.chatConversation[index].date,
+                                chatObj.chatConversation[index].time),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -109,6 +109,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Widget build(BuildContext context) {
     final userSettings = Provider.of<UserSettings>(context);
     final fileList = Provider.of<ImportedChats>(context).fileList;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ChatStyles.whatsAppGreen,
