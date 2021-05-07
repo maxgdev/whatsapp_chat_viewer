@@ -10,6 +10,7 @@ import 'file_list.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import './parse_utils.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -84,7 +85,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
       final stat = FileStat.statSync("$importedFile");
       var modifiedTime = DateFormat('dd/MM/yy').format(stat.modified);
-   
+
       print("--------- Imported File Stats ------------");
       print("Filename: $importedFileName, filesize: $importedFileSize");
 
@@ -94,10 +95,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
           filePath: file.path,
-          fileAttached: "");
+          tableName: '${formatFilename(importedFileName)}');
       Provider.of<ImportedChats>(context, listen: false)
           .addImportedChats(fileObject);
-      
     }
 
     setState(() {
@@ -109,7 +109,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Widget build(BuildContext context) {
     final userSettings = Provider.of<UserSettings>(context);
     final fileList = Provider.of<ImportedChats>(context).fileList;
-    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ChatStyles.whatsAppGreen,

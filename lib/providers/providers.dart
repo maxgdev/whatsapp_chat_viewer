@@ -24,21 +24,21 @@ class ImportedChats with ChangeNotifier {
         size: "45Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsApp Chat with Sam 2.txt',
-        fileAttached: ""),
+        tableName: ""),
     WCVImportFile(
         date: "24/01/21",
         fileName: "John & Sam Chat 1/24/21.txt",
         size: "180Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/WhatsAppExport.txt',
-        fileAttached: ""),
+        tableName: ""),
     WCVImportFile(
         date: "24/01/21",
         fileName: "ChatExport.txt",
         size: "99Kb",
         filePath:
             '/data/user/0/com.example.whatsapp_chat_viewer/Sample folder/ChatExport.txt',
-        fileAttached: ""),
+        tableName: ""),
   ];
 
   void deleteImportedChats(List fileList, int index) {
@@ -61,7 +61,7 @@ class ChatConversations with ChangeNotifier {
   //     time: "12:22",
   //     name: "John",
   //     message: "Hi Stacy",
-  //     fileAttached: "",
+  //     tableName: "",
   //   ),
   //   Chat(
   //     date: "12/11/2014",
@@ -69,21 +69,21 @@ class ChatConversations with ChangeNotifier {
   //     name: "John",
   //     message:
   //         "Here are the details for tomorrow's picnic. The park is located at 123 Main Street. Bring your own snacks, we will also be grilling. It is going to be very warm so dress appropriately. We should be getting there at noon. See you then and don't forget the sunscreen.",
-  //     fileAttached: "",
+  //     tableName: "",
   //   ),
   //   Chat(
   //     date: "13/11/2014",
   //     time: "8:09",
   //     name: "Stacy",
   //     message: "yeah I am good",
-  //     fileAttached: "",
+  //     tableName: "",
   //   ),
   //   Chat(
   //     date: "12/11/2014,",
   //     time: "12:22",
   //     name: "Stacy",
   //     message: "and home too",
-  //     fileAttached: "",
+  //     tableName: "",
   //   ),
   // ];
   // WCVImportFile wcvObject;
