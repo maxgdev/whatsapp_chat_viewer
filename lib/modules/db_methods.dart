@@ -82,8 +82,8 @@ class DatabaseHelper {
       print("Creating table $tableName ...");
       await createTable(tableName);
     }
-    // print(table);
-    rows.forEach((element) {
+      // print(table);
+      rows.forEach((element) {
       // print(
       //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {

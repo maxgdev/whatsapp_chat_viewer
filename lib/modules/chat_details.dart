@@ -25,7 +25,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
-    Provider.of<ChatConversations>(context).readConversations(widget.wcvObject);
+    // Provider.of<ChatConversations>(context).readConversations(widget.wcvObject);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wcvObject.fileName),

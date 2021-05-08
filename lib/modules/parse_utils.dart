@@ -85,23 +85,7 @@ parseLine(String txtLine, int index) {
   return tokenList[index];
 }
 
-convertToChatObjects(List chatList) {
-  // chatList input List of lines from file
-  // convertedList output/returned List of Chat objects
-  List<Chat> convertedChatList = [];
 
-  chatList.forEach((line) {
-    // Build Chat and add to List
-    convertedChatList.add(Chat(
-      date: parseLine(line, 0),
-      time: parseLine(line, 1),
-      name: parseLine(line, 2).trim(),
-      message: parseLine(line, 3),
-      fileAttached: "",
-    ));
-  });
-  return convertedChatList;
-}
 
 formatFilename(String text) {
   // remove all '/' characters
@@ -166,3 +150,25 @@ fileToChatObject(wcvObject) {
 
   return loadConversation(wcvObject);
 }
+
+convertToChatObjects(List chatList) {
+  // chatList input List of lines from file
+  // convertedList output/returned List of Chat objects
+  List<Chat> convertedChatList = [];
+
+  chatList.forEach((line) {
+    // Build Chat and add to List
+    convertedChatList.add(Chat(
+      date: parseLine(line, 0),
+      time: parseLine(line, 1),
+      name: parseLine(line, 2).trim(),
+      message: parseLine(line, 3),
+      fileAttached: "",
+    ));
+  });
+  return convertedChatList;
+}
+ Future <List<Chat>> readConversations(wcvObject) async {
+    List<String> tempChatConversation = await fileToChatObject(wcvObject);
+    return await convertToChatObjects(tempChatConversation);
+  }

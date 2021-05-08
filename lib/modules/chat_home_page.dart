@@ -11,6 +11,7 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import './parse_utils.dart';
+import './db_methods.dart';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -90,20 +91,50 @@ class _ChatHomePageState extends State<ChatHomePage> {
       print("Filename: $importedFileName, filesize: $importedFileSize");
 
       // Create file object to add to fileList
+      var formattedTableName = formatFilename(importedFileName);
       var fileObject = WCVImportFile(
           date: "$modifiedTime",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
           filePath: file.path,
-          tableName: '${formatFilename(importedFileName)}');
+          tableName: '$formattedTableName');
       Provider.of<ImportedChats>(context, listen: false)
           .addImportedChats(fileObject);
+
+      var chatList = await readConversations(fileObject);
+      print("chatList.length: ${chatList.length}");
+      print(chatList);
+      // parse file to database
+      // then batch insert chats as rows
+
+      print(formattedTableName);
+      // var chatList = Provider.of<ChatConversations>(context, listen: false).chatConversation;
+      // var chatList = Provider.of<ImportedChats>(context, listen: false);
+      var results = await DatabaseHelper.instance
+          .batchInsert(formattedTableName, chatList);
+      print("results: $results");
+
+      // query all rows of table
+      var myQuery = await DatabaseHelper.instance.queryRowCount();
+      print(myQuery);
     }
 
     setState(() {
       filePath = path;
     });
   } // _openFile()
+
+  // Now batch insert chats as rows
+
+  // print(widget.wcvObject.fileName);
+  // var tableName = formatFilename(widget.wcvObject.fileName);
+  // var results =
+  //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
+  // print("results: $results");
+
+  // query all rows of table
+  // var myQuery = await DatabaseHelper.instance.queryRowCount();
+  // print(myQuery);
 
   @override
   Widget build(BuildContext context) {
