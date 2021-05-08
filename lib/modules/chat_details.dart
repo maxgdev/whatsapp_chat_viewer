@@ -5,7 +5,7 @@ import '../model/chat_model.dart';
 import '../providers/providers.dart';
 import 'chat_styles.dart';
 // import 'parse_utils.dart';
-// import 'db_methods.dart';
+import 'db_methods.dart';
 // import 'dart:async';
 // import 'dart:io';
 
@@ -20,11 +20,26 @@ class ChatDetailsScreen extends StatefulWidget {
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   // _chatConversation scoped to function
-  // List<Chat> _chatConversation = [];
+  List<Chat> _chatConversation = [];
+
+  // var myQuery = DatabaseHelper.instance.queryAllRows(widget.wcvObject.tableName);
+
+  myfunction(tableName) async {
+    var myQuery = await DatabaseHelper.instance.queryAllRows(tableName);
+    print("myQuery: $myQuery | ");
+
+    var myQuery2 = await DatabaseHelper.instance.queryRowCount();
+      print(myQuery2);
+
+    return myQuery;
+  }
 
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
+    // _chatConversation = myfunction(widget.wcvObject.tableName);
+    // print(_chatConversation);
+    myfunction(widget.wcvObject.tableName);
     // Provider.of<ChatConversations>(context).readConversations(widget.wcvObject);
     return Scaffold(
       appBar: AppBar(

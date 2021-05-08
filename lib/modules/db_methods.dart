@@ -57,16 +57,7 @@ class DatabaseHelper {
   }
 
   // Helper methods
-
-  // Inserts a row in the database where each key in the Map is a column name
-  // and the value is the column value. The return value is the id of the
-  // inserted row.
-  // Future<int> insert(row) async {
-  //   Database db = await instance.database;
-  //   return await db.insert(table, row);
-  // }
-
-//------------------------------------------------------
+  //------------------------------------------------------
   // Batch insert of rows
   // inserting 1 chat per row from List (converstion/file)
   Future batchInsert(tableName, rows) async {
@@ -75,11 +66,11 @@ class DatabaseHelper {
     var batch = db.batch();
     // if table already exists add a number to name or enter new name??
     if (await isTableExits(tableName) == true) {
-      print("Table already exists");
+      print("db_methods:  already exists");
       // Warn user and request new name
     } else {
       // Create table in database
-      print("Creating table $tableName ...");
+      print("db_methods: Creating table $tableName ...");
       await createTable(tableName);
     }
       // print(table);
@@ -101,9 +92,9 @@ class DatabaseHelper {
   }
 //------------------------------------------------------
 
-  Future<List> queryAllRows() async {
+  Future<List> queryAllRows(tableName) async {
     Database db = await instance.database;
-    return await db.query(table);
+    return await db.query(tableName);
   }
 
   // All of the methods (insert, query, update, delete) can also be done using
@@ -135,10 +126,10 @@ class DatabaseHelper {
     var sql =
         "SELECT * FROM sqlite_master WHERE TYPE = 'table' AND NAME = '$tableName'";
     var res = await db.rawQuery(sql);
-    print("tableName: $tableName, res: $res");
-    print("res.length: ${res.length}");
+    // print("db_methods: tableName: $tableName, res: $res");
+    // print("db_methods: res.length: ${res.length}");
     var returnRes = res != null && res.length > 0;
-    print("returnRes: $returnRes");
+    // print("db_methods: returnRes: $returnRes");
     return returnRes;
   }
 
@@ -153,15 +144,3 @@ class DatabaseHelper {
   }
 }
 
-    // Now batch insert chats as rows
-
-    // print(widget.wcvObject.fileName);
-    // var tableName = formatFilename(widget.wcvObject.fileName);
-    // var results =
-    //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-    // print("results: $results");
-
-    // query all rows of table
-    // var myQuery = await DatabaseHelper.instance.queryRowCount();
-    // print(myQuery);
-  // }
