@@ -102,43 +102,36 @@ class _ChatHomePageState extends State<ChatHomePage> {
           .addImportedChats(fileObject);
 
       var chatList = await readConversations(fileObject);
-      print("chatList.length: ${chatList.length}");
+      // var chatList =
+      //     await DatabaseHelper.instance.queryAllRows(formattedTableName);
+
+      print("chatList.length:==>  ${chatList.length}");
+      print("===============================");
       
+      print("fileObject.filePath:==>  ${fileObject.filePath}");
+      var myQuery = await DatabaseHelper.instance.queryRowCount();
+      print("myQuery count:==> $myQuery");
       // parse file to database
       // then batch insert chats as rows
 
-      print(formattedTableName);
+      print("formattedTableName:==>  $formattedTableName");
       // var chatList = Provider.of<ChatConversations>(context, listen: false).chatConversation;
       // var chatList = Provider.of<ImportedChats>(context, listen: false);
-      
-      await DatabaseHelper.instance
-          .batchInsert(formattedTableName, chatList);
+
+      await DatabaseHelper.instance.batchInsert(formattedTableName, chatList);
 
       // var results = await DatabaseHelper.instance
       //     .batchInsert(formattedTableName, chatList);
       // print("results: $results");
 
       // query all rows of table
-      var myQuery = await DatabaseHelper.instance.queryRowCount();
-      print(myQuery);
+
     }
 
     setState(() {
       filePath = path;
     });
   } // _openFile()
-
-  // Now batch insert chats as rows
-
-  // print(widget.wcvObject.fileName);
-  // var tableName = formatFilename(widget.wcvObject.fileName);
-  // var results =
-  //     await DatabaseHelper.instance.batchInsert(tableName, _chatConversation);
-  // print("results: $results");
-
-  // query all rows of table
-  // var myQuery = await DatabaseHelper.instance.queryRowCount();
-  // print(myQuery);
 
   @override
   Widget build(BuildContext context) {

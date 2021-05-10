@@ -134,7 +134,7 @@ List extractToChat(chatConversation, q) {
 }
 
 // Extract/Parse file to List (lines) of Strings
-fileToChatObject(wcvObject) {
+fileToStringList(wcvObject) {
   print("fileToChatObject(wcvObject)");
   Future<List<String>> loadConversation(WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
@@ -169,6 +169,6 @@ convertToChatObjects(List chatList) {
   return convertedChatList;
 }
  Future <List<Chat>> readConversations(wcvObject) async {
-    List<String> tempChatConversation = await fileToChatObject(wcvObject);
+    List<String> tempChatConversation = await fileToStringList(wcvObject);
     return await convertToChatObjects(tempChatConversation);
   }
