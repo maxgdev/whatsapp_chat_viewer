@@ -66,11 +66,11 @@ class DatabaseHelper {
     var batch = db.batch();
     // if table already exists add a number to name or enter new name??
     if (await isTableExits(tableName) == true) {
-      print("db_methods:  $tableName already exists");
+      print("[db_methods]:  $tableName already exists");
       // Warn user and request new name
     } else {
       // Create table in database
-      print("db_methods: Creating table $tableName ...");
+      print("[db_methods]: Creating table $tableName ...");
       await createTable(tableName);
     }
     // print(table);
@@ -85,6 +85,7 @@ class DatabaseHelper {
       };
       // batch.insert(tableName, row);
       batch.insert(tableName , row);
+      print("[db_methods]: Batch Row Inserted $row");
     });
 
     var results = await batch.commit();
@@ -101,20 +102,23 @@ class DatabaseHelper {
 
   Future<List> queryTable(tableName) async {
     Database db = await instance.database;
+    print("[db_methods]: queryTable:==> $tableName");
     return  await db.rawQuery('SELECT * FROM $tableName');
   }
 
   // All of the methods (insert, query, update, delete) can also be done using
   // raw SQL commands. This method uses a raw query to give the row count.
-  Future<int> queryRowCount() async {
+  Future<int> queryRowCount(tableName) async {
     Database db = await instance.database;
+    print("[db_methods]: queryRowCount:==> $tableName");
     return Sqflite.firstIntValue(
-        await db.rawQuery('SELECT COUNT(*) FROM $table'));
+        await db.rawQuery('SELECT COUNT(*) FROM $tableName'));
   }
 
   Future<int> update(tableName, row) async {
     Database db = await instance.database;
     int id = row[chatId];
+    print("[db_methods]: update:==> $tableName");
     return await db
         .update(tableName, row, where: '$chatId = ?', whereArgs: [id]);
   }
@@ -123,6 +127,7 @@ class DatabaseHelper {
   // returned. This should be 1 as long as the row exists.
   Future<int> delete(int id) async {
     Database db = await instance.database;
+    print("[db_methods]: delete:==> $id");
     return await db.delete(table, where: '$chatId = ?', whereArgs: [id]);
   }
 

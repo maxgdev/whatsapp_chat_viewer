@@ -87,8 +87,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
       final stat = FileStat.statSync("$importedFile");
       var modifiedTime = DateFormat('dd/MM/yy').format(stat.modified);
 
-      print("--------- Imported File Stats ------------");
-      print("Filename: $importedFileName, filesize: $importedFileSize");
+      print("[chat_home_page]: --------- Imported File Stats ------------");
+      print("[chat_home_page]: Filename: $importedFileName, filesize: $importedFileSize");
 
       // Create file object to add to fileList
       var formattedTableName = formatFilename(importedFileName);
@@ -109,15 +109,16 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // then batch insert chats as rows
       await DatabaseHelper.instance.batchInsert(formattedTableName, chatList);
 
-      var myQuery = await DatabaseHelper.instance.queryRowCount();
-      print("===============================");
-      print("[chat_home_page]myQuery count:==> $myQuery");
+      // var myQuery = await DatabaseHelper.instance.queryRowCount();
+      // print("[chat_home_page]: ===============================");
+      // print("[chat_home_page]: myQuery count:==> $myQuery");
+
       // query all rows of table
       // querry results just inserted into Db
-      var chatResults =
-          await DatabaseHelper.instance.queryTable(formattedTableName);
-      print("===============================");
-      print("[chat_home_page]chatResults:==> $chatResults"); 
+      // var chatResults =
+      //     await DatabaseHelper.instance.queryTable(formattedTableName);
+      // print("[chat_home_page]: ===============================");
+      // print("[chat_home_page]: chatResults:==> $chatResults"); 
     }
 
     setState(() {

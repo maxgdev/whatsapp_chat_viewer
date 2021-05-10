@@ -55,9 +55,9 @@ parseLine(String txtLine, int index) {
   tempToken = lineExp.firstMatch(txtLine);
 
   if (tempToken?.group(0) == null) {
-    print("---- tempToken is null ----");
-    print("tempToken.group(0): ${tempToken.group(0)}");
-    print("tempToken.group(0): ${tempToken.group(1)}");
+    print("parse_utils]:---- tempToken is null ----");
+    print("parse_utils]:tempToken.group(0): ${tempToken.group(0)}");
+    print("parse_utils]:tempToken.group(0): ${tempToken.group(1)}");
     // Null tempToken is given dummy values
     dateToken = "01/01/1970";
     timeToken = "00:00";
@@ -106,7 +106,7 @@ formatFilename(String text) {
 }
 
 List extractToChat(chatConversation, q) {
-  print("extractToChat");
+  print("[parse_utils]:extractToChat");
   LineSplitter ls = LineSplitter();
   String tmpStr = ""; // Empty String to build multiline body
   var chatLength = 0;
@@ -135,7 +135,7 @@ List extractToChat(chatConversation, q) {
 
 // Extract/Parse file to List (lines) of Strings
 fileToStringList(wcvObject) {
-  print("fileToChatObject(wcvObject)");
+  print("[parse_utils]:fileToChatObject(wcvObject)");
   Future<List<String>> loadConversation(WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];

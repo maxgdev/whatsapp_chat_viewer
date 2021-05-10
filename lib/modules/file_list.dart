@@ -56,7 +56,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                   icon: Icon(Icons.delete),
                   onPressed: () {
                     importedChats.deleteImportedChats(fileList, index);
-                    print("${fileList[index].fileName} deleted!");
+                    print("[file_list]:${fileList[index].fileName} deleted!");
            
                   }),
               onTap: () {
