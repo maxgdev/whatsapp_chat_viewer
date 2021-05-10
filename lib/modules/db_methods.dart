@@ -51,9 +51,9 @@ class DatabaseHelper {
     //         )
     //       ''');
     // Database db = await instance.database;
-      var sql =
+    var sql =
         "CREATE TABLE $table (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
-      await db.execute(sql);
+    await db.execute(sql);
   }
 
   // Helper methods
@@ -66,15 +66,15 @@ class DatabaseHelper {
     var batch = db.batch();
     // if table already exists add a number to name or enter new name??
     if (await isTableExits(tableName) == true) {
-      print("db_methods:  already exists");
+      print("db_methods:  $tableName already exists");
       // Warn user and request new name
     } else {
       // Create table in database
       print("db_methods: Creating table $tableName ...");
       await createTable(tableName);
     }
-      // print(table);
-      rows.forEach((element) {
+    // print(table);
+    rows.forEach((element) {
       // print(
       //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {
@@ -84,7 +84,7 @@ class DatabaseHelper {
         chatMessage: element.message,
       };
       // batch.insert(tableName, row);
-      batch.insert(table, row);
+      batch.insert(tableName , row);
     });
 
     var results = await batch.commit();
@@ -94,7 +94,14 @@ class DatabaseHelper {
 
   Future<List> queryAllRows(tableName) async {
     Database db = await instance.database;
-    return await db.query(tableName);
+    var results = db.query(tableName);
+    print("[db_methods]: queryAllRows:==> $results");
+    return await results;
+  }
+
+  Future<List> queryTable(tableName) async {
+    Database db = await instance.database;
+    return  await db.rawQuery('SELECT * FROM $tableName');
   }
 
   // All of the methods (insert, query, update, delete) can also be done using
@@ -140,7 +147,5 @@ class DatabaseHelper {
         "CREATE TABLE $tableName (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
 
     await db.execute(sql);
-
   }
 }
-

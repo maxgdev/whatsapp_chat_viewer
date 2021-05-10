@@ -101,31 +101,23 @@ class _ChatHomePageState extends State<ChatHomePage> {
       Provider.of<ImportedChats>(context, listen: false)
           .addImportedChats(fileObject);
 
+      // parse file to database
       var chatList = await readConversations(fileObject);
       // var chatList =
       //     await DatabaseHelper.instance.queryAllRows(formattedTableName);
 
-      print("chatList.length:==>  ${chatList.length}");
-      print("===============================");
-      
-      print("fileObject.filePath:==>  ${fileObject.filePath}");
-      var myQuery = await DatabaseHelper.instance.queryRowCount();
-      print("myQuery count:==> $myQuery");
-      // parse file to database
       // then batch insert chats as rows
-
-      print("formattedTableName:==>  $formattedTableName");
-      // var chatList = Provider.of<ChatConversations>(context, listen: false).chatConversation;
-      // var chatList = Provider.of<ImportedChats>(context, listen: false);
-
       await DatabaseHelper.instance.batchInsert(formattedTableName, chatList);
 
-      // var results = await DatabaseHelper.instance
-      //     .batchInsert(formattedTableName, chatList);
-      // print("results: $results");
-
+      var myQuery = await DatabaseHelper.instance.queryRowCount();
+      print("===============================");
+      print("[chat_home_page]myQuery count:==> $myQuery");
       // query all rows of table
-
+      // querry results just inserted into Db
+      var chatResults =
+          await DatabaseHelper.instance.queryTable(formattedTableName);
+      print("===============================");
+      print("[chat_home_page]chatResults:==> $chatResults"); 
     }
 
     setState(() {
