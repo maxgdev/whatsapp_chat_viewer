@@ -104,11 +104,6 @@ class ChatConversations with ChangeNotifier {
     return len;
   }
 
-  void chatFromDb(tableName) async {
-    _chatConversation = [];
-    _chatConversation = await DatabaseHelper.instance.queryTable(tableName);
-  }
-
   Future<List> readChatsFromDb(tableName) async {
     var myQuery = await DatabaseHelper.instance.queryTable(tableName);
     print("[providers]: queryTable: $myQuery ");
@@ -120,11 +115,11 @@ class ChatConversations with ChangeNotifier {
     return myQuery;
   }
 
-  Future<List<Chat>> testFn(tableName) async {
+  Future<void> chatFromDb(tableName) async {
   
-    var myQuery = await DatabaseHelper.instance.queryRowCount(tableName);
-    print("[chat_home_page]: ===============================");
-    print("[chat_home_page]: myQuery count:==> $myQuery");
+    // var myQuery = await DatabaseHelper.instance.queryRowCount(tableName);
+    // print("[chat_home_page]: ===============================");
+    // print("[chat_home_page]: myQuery count:==> $myQuery");
 
     // query all rows of table
     // querry results just inserted into Db
@@ -134,9 +129,9 @@ class ChatConversations with ChangeNotifier {
       _chatConversation.add(Chat.fromMapObject(itemMap));
     });
      notifyListeners();
-    print("[chat_home_page]: ===============================");
-    print("[chat_home_page]: _chatConversation:==> $_chatConversation");
-    print(_chatConversation.length);
-    return _chatConversation;
+    // print("[chat_home_page]: ===============================");
+    // print("[chat_home_page]: _chatConversation:==> $_chatConversation");
+    // print(_chatConversation.length);
+    // return _chatConversation;
   }
 }

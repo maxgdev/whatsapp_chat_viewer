@@ -39,7 +39,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // print("[chat_details]: chatResults: $chatResults");
     // print("[chat_details]: chatSize: $chatSize");
 
-    Provider.of<ChatConversations>(context).testFn(tableName);
+    Provider.of<ChatConversations>(context).chatFromDb(tableName);
 
     return Scaffold(
       appBar: AppBar(
