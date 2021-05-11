@@ -32,13 +32,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     // Format table name from widget.wcvObject.fileName
     var fileName = widget.wcvObject.fileName;
     var tableName = formatFilename(fileName);
-
-    // Provider.of<ChatConversations>(context).chatFromDb(tableName);
-    // var chatResults = DatabaseHelper.instance.queryTable(tableName);
-    // var chatSize = DatabaseHelper.instance.queryRowCount(tableName);
-    // print("[chat_details]: chatResults: $chatResults");
-    // print("[chat_details]: chatSize: $chatSize");
-
     Provider.of<ChatConversations>(context).chatFromDb(tableName);
 
     return Scaffold(
@@ -48,11 +41,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       ),
       // Add Consumer to body widget for MultiProvider consumption
       body: Consumer<ChatConversations>(
-        builder: (context, chatObj, child) => Container(
+        builder: (context, chatList, child) => Container(
           decoration: ChatStyles.containerBackgroundImage,
           child: ListView.builder(
             // itemCount: chatObj.conversationLength(tableName),
-            itemCount: chatObj.chatConversation.length,
+            itemCount: chatList.chatConversation.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -61,10 +54,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   children: [
                     Expanded(
                       child: Bubble(
-                        style: chatObj.chatConversation[index].name ==
+                        style: chatList.chatConversation[index].name ==
                                 userSettingsVar.name
                             ? ChatStyles.styleMe
-                            : chatObj.chatConversation[index].name == ""
+                            : chatList.chatConversation[index].name == ""
                                 ? ChatStyles.noStyle
                                 : ChatStyles.styleSomebody,
                         margin: BubbleEdges.only(top: 4),
@@ -73,12 +66,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${chatObj.chatConversation[index].name}",
+                              "${chatList.chatConversation[index].name}",
                               style: ChatStyles.chatNameStyle,
                             ),
-                            Text("${chatObj.chatConversation[index].message}"),
-                            chatBottomRow(chatObj.chatConversation[index].date,
-                                chatObj.chatConversation[index].time),
+                            Text("${chatList.chatConversation[index].message}"),
+                            chatBottomRow(chatList.chatConversation[index].date,
+                                chatList.chatConversation[index].time),
                           ],
                         ),
                       ),
