@@ -121,7 +121,7 @@ class ChatConversations with ChangeNotifier {
   }
 
   Future<List<Chat>> testFn(tableName) async {
-    // _chatConversation = [];
+  
     var myQuery = await DatabaseHelper.instance.queryRowCount(tableName);
     print("[chat_home_page]: ===============================");
     print("[chat_home_page]: myQuery count:==> $myQuery");
@@ -129,10 +129,11 @@ class ChatConversations with ChangeNotifier {
     // query all rows of table
     // querry results just inserted into Db
     var chatResults = await DatabaseHelper.instance.queryTable(tableName);
-
+      _chatConversation = [];
     chatResults.forEach((itemMap) {
       _chatConversation.add(Chat.fromMapObject(itemMap));
     });
+     notifyListeners();
     print("[chat_home_page]: ===============================");
     print("[chat_home_page]: _chatConversation:==> $_chatConversation");
     print(_chatConversation.length);
