@@ -35,6 +35,7 @@ class DatabaseHelper {
   _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
+    print("[db_methods]:  _initDatabase()");
     return await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
   }
@@ -84,7 +85,7 @@ class DatabaseHelper {
         chatMessage: element.message,
       };
       // batch.insert(tableName, row);
-      batch.insert(tableName , row);
+      batch.insert(tableName, row);
       print("[db_methods]: Batch Row Inserted $row");
     });
 
@@ -103,16 +104,19 @@ class DatabaseHelper {
   Future<List> queryTable(tableName) async {
     Database db = await instance.database;
     print("[db_methods]: queryTable:==> $tableName");
-    return  await db.rawQuery('SELECT * FROM $tableName');
+    var result = await db.rawQuery('SELECT * FROM $tableName');
+    return result.toList();
   }
 
   // All of the methods (insert, query, update, delete) can also be done using
   // raw SQL commands. This method uses a raw query to give the row count.
-  Future<int> queryRowCount(tableName) async {
+    Future<int> queryRowCount(tableName) async {
     Database db = await instance.database;
     print("[db_methods]: queryRowCount:==> $tableName");
-    return Sqflite.firstIntValue(
+    var count = Sqflite.firstIntValue(
         await db.rawQuery('SELECT COUNT(*) FROM $tableName'));
+    print("[db_methods]: queryRowCount:==> $tableName: $count");
+    return count;
   }
 
   Future<int> update(tableName, row) async {

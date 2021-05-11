@@ -4,6 +4,7 @@ import 'package:bubble/bubble.dart';
 import 'package:whatsapp_chat_viewer/modules/parse_utils.dart';
 import '../model/chat_model.dart';
 import '../providers/providers.dart';
+import 'db_methods.dart';
 import 'chat_styles.dart';
 // import 'parse_utils.dart';
 
@@ -28,13 +29,21 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final userSettingsVar = Provider.of<UserSettings>(context);
-    Provider.of<ChatConversations>(context).readChatsFromDb(formatFilename(widget.wcvObject.fileName));
-    // final chatsFromDb = Provider.of<ChatConversations>(context).readChatsFromDb(formatFilename(widget.wcvObject.fileName));
-    // print("[chat_details]: chatsFromDb: $chatsFromDb");
+    // Format table name from widget.wcvObject.fileName
+    var fileName = widget.wcvObject.fileName;
+    var tableName = formatFilename(fileName);
+
+    // Provider.of<ChatConversations>(context).chatFromDb(tableName);
+    // var chatResults = DatabaseHelper.instance.queryTable(tableName);
+    // var chatSize = DatabaseHelper.instance.queryRowCount(tableName);
+    // print("[chat_details]: chatResults: $chatResults");
+    // print("[chat_details]: chatSize: $chatSize");
+
+    Provider.of<ChatConversations>(context).testFn(tableName);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.wcvObject.fileName),
+        title: Text(fileName),
         backgroundColor: ChatStyles.whatsAppGreen,
       ),
       // Add Consumer to body widget for MultiProvider consumption
@@ -42,7 +51,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         builder: (context, chatObj, child) => Container(
           decoration: ChatStyles.containerBackgroundImage,
           child: ListView.builder(
-            itemCount: chatObj.conversationLength(widget.wcvObject),
+            // itemCount: chatObj.conversationLength(tableName),
+            itemCount: chatObj.chatConversation.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
