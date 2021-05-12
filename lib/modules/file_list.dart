@@ -19,7 +19,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
       body: Container(
         decoration: ChatStyles.containerBackgroundImage,
         child: ListView.builder(
-          itemCount: widget.fileList.length,
+          itemCount: (widget.fileList.length > 0 ? widget.fileList.length : 0) ,
           itemBuilder: (context, index) {
             return Column(
               children: [
@@ -56,7 +56,7 @@ class WCVImportFileListState extends State<WCVImportFileList> {
                   icon: Icon(Icons.delete),
                   onPressed: () {
                     importedChats.deleteImportedChats(fileList, index);
-                    print("[file_list]:${fileList[index].fileName} deleted!");
+                    // print("[file_list]:${fileList[index].fileName} deleted!");
            
                   }),
               onTap: () {

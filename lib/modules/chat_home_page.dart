@@ -110,19 +110,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
       // then batch insert chats as rows
       await DatabaseHelper.instance.batchInsert(formattedTableName, chatList);
 
-      // var myQuery = await DatabaseHelper.instance.queryRowCount(formattedTableName,);
-      // print("[chat_home_page]: ===============================");
-      // print("[chat_home_page]: myQuery count:==> $myQuery");
-
-      // // query all rows of table
-      // // querry results just inserted into Db
-      // var chatResults =
-      //     await DatabaseHelper.instance.queryTable(formattedTableName);
-      // print("[chat_home_page]: ===============================");
-      // print("[chat_home_page]: chatResults:==> $chatResults");
-
-      // await Provider.of<ChatConversations>(context, listen: false).testFn(formattedTableName);
-
     }
 
     setState(() {

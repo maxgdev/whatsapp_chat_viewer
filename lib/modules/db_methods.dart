@@ -134,6 +134,12 @@ class DatabaseHelper {
     print("[db_methods]: delete:==> $id");
     return await db.delete(table, where: '$chatId = ?', whereArgs: [id]);
   }
+  Future<void> dropTable(tableName) async {
+    Database db = await instance.database;
+    // print("[db_methods]: Drop table:==> $tableName");
+    return await db.execute("DROP TABLE IF EXISTS tableName");
+  }
+
 
   // Determine whether the table exists
   isTableExits(String tableName) async {

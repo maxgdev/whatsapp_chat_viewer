@@ -43,8 +43,16 @@ class ImportedChats with ChangeNotifier {
   ];
 
   void deleteImportedChats(List fileList, int index) {
+    var tempObj = fileList[index];
     fileList.removeAt(index);
+    // Use fileList and index to get tableName and drop table
+    DatabaseHelper.instance.dropTable(tempObj.tableName);
     notifyListeners();
+    // Comment to code/debug db
+    print("[providers]: index of Object to be deleted - index: $index");
+    print("[providers]: Object to be deleted - tempObj: $tempObj");
+    print(
+        "[providers]: Object to be deleted - tempObj.tableName: ${tempObj.tableName}");
   }
 
   void addImportedChats(WCVImportFile fileObject) {
@@ -116,7 +124,6 @@ class ChatConversations with ChangeNotifier {
   }
 
   Future<void> chatFromDb(tableName) async {
-  
     // var myQuery = await DatabaseHelper.instance.queryRowCount(tableName);
     // print("[chat_home_page]: ===============================");
     // print("[chat_home_page]: myQuery count:==> $myQuery");
@@ -124,11 +131,11 @@ class ChatConversations with ChangeNotifier {
     // query all rows of table
     // querry results just inserted into Db
     var chatResults = await DatabaseHelper.instance.queryTable(tableName);
-      _chatConversation = [];
+    _chatConversation = [];
     chatResults.forEach((itemMap) {
       _chatConversation.add(Chat.fromMapObject(itemMap));
     });
-     notifyListeners();
+    notifyListeners();
     // print("[chat_home_page]: ===============================");
     // print("[chat_home_page]: _chatConversation:==> $_chatConversation");
     // print(_chatConversation.length);
