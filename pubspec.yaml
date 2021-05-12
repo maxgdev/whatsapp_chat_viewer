@@ -45,8 +45,8 @@ dev_dependencies:
 
 flutter_native_splash:
   # color: "#42a5f5"
-  background_image: "assets/images/whatsapp_wallpaper.png"
-  image: assets/images/group.png
+  background_image: "assets/images/whatsapp_splash_screen.png"
+  # image: assets/images/group.png
   android: true
   #ios: false
   #web: false

@@ -134,7 +134,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
         onPressed: (rootPath != null) ? () => _openFile(context) : null,
         tooltip: 'Add Chat',
         backgroundColor: ChatStyles.whatsAppGreen,
-        child: Icon(Icons.message),
+        child: Icon(Icons.insert_drive_file_outlined),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
