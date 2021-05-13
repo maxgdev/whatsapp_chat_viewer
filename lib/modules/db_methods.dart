@@ -110,7 +110,7 @@ class DatabaseHelper {
 
   // All of the methods (insert, query, update, delete) can also be done using
   // raw SQL commands. This method uses a raw query to give the row count.
-    Future<int> queryRowCount(tableName) async {
+  Future<int> queryRowCount(tableName) async {
     Database db = await instance.database;
     print("[db_methods]: queryRowCount:==> $tableName");
     var count = Sqflite.firstIntValue(
@@ -134,12 +134,15 @@ class DatabaseHelper {
     print("[db_methods]: delete:==> $id");
     return await db.delete(table, where: '$chatId = ?', whereArgs: [id]);
   }
+
   Future<void> dropTable(tableName) async {
     Database db = await instance.database;
-    // print("[db_methods]: Drop table:==> $tableName");
-    return await db.execute("DROP TABLE IF EXISTS tableName");
+    var temp = await queryRowCount(tableName);
+    print("[db_methods]: Table size:==> $temp");
+    print("[db_methods]: Drop table:==> $tableName");
+    // return await db.execute("DROP TABLE IF EXISTS tableName");
+    return await db.delete(tableName);
   }
-
 
   // Determine whether the table exists
   isTableExits(String tableName) async {
