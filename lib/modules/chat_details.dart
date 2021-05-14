@@ -21,10 +21,6 @@ class ChatDetailsScreen extends StatefulWidget {
 }
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
-  // _chatConversation scoped to function
-  // List<Chat> _chatConversation = [];
-
-  // var myQuery = DatabaseHelper.instance.queryAllRows(widget.wcvObject.tableName);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +40,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         builder: (context, chatList, child) => Container(
           decoration: ChatStyles.containerBackgroundImage,
           child: ListView.builder(
-            // itemCount: chatObj.conversationLength(tableName),
             itemCount: chatList.chatConversation.length,
             itemBuilder: (context, index) {
               return Padding(

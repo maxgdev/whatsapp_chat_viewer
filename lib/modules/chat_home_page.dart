@@ -102,9 +102,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
       // parse file to database
       var chatList = await readConversations(fileObject);
-      // var chatList =
-      //     await DatabaseHelper.instance.queryAllRows(formattedTableName);
-
+ 
       // then batch insert chats as rows
       await DatabaseHelper.instance.batchInsert(formattedTableName, chatList);
 
