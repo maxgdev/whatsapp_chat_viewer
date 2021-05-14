@@ -9,12 +9,6 @@ regexP(String txtLine) {
       r"([0-9]?[0-9]\/[0-9]?[0-9]\/[0-9]{2,4}),\s([0-9]?[0-9]:[0-9][0-9])\s(AM|PM)?\s?-\s(.*)",
       caseSensitive: false,
       multiLine: false);
-  // tempToken = tempToken.group(0) = 13/11/2014, 8:10 AM - Stacy: yeah I am good
-  // dateToken = tempToken.group(1) = 13/11/2014
-  // timeToken = tempToken.group(2) = 8:10
-  // temp3Token =tempToken.group(3) = AM
-  // nameToken/restToken = tempToken.group(4) = Stacy: yeah I am good
-  //
   // Match line with dd/mm/yy, hh:mm - <name>:
   // DATE, TIME - NAME : TEXT
   var tempToken;
@@ -22,9 +16,6 @@ regexP(String txtLine) {
 
   // check using RegExp
   if (tempToken != null) {
-    // print('-------------------');
-    // print(tempToken.group(0));
-    // print(txtLine);
     if (tempToken.group(0) == txtLine) {
       // match of whole line
       // print('tempToken == txtLine. Return true');
@@ -77,8 +68,6 @@ parseLine(String txtLine, int index) {
       nameToken = tempToken.group(4).split(":")[0];
       textToken = tempToken.group(4).split(":")[1];
     }
-    // tokenList = [dateToken, timeToken, nameToken, textToken];
-    // return tokenList[index];
   }
   tokenList = [dateToken, timeToken, nameToken, textToken];
   // 0 dateToken, 1 timeToken, 2 nameToken, 3 textToken
@@ -100,7 +89,6 @@ formatFilename(String text) {
   // remove .txt & make all lowercase
   var result = rightBracket.split('.txt')[0].toLowerCase();
 
-  // print(result);
   // convert function to use to regex...
   return result;
 }
@@ -139,7 +127,6 @@ fileToStringList(wcvObject) {
   Future<List<String>> loadConversation(WCVImportFile wcvObject) async {
     // chatConversation scoped to inner function
     List<String> chatConversation = [];
-
     // Parsing line with RegExp
     final _file = File(wcvObject.filePath);
     await _file.readAsString().then((q) {
@@ -168,7 +155,8 @@ convertToChatObjects(List chatList) {
   });
   return convertedChatList;
 }
- Future <List<Chat>> readConversations(wcvObject) async {
-    List<String> tempChatConversation = await fileToStringList(wcvObject);
-    return await convertToChatObjects(tempChatConversation);
-  }
+
+Future <List<Chat>> readConversations(wcvObject) async {
+  List<String> tempChatConversation = await fileToStringList(wcvObject);
+  return await convertToChatObjects(tempChatConversation);
+}

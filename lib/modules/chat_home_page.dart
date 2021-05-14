@@ -3,15 +3,15 @@ import 'package:whatsapp_chat_viewer/modules/chat_styles.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../model/chat_model.dart';
-import '../providers/providers.dart';
-import 'settings_page.dart';
-import 'file_list.dart';
-import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../providers/providers.dart';
+import '../model/chat_model.dart';
+import 'package:intl/intl.dart';
+import 'settings_page.dart';
 import './parse_utils.dart';
 import './db_methods.dart';
+import 'file_list.dart';
+import 'dart:io';
 
 class ChatHomePage extends StatefulWidget {
   ChatHomePage({Key key, this.title}) : super(key: key);
@@ -67,10 +67,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
     );
 
     if (path != null) {
-      File file = File('$path');
-      // String contents = await file.readAsString();
-
-      importedFile = file;
+      // File file = File('$path');
+      importedFile = File('$path');
       importedFileName = importedFile.path.split('/').last;
       // get file size
       importedFileSize = (await File(path).readAsBytes()).length;
@@ -97,7 +95,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
           date: "$modifiedTime",
           fileName: '$importedFileName',
           size: "$importedFileSize bytes",
-          filePath: file.path,
+          filePath: importedFile.path,
           tableName: '$formattedTableName');
       Provider.of<ImportedChats>(context, listen: false)
           .addImportedChats(fileObject);

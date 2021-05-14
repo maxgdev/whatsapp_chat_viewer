@@ -2,8 +2,6 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-// import 'package:whatsapp_chat_viewer/modules/chats.dart';
-// import '../model/chat_model.dart';
 
 class DatabaseHelper {
   static final _databaseName = "WCVDatabase.db";
@@ -42,16 +40,6 @@ class DatabaseHelper {
 
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
-    // await db.execute('''
-    //       CREATE TABLE $table (
-    //         $chatId INTEGER PRIMARY KEY AUTOINCREMENT,
-    //         $chatDate TEXT NOT NULL,
-    //         $chatTime TEXT NOT NULL,
-    //         $chatName TEXT NOT NULL,
-    //         $chatMessage TEXT NOT NULL,
-    //         )
-    //       ''');
-    // Database db = await instance.database;
     var sql =
         "CREATE TABLE $table (_id INTEGER PRIMARY KEY AUTOINCREMENT, date  TEXT NOT NULL, time  TEXT NOT NULL, name  TEXT NOT NULL, message  TEXT NOT NULL)";
     await db.execute(sql);
@@ -68,23 +56,20 @@ class DatabaseHelper {
     // if table already exists add a number to name or enter new name??
     if (await isTableExits(tableName) == true) {
       print("[db_methods]:  $tableName already exists");
-      // Warn user and request new name
+      // Warn user and request new name ??
     } else {
       // Create table in database
       print("[db_methods]: Creating table $tableName ...");
       await createTable(tableName);
     }
-    // print(table);
+    
     rows.forEach((element) {
-      // print(
-      //     "${element.date}, ${element.time}, ${element.name}, ${element.message}");
       var row = {
         chatDate: element.date,
         chatTime: element.time,
         chatName: element.name,
         chatMessage: element.message,
       };
-      // batch.insert(tableName, row);
       batch.insert(tableName, row);
       print("[db_methods]: Batch Row Inserted $row");
     });
