@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.whatsapp_chat_viewer">
+    package="net.apphilia.whatsapp_chat_viewer">
    <application
         android:label="whatsapp_chat_viewer"
         android:icon="@mipmap/ic_launcher">
